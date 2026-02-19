@@ -1,0 +1,7 @@
+{
+  "name": "Huele Que Flipas - Equivalencias de Alta Gama",
+  "description": "Una experiencia digital moderna y juvenil para descubrir perfumes de equivalencia de máxima calidad y duración, con atención personalizada y pago mediante Bizum.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
