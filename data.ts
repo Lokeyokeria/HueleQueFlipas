@@ -64,8 +64,8 @@ export const PERFUMES: Product[] = [
     category: 'HOMBRE',
     family: 'Almizcle Amaderado Floral',
     price: 15.95,
-    image: 'https://images.unsplash.com/photo-1557170334-a7c3a4f22038?auto=format&fit=crop&q=80&w=800',
-    description: 'Sofisticado, urbano y seguro.'
+image: "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=800&q=80"
+  description: 'Sofisticado, urbano y seguro.'
   },
   {
     id: '010',
