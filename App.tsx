@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ProductCard from './components/ProductCard';
@@ -6,7 +6,7 @@ import ChatBot from './components/ChatBot';
 import Cart from './components/Cart';
 import { PERFUMES } from './data';
 import { Product, CartItem } from './types';
-import { Star, MapPin, Award } from 'lucide-react';
+import { Star, MapPin, Award, Truck, ShieldCheck, Gift } from 'lucide-react';
 
 const App: React.FC = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -16,11 +16,16 @@ const App: React.FC = () => {
   const addToCart = useCallback((product: Product) => {
     setCartItems(prev => {
       const existing = prev.find(i => i.id === product.id);
+
       if (existing) {
-        return prev.map(i => (i.id === product.id ? { ...i, quantity: i.quantity + 1 } : i));
+        return prev.map(i =>
+          i.id === product.id ? { ...i, quantity: i.quantity + 1 } : i
+        );
       }
+
       return [...prev, { ...product, quantity: 1 }];
     });
+
     setIsCartOpen(true);
   }, []);
 
@@ -40,61 +45,127 @@ const App: React.FC = () => {
     );
   }, []);
 
-  const filteredProducts =
-    activeCategory === 'TODOS' ? PERFUMES : PERFUMES.filter(p => p.category === activeCategory);
+  const filteredProducts = useMemo(() => {
+    return activeCategory === 'TODOS'
+      ? PERFUMES
+      : PERFUMES.filter(p => p.category === activeCategory);
+  }, [activeCategory]);
+
+  const cartCount = useMemo(() => {
+    return cartItems.reduce((acc, item) => acc + item.quantity, 0);
+  }, [cartItems]);
 
   return (
-    <div className="min-h-screen bg-white">
-      <Navbar
-        onCartClick={() => setIsCartOpen(true)}
-        cartCount={cartItems.reduce((a, b) => a + b.quantity, 0)}
-      />
+    <div className="min-h-screen bg-white text-gray-900">
+      <Navbar onCartClick={() => setIsCartOpen(true)} cartCount={cartCount} />
 
       <main>
         <Hero />
 
-        {/* Categories Section */}
-        <section id="productos" className="py-24 px-4 max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter font-syne mb-6">
-              Nuestra Colección
-            </h2>
-            <p className="text-gray-500 max-w-2xl mx-auto font-medium mb-10">
-              Inspirados en los grandes éxitos del mercado, con un toque "Lokeyokería" que marca la diferencia.
-            </p>
+        {/* Trust Strip */}
+        <section className="border-y border-gray-100 bg-white">
+          <div className="max-w-7xl mx-auto px-4 py-6">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+              <div className="flex items-center justify-center gap-3">
+                <div className="w-11 h-11 rounded-2xl bg-sky-50 flex items-center justify-center">
+                  <Truck className="w-5 h-5 text-sky-600" />
+                </div>
+                <div className="text-left">
+                  <p className="text-xs font-black uppercase tracking-widest text-gray-900">
+                    Envío rápido
+                  </p>
+                  <p className="text-sm text-gray-500">24/48h a toda España</p>
+                </div>
+              </div>
 
-            <div className="flex flex-wrap justify-center gap-4">
-              {['TODOS', 'MUJER', 'HOMBRE'].map(cat => (
-                <button
-                  key={cat}
-                  onClick={() => setActiveCategory(cat as any)}
-                  className={`px-8 py-3 rounded-full text-sm font-black tracking-widest uppercase transition-all duration-300 ${
-                    activeCategory === cat
-                      ? 'bg-black text-white shadow-xl scale-105'
-                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                  }`}
-                >
-                  {cat}
-                </button>
-              ))}
+              <div className="flex items-center justify-center gap-3">
+                <div className="w-11 h-11 rounded-2xl bg-sky-50 flex items-center justify-center">
+                  <ShieldCheck className="w-5 h-5 text-sky-600" />
+                </div>
+                <div className="text-left">
+                  <p className="text-xs font-black uppercase tracking-widest text-gray-900">
+                    Pago fácil
+                  </p>
+                  <p className="text-sm text-gray-500">Bizum seguro y directo</p>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-center gap-3">
+                <div className="w-11 h-11 rounded-2xl bg-sky-50 flex items-center justify-center">
+                  <Gift className="w-5 h-5 text-sky-600" />
+                </div>
+                <div className="text-left">
+                  <p className="text-xs font-black uppercase tracking-widest text-gray-900">
+                    Compra con ayuda
+                  </p>
+                  <p className="text-sm text-gray-500">Te guiamos para acertar</p>
+                </div>
+              </div>
             </div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {filteredProducts.map(p => (
-              <ProductCard key={p.id} product={p} onAddToCart={addToCart} />
-            ))}
           </div>
         </section>
 
-        {/* Experience Section */}
-        <section id="about" className="bg-gray-950 py-32 text-white relative overflow-hidden">
+        {/* Products */}
+        <section id="productos" className="py-24 px-4 bg-white">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <span className="inline-block text-sky-600 text-xs font-black uppercase tracking-[0.25em] mb-4">
+                Colección destacada
+              </span>
+
+              <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter font-syne mb-6">
+                Nuestra Colección
+              </h2>
+
+              <p className="text-gray-500 max-w-2xl mx-auto font-medium mb-10 text-base md:text-lg">
+                Fragancias inspiradas en los perfumes más buscados. Huelen brutal, duran mucho y
+                tienen ese punto premium que hace que te pregunten cuál llevas.
+              </p>
+
+              <div className="flex flex-wrap justify-center gap-4">
+                {['TODOS', 'MUJER', 'HOMBRE'].map(cat => (
+                  <button
+                    key={cat}
+                    type="button"
+                    onClick={() => setActiveCategory(cat as 'TODOS' | 'MUJER' | 'HOMBRE')}
+                    className={`px-8 py-3 rounded-full text-sm font-black tracking-widest uppercase transition-all duration-300 ${
+                      activeCategory === cat
+                        ? 'bg-black text-white shadow-xl scale-105'
+                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    }`}
+                    aria-pressed={activeCategory === cat}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {filteredProducts.length > 0 ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                {filteredProducts.map(product => (
+                  <ProductCard key={product.id} product={product} onAddToCart={addToCart} />
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-16">
+                <p className="text-gray-500 font-medium">
+                  Ahora mismo no hay perfumes en esta categoría.
+                </p>
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* About / Maria */}
+        <section id="about" className="bg-gray-950 py-24 md:py-32 text-white relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
             <img
               src="https://images.unsplash.com/photo-1600080972464-8e5f35802d3e?auto=format&fit=crop&q=80&w=1920"
               className="w-full h-full object-cover"
               alt=""
               loading="lazy"
+              decoding="async"
             />
           </div>
 
@@ -106,15 +177,16 @@ const App: React.FC = () => {
                 </span>
 
                 <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter font-syne mb-8 leading-none">
-                  Soy María,<br />
+                  Soy María,
+                  <br />
                   tu guía olfativa.
                 </h2>
 
-                <p className="text-xl text-gray-400 mb-10 leading-relaxed font-light">
-                  Llevamos <span className="text-white font-bold">10 años</span> transformando el mundo
-                  de la perfumería en San Martín de la Vega, Madrid. Mi pasión es que encuentres ese
-                  aroma que te defina sin que tu bolsillo sufra. Calidad máxima, duración brutal y un
-                  trato cercano que te dejará flipando.
+                <p className="text-lg md:text-xl text-gray-400 mb-10 leading-relaxed font-light">
+                  Llevamos <span className="text-white font-bold">10 años</span> transformando el
+                  mundo de la perfumería en San Martín de la Vega, Madrid. Mi objetivo es que
+                  encuentres un aroma que encaje contigo, huela potente y no te haga pagar de más.
+                  Calidad máxima, duración brutal y un trato cercano que te deja con ganas de volver.
                 </p>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
@@ -143,19 +215,21 @@ const App: React.FC = () => {
 
               <div className="relative group">
                 <div className="absolute -inset-4 bg-sky-400/15 rounded-3xl blur-2xl group-hover:bg-sky-400/25 transition-all duration-700"></div>
+
                 <img
                   src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?auto=format&fit=crop&q=80&w=800"
                   alt="María, fundadora de Huele Que Flipas"
-                  className="relative rounded-3xl shadow-2xl border border-white/10 grayscale hover:grayscale-0 transition-all duration-700"
+                  className="relative rounded-3xl shadow-2xl border border-white/10 grayscale hover:grayscale-0 transition-all duration-700 w-full"
                   loading="lazy"
+                  decoding="async"
                 />
               </div>
             </div>
           </div>
         </section>
 
-        {/* Testimonials Banner */}
-        <section className="py-20 bg-gradient-to-r from-gray-950 via-sky-600 to-gray-950 overflow-hidden whitespace-nowrap">
+        {/* Marquee */}
+        <section className="py-16 md:py-20 bg-gradient-to-r from-gray-950 via-sky-600 to-gray-950 overflow-hidden whitespace-nowrap">
           <div className="flex animate-marquee space-x-20">
             {[...Array(6)].map((_, i) => (
               <span
@@ -170,7 +244,7 @@ const App: React.FC = () => {
       </main>
 
       <footer className="bg-white py-16 px-4 border-t border-gray-100">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="text-center md:text-left">
             <h3 className="text-2xl font-black uppercase tracking-tighter font-syne">
               HUELE QUE FLIPAS
@@ -180,11 +254,19 @@ const App: React.FC = () => {
             </p>
           </div>
 
-          <div className="flex space-x-8 text-[10px] font-black uppercase tracking-[0.2em] text-gray-500">
-            <a href="#" className="hover:text-sky-600">Privacidad</a>
-            <a href="#" className="hover:text-sky-600">Envío</a>
-            <a href="#" className="hover:text-sky-600">Bizum</a>
-            <a href="#" className="hover:text-sky-600">Contacto</a>
+          <div className="flex flex-wrap justify-center gap-6 text-[10px] font-black uppercase tracking-[0.2em] text-gray-500">
+            <a href="#" className="hover:text-sky-600 transition-colors">
+              Privacidad
+            </a>
+            <a href="#" className="hover:text-sky-600 transition-colors">
+              Envío
+            </a>
+            <a href="#" className="hover:text-sky-600 transition-colors">
+              Bizum
+            </a>
+            <a href="#" className="hover:text-sky-600 transition-colors">
+              Contacto
+            </a>
           </div>
 
           <div className="text-center md:text-right text-xs font-bold text-gray-400">
@@ -202,6 +284,8 @@ const App: React.FC = () => {
         onRemove={removeFromCart}
         onUpdateQuantity={updateQuantity}
       />
+
+      {/* ChatBot desactivado hasta revisarlo bien y activarlo sin riesgo */}
       {/* <ChatBot /> */}
 
       <style>{`
@@ -209,11 +293,13 @@ const App: React.FC = () => {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
         }
+
         .animate-marquee {
           display: flex;
           width: 200%;
           animation: marquee 40s linear infinite;
         }
+
         @media (prefers-reduced-motion: reduce) {
           .animate-marquee {
             animation: none !important;
