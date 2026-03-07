@@ -2,8 +2,14 @@ import React from "react";
 
 const Hero: React.FC = () => {
   return (
-    <section className="bg-white border-b border-gray-100">
-      <div className="max-w-6xl mx-auto px-4 pt-28 pb-16 text-center">
+    <section className="relative bg-white border-b border-gray-100 overflow-hidden">
+
+      {/* fondo suave */}
+      <div className="absolute inset-0 flex justify-center pointer-events-none">
+        <div className="w-[600px] h-[300px] bg-sky-400/20 blur-[120px] rounded-full mt-20"></div>
+      </div>
+
+      <div className="relative max-w-6xl mx-auto px-4 pt-28 pb-16 text-center">
 
         <span className="text-xs font-bold uppercase tracking-widest text-sky-600">
           Perfumes que flipan
@@ -12,7 +18,7 @@ const Hero: React.FC = () => {
         <h1 className="font-syne text-4xl md:text-6xl font-black tracking-tighter text-gray-900 mt-4 leading-tight">
           Huelen caro.
           <br />
-          Cuestan menos.
+          Cuestan muy poco.
         </h1>
 
         <p className="text-gray-500 max-w-xl mx-auto mt-5 text-base">
