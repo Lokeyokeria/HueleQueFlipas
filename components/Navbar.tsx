@@ -4,22 +4,20 @@ import { ShoppingCart, Menu, Search } from 'lucide-react';
 interface NavbarProps {
   onCartClick: () => void;
   cartCount: number;
+  onSearchClick?: () => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ onCartClick, cartCount }) => {
+const Navbar: React.FC<NavbarProps> = ({ onCartClick, cartCount, onSearchClick }) => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 sm:h-20">
-          
-          {/* Logo */}
           <div className="flex items-center space-x-2 cursor-pointer">
-            <span className="text-xl sm:text-2xl font-bold tracking-tighter text-black uppercase font-syne">
+            <a href="#hero" className="text-xl sm:text-2xl font-bold tracking-tighter text-black uppercase font-syne">
               Huele <span className="text-sky-600">Que</span> Flipas
-            </span>
+            </a>
           </div>
 
-          {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8 text-sm font-semibold uppercase tracking-widest">
             <a href="#hero" className="hover:text-sky-600 transition-colors">
               Inicio
@@ -32,9 +30,13 @@ const Navbar: React.FC<NavbarProps> = ({ onCartClick, cartCount }) => {
             </a>
           </div>
 
-          {/* Icons */}
           <div className="flex items-center space-x-4">
-            <button className="p-2 hover:bg-gray-100 rounded-full transition-colors">
+            <button
+              type="button"
+              onClick={onSearchClick}
+              className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+              aria-label="Ir al buscador"
+            >
               <Search className="w-5 h-5" />
             </button>
 
@@ -51,7 +53,11 @@ const Navbar: React.FC<NavbarProps> = ({ onCartClick, cartCount }) => {
               )}
             </button>
 
-            <button className="md:hidden p-2 hover:bg-gray-100 rounded-full transition-colors">
+            <button
+              type="button"
+              className="md:hidden p-2 hover:bg-gray-100 rounded-full transition-colors"
+              aria-label="Abrir menú"
+            >
               <Menu className="w-5 h-5" />
             </button>
           </div>
