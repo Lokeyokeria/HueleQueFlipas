@@ -8,7 +8,8 @@ export const PERFUMES: Product[] = [
     brand: 'Fantasy',
     category: 'MUJER',
     family: 'Floral Frutal Gourmand',
-    price: 15.95,
+    size: '100 ml',
+    price: 19.90,
     image: 'https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&q=80&w=800',
     description: 'Dulce, adictivo y con vibra mágica.'
   },
@@ -19,7 +20,8 @@ export const PERFUMES: Product[] = [
     brand: 'Halloween',
     category: 'MUJER',
     family: 'Oriental Floral',
-    price: 15.95,
+    size: '100 ml',
+    price: 19.90,
     image: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&q=80&w=800',
     description: 'Enigmático y elegante. De esos que dejan huella.'
   },
@@ -30,7 +32,8 @@ export const PERFUMES: Product[] = [
     brand: 'Black Opium',
     category: 'MUJER',
     family: 'Oriental Vainilla',
-    price: 15.95,
+    size: '100 ml',
+    price: 19.90,
     image: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&q=80&w=800',
     description: 'Intenso, envolvente y con carácter.'
   },
@@ -41,7 +44,8 @@ export const PERFUMES: Product[] = [
     brand: 'Olympea',
     category: 'MUJER',
     family: 'Oriental Floral',
-    price: 15.95,
+    size: '100 ml',
+    price: 19.90,
     image: 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&q=80&w=800',
     description: 'Fuerza, elegancia y magnetismo.'
   },
@@ -52,7 +56,8 @@ export const PERFUMES: Product[] = [
     brand: 'Eros',
     category: 'HOMBRE',
     family: 'Aromática Fougère',
-    price: 15.95,
+    size: '100 ml',
+    price: 19.90,
     image: 'https://images.unsplash.com/photo-1557170334-a7c3a4f22038?auto=format&fit=crop&q=80&w=800',
     description: 'Pasión, intensidad y energía pura.'
   },
@@ -63,7 +68,8 @@ export const PERFUMES: Product[] = [
     brand: '212 Men',
     category: 'HOMBRE',
     family: 'Almizcle Amaderado Floral',
-    price: 15.95,
+    size: '100 ml',
+    price: 19.90,
     image: 'https://images.unsplash.com/photo-1557170334-a7c3a4f22038?auto=format&fit=crop&q=80&w=800',
     description: 'Sofisticado, urbano y seguro.'
   },
@@ -74,7 +80,8 @@ export const PERFUMES: Product[] = [
     brand: 'One Million',
     category: 'HOMBRE',
     family: 'Amaderada Especiada',
-    price: 15.95,
+    size: '100 ml',
+    price: 19.90,
     image: 'https://images.unsplash.com/photo-1512789674584-ebbb0b38269d?auto=format&fit=crop&q=80&w=800',
     description: 'Ambicioso y con presencia.'
   },
@@ -85,7 +92,8 @@ export const PERFUMES: Product[] = [
     brand: 'Only The Brave',
     category: 'HOMBRE',
     family: 'Oriental Amaderada',
-    price: 15.95,
+    size: '100 ml',
+    price: 19.90,
     image: 'https://images.unsplash.com/photo-1557170334-a7c3a4f22038?auto=format&fit=crop&q=80&w=800',
     description: 'Actitud fuerte y personalidad marcada.'
   }
