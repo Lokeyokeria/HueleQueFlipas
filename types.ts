@@ -1,11 +1,11 @@
-
 export interface Product {
   id: string;
   number: string;
   name: string;
   brand: string;
-  category: 'MUJER' | 'HOMBRE';
+  category: 'MUJER' | 'HOMBRE' | 'UNISEX';
   family: string;
+  size: string;
   price: number;
   image: string;
   description: string;
