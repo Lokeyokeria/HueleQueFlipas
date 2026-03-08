@@ -58,7 +58,7 @@ export const PERFUMES: Product[] = [
     family: 'Aromática Fougère',
     size: '100 ml',
     price: 19.90,
-    image: 'https://images.unsplash.com/photo-1557170334-a7c3a4f22038?auto=format&fit=crop&q=80&w=800',
+    image: 'https://raw.githubusercontent.com/Lokeyokeria/HueleQueFlipas/main/equivalencia-hqf.jpg',
     description: 'Pasión, intensidad y energía pura.'
   },
   {
@@ -70,7 +70,7 @@ export const PERFUMES: Product[] = [
     family: 'Almizcle Amaderado Floral',
     size: '100 ml',
     price: 19.90,
-    image: 'https://images.unsplash.com/photo-1557170334-a7c3a4f22038?auto=format&fit=crop&q=80&w=800',
+    image: 'https://raw.githubusercontent.com/Lokeyokeria/HueleQueFlipas/main/equivalencia-hqf.jpg',
     description: 'Sofisticado, urbano y seguro.'
   },
   {
@@ -82,7 +82,7 @@ export const PERFUMES: Product[] = [
     family: 'Amaderada Especiada',
     size: '100 ml',
     price: 19.90,
-    image: 'https://images.unsplash.com/photo-1512789674584-ebbb0b38269d?auto=format&fit=crop&q=80&w=800',
+    image: 'https://raw.githubusercontent.com/Lokeyokeria/HueleQueFlipas/main/equivalencia-hqf.jpg',
     description: 'Ambicioso y con presencia.'
   },
   {
@@ -94,7 +94,7 @@ export const PERFUMES: Product[] = [
     family: 'Oriental Amaderada',
     size: '100 ml',
     price: 19.90,
-    image: 'https://images.unsplash.com/photo-1557170334-a7c3a4f22038?auto=format&fit=crop&q=80&w=800',
+    image: 'https://raw.githubusercontent.com/Lokeyokeria/HueleQueFlipas/main/equivalencia-hqf.jpg',
     description: 'Actitud fuerte y personalidad marcada.'
   }
 ];
