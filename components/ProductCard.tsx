@@ -6,15 +6,14 @@ interface Props {
   onAddToCart: (product: Product) => void;
 }
 
-/* Imagen base cuando el perfume no tenga imagen */
-const FALLBACK_IMAGE = "/equivalencia-hqf.jpg";
+const FALLBACK_IMAGE =
+  "https://raw.githubusercontent.com/Lokeyokeria/HueleQueFlipas/main/equivalencia-hqf.jpg";
 
 const ProductCard: React.FC<Props> = ({ product, onAddToCart }) => {
   const [imgSrc, setImgSrc] = useState(product.image || FALLBACK_IMAGE);
 
   return (
     <div className="group bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl transition duration-300">
-      
       <div className="aspect-square overflow-hidden bg-gray-50">
         <img
           src={imgSrc}
@@ -26,7 +25,6 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart }) => {
       </div>
 
       <div className="p-4">
-
         <div className="flex justify-between items-start gap-3 mb-2">
           <h3 className="font-bold text-sm tracking-tight text-gray-900 leading-snug">
             {product.name}
@@ -48,9 +46,7 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart }) => {
         >
           Añadir
         </button>
-
       </div>
-
     </div>
   );
 };
