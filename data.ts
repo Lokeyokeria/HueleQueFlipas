@@ -31,7 +31,7 @@ export const PERFUMES: Product[] = [
     category: 'MUJER',
     family: 'Oriental Vainilla',
     price: 15.95,
-    image: 'https://images.unsplash.com/photo-1588405864443-f111d99fb3fd?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&q=80&w=800',
     description: 'Intenso, envolvente y con carácter.'
   },
   {
@@ -53,7 +53,7 @@ export const PERFUMES: Product[] = [
     category: 'HOMBRE',
     family: 'Aromática Fougère',
     price: 15.95,
-    image: 'https://images.unsplash.com/photo-1590736704728-f4730bb3c3af?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1557170334-a7c3a4f22038?auto=format&fit=crop&q=80&w=800',
     description: 'Pasión, intensidad y energía pura.'
   },
   {
@@ -64,8 +64,8 @@ export const PERFUMES: Product[] = [
     category: 'HOMBRE',
     family: 'Almizcle Amaderado Floral',
     price: 15.95,
-image: "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=800&q=80"
-  description: 'Sofisticado, urbano y seguro.'
+    image: 'https://images.unsplash.com/photo-1557170334-a7c3a4f22038?auto=format&fit=crop&q=80&w=800',
+    description: 'Sofisticado, urbano y seguro.'
   },
   {
     id: '010',
@@ -86,7 +86,7 @@ image: "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format
     category: 'HOMBRE',
     family: 'Oriental Amaderada',
     price: 15.95,
-    image: 'https://images.unsplash.com/photo-1583445013765-d3c21d720219?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1557170334-a7c3a4f22038?auto=format&fit=crop&q=80&w=800',
     description: 'Actitud fuerte y personalidad marcada.'
   }
 ];
