@@ -18,7 +18,7 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
       className="group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer"
       onClick={() => onViewProduct?.(product)}
     >
-      <div className="aspect-square overflow-hidden bg-gray-50">
+      <div className="aspect-square overflow-hidden bg-gray-50 relative">
         <img
           src={imgSrc}
           alt={product.name}
@@ -26,6 +26,12 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
           loading="lazy"
           onError={() => setImgSrc(FALLBACK_IMAGE)}
         />
+
+        <div className="absolute top-3 left-3 bg-white/90 backdrop-blur px-3 py-1 rounded-full border border-gray-200">
+          <span className="text-[11px] font-black tracking-widest text-gray-900">
+            #{product.number}
+          </span>
+        </div>
       </div>
 
       <div className="p-4">
@@ -43,7 +49,7 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
           Inspirado en {product.brand}
         </p>
 
-        <p className="text-xs text-gray-400 mt-1 mb-4">
+        <p className="text-sm text-gray-700 font-semibold mt-1 mb-4">
           {product.size}
         </p>
 
