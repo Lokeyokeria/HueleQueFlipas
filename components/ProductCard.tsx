@@ -6,8 +6,7 @@ interface Props {
   onAddToCart: (product: Product) => void;
 }
 
-const FALLBACK_IMAGE =
-  "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=800&q=80";
+const FALLBACK_IMAGE = "/equivalencia-hqf.jpg";
 
 const ProductCard: React.FC<Props> = ({ product, onAddToCart }) => {
   const [imgSrc, setImgSrc] = useState(product.image || FALLBACK_IMAGE);
