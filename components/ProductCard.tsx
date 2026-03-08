@@ -4,16 +4,20 @@ import { Product } from "../types";
 interface Props {
   product: Product;
   onAddToCart: (product: Product) => void;
+  onViewProduct?: (product: Product) => void;
 }
 
 const FALLBACK_IMAGE =
   "https://raw.githubusercontent.com/Lokeyokeria/HueleQueFlipas/main/equivalencia-hqf.jpg";
 
-const ProductCard: React.FC<Props> = ({ product, onAddToCart }) => {
+const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) => {
   const [imgSrc, setImgSrc] = useState(product.image || FALLBACK_IMAGE);
 
   return (
-    <div className="group bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl transition duration-300">
+    <div
+      className="group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+      onClick={() => onViewProduct?.(product)}
+    >
       <div className="aspect-square overflow-hidden bg-gray-50">
         <img
           src={imgSrc}
@@ -35,13 +39,20 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart }) => {
           </span>
         </div>
 
-        <p className="text-xs text-gray-500 mb-4">
+        <p className="text-xs text-gray-500">
           Inspirado en {product.brand}
+        </p>
+
+        <p className="text-xs text-gray-400 mt-1 mb-4">
+          {product.size}
         </p>
 
         <button
           type="button"
-          onClick={() => onAddToCart(product)}
+          onClick={(e) => {
+            e.stopPropagation();
+            onAddToCart(product);
+          }}
           className="w-full py-2 rounded-full bg-black text-white text-xs font-bold uppercase tracking-widest transition hover:bg-sky-600"
         >
           Añadir
