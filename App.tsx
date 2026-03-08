@@ -70,7 +70,19 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-white text-gray-900">
-      <Navbar onCartClick={() => setIsCartOpen(true)} cartCount={cartCount} />
+      <Navbar
+        onCartClick={() => setIsCartOpen(true)}
+        cartCount={cartCount}
+        onSearchClick={() => {
+          const section = document.getElementById('productos');
+          section?.scrollIntoView({ behavior: 'smooth' });
+
+          setTimeout(() => {
+            const input = document.getElementById('product-search') as HTMLInputElement | null;
+            input?.focus();
+          }, 400);
+        }}
+      />
 
       <main>
         <Hero />
@@ -136,6 +148,7 @@ const App: React.FC = () => {
                 <div className="relative">
                   <Search className="w-4 h-4 text-gray-400 absolute left-4 top-1/2 -translate-y-1/2" />
                   <input
+                    id="product-search"
                     type="text"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
