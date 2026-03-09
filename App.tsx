@@ -301,7 +301,7 @@ const App: React.FC = () => {
       </main>
 
       <footer className="bg-white py-16 px-4 border-t border-gray-100">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-10">
           <div className="text-center md:text-left">
             <h3 className="text-2xl font-black uppercase tracking-tighter font-syne">
               HUELE QUE FLIPAS
@@ -311,18 +311,39 @@ const App: React.FC = () => {
             </p>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-6 text-[10px] font-black uppercase tracking-[0.2em] text-gray-500">
-            <a href="#" className="hover:text-sky-600 transition-colors">
-              Privacidad
+          <div className="space-y-5 max-w-sm text-center md:text-left">
+            <a href="#top" className="block font-black uppercase text-xs tracking-widest text-gray-700 hover:text-sky-600 transition">
+              Ir arriba
             </a>
-            <a href="#" className="hover:text-sky-600 transition-colors">
-              Envío
-            </a>
-            <a href="#" className="hover:text-sky-600 transition-colors">
-              Bizum
-            </a>
-            <a href="#" className="hover:text-sky-600 transition-colors">
-              Contacto
+
+            <div>
+              <p className="font-black uppercase text-xs tracking-widest mb-2 text-gray-700">
+                Pago por Bizum
+              </p>
+
+              <p className="text-sm text-gray-500 leading-relaxed">
+                Realiza tu pedido cómodamente desde la web.
+                Cuando tengas tu perfume en el carrito, confirma la compra por Bizum.
+              </p>
+
+              <p className="text-sm text-gray-500 leading-relaxed mt-2">
+                Al hacerlo, se abrirá nuestro WhatsApp directamente. Nos pondremos en contacto contigo
+                lo antes posible para confirmar tu pedido y facilitarte el pago por Bizum de forma rápida y segura.
+              </p>
+
+              <p className="text-sm text-gray-500 leading-relaxed mt-2">
+                Una vez recibido el pago, tu pedido se prepara y sale en un plazo aproximado de
+                <strong> 24 horas</strong> rumbo a tu hogar.
+              </p>
+
+              <p className="text-sm text-gray-500 leading-relaxed mt-2">
+                Desde que el paquete es enviado, lo recibirás normalmente en
+                <strong> 24 horas</strong>, siempre que todo transcurra con normalidad durante el transporte.
+              </p>
+            </div>
+
+            <a href="/contacto" className="block font-black uppercase text-xs tracking-widest text-gray-700 hover:text-sky-600 transition">
+              Contáctanos
             </a>
           </div>
 
