@@ -51,7 +51,7 @@
           <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
             <MapPin className="w-5 h-5 text-sky-400 mb-3" />
             <p className="text-[11px] font-black uppercase tracking-[0.2em] text-white">
-              S. M. de la Vega
+              S. Martín de la Vega
             </p>
             <p className="text-sm text-gray-400 mt-2">
               Atención cercana y real.
