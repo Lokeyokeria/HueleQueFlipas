@@ -222,11 +222,22 @@ const App: React.FC = () => {
                   tu guía olfativa.
                 </h2>
 
-                <p className="text-lg md:text-xl text-gray-400 mb-10 leading-relaxed font-light">
-                  Llevamos <span className="text-white font-bold">10 años</span> ayudando a elegir perfumes en
-                  San Martín de la Vega. Mi objetivo es que encuentres un aroma que encaje contigo,
-                  huela brutal y no te haga pagar de más.
+                <p className="text-lg md:text-xl text-gray-300 mb-10 leading-relaxed font-light max-w-xl">
+                  Llevo más de <span className="text-white font-bold">10 años</span> ayudando a encontrar perfumes
+                  que encajan de verdad con cada persona. Si no sabes cuál elegir,
+                  <span className="text-white font-bold"> yo te ayudo</span>. Cuéntame qué aromas te gustan — dulce,
+                  fresco, intenso o elegante — y te recomendaré una equivalencia que vaya contigo.
+                  Fácil, rápido y sin complicarte.
                 </p>
+
+                <a
+                  href="https://wa.me/34600000000?text=Hola%20Mar%C3%ADa,%20quiero%20que%20me%20ayudes%20a%20elegir%20un%20perfume"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-white text-gray-950 text-sm font-black uppercase tracking-widest hover:bg-sky-400 hover:text-gray-950 transition-all duration-300 shadow-lg mb-12"
+                >
+                  María, ayúdame a elegir
+                </a>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
                   <div className="flex flex-col items-center text-center">
