@@ -199,32 +199,32 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        <section id="about" className="bg-gray-950 py-12 md:py-14 text-white relative overflow-hidden">
+        <section id="about" className="bg-gray-950 py-10 md:py-12 text-white relative overflow-hidden">
           <div className="max-w-6xl mx-auto px-4 relative z-10">
-            <div className="grid lg:grid-cols-[280px_1fr] gap-10 lg:gap-14 items-center">
+            <div className="grid lg:grid-cols-[260px_1fr] gap-8 lg:gap-12 items-center">
               <div className="flex justify-center lg:justify-start">
-                <div className="group relative w-[250px] md:w-[280px]">
-                  <div className="absolute -inset-3 rounded-[28px] bg-sky-400/10 blur-2xl opacity-80 transition-all duration-700 group-hover:bg-sky-400/20 group-hover:translate-y-[-4px]" />
+                <div className="group relative w-[230px] md:w-[250px]">
+                  <div className="absolute -inset-2 rounded-[26px] bg-sky-400/10 blur-xl opacity-70 transition-all duration-700 group-hover:bg-sky-400/18 group-hover:-translate-y-1" />
 
-                  <div className="relative overflow-hidden rounded-[28px] border border-white/10 shadow-[0_24px_60px_rgba(0,0,0,0.45)] bg-white/5 transition-transform duration-700 group-hover:-translate-y-1">
+                  <div className="relative overflow-hidden rounded-[26px] border border-white/10 shadow-[0_18px_40px_rgba(0,0,0,0.35)] bg-white/5 transition-transform duration-700 group-hover:-translate-y-1">
                     <img
                       src={mariaPhoto}
                       alt="María perfumista"
-                      className="w-full h-[320px] md:h-[360px] object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-700"
+                      className="w-full h-[300px] md:h-[330px] object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-700"
                       loading="lazy"
                       decoding="async"
                     />
-                    <div className="pointer-events-none absolute inset-0 ring-1 ring-white/10 rounded-[28px]" />
+                    <div className="pointer-events-none absolute inset-0 ring-1 ring-white/10 rounded-[26px]" />
                   </div>
                 </div>
               </div>
 
               <div className="flex flex-col justify-center">
-                <span className="text-sky-400 font-bold uppercase tracking-[0.22em] text-xs md:text-sm mb-4 block">
-                  Fundadora
+                <span className="text-sky-400 font-bold uppercase tracking-[0.24em] text-[11px] md:text-xs mb-3 block">
+                  Fundadora: Lokeyokeria.
                 </span>
 
-                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tighter font-syne leading-[0.92] mb-6">
+                <h2 className="text-4xl sm:text-5xl lg:text-[4.2rem] font-black uppercase tracking-tighter font-syne leading-[0.9] mb-5">
                   Soy María,
                   <br />
                   tu guía
@@ -232,51 +232,51 @@ const App: React.FC = () => {
                   olfativa.
                 </h2>
 
-                <p className="text-base md:text-lg text-gray-300 leading-relaxed max-w-2xl">
+                <p className="text-[15px] md:text-[17px] text-gray-300 leading-relaxed max-w-2xl">
                   Llevo más de <span className="text-white font-bold">10 años</span> ayudando a encontrar perfumes
                   que encajan de verdad con cada persona. Si no sabes cuál elegir,
                   <span className="text-white font-bold"> yo te ayudo</span>. Cuéntame qué aromas te gustan — dulce,
                   fresco, intenso o elegante — y te recomendaré una equivalencia que vaya contigo.
                 </p>
 
-                <div className="mt-8">
+                <div className="mt-7">
                   <a
-                    href="https://wa.me/34600000000?text=Hola%20Mar%C3%ADa,%20quiero%20que%20me%20ayudes%20a%20elegir%20un%20perfume"
+                    href="https://wa.me/34640834686?text=Hola%20Mar%C3%ADa,%20quiero%20que%20me%20ayudes%20a%20elegir%20un%20perfume"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-gradient-to-r from-white via-gray-100 to-white text-gray-950 text-sm font-black uppercase tracking-[0.18em] border border-white/60 shadow-[0_12px_30px_rgba(255,255,255,0.14)] hover:shadow-[0_18px_40px_rgba(56,189,248,0.22)] hover:from-sky-100 hover:via-white hover:to-sky-100 transition-all duration-300"
+                    className="inline-flex items-center justify-center px-7 py-3 rounded-full bg-gradient-to-r from-white via-gray-100 to-white text-gray-950 text-[12px] font-black uppercase tracking-[0.18em] border border-white/60 shadow-[0_10px_24px_rgba(255,255,255,0.10)] hover:shadow-[0_14px_32px_rgba(56,189,248,0.20)] hover:from-sky-100 hover:via-white hover:to-sky-100 hover:-translate-y-0.5 transition-all duration-300"
                   >
-                    María si, ayúdame a elegir:
+                    María, ayúdame a elegir
                   </a>
                 </div>
 
-                <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl">
+                <div className="mt-7 grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl">
                   <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 backdrop-blur-sm">
-                    <MapPin className="w-5 h-5 text-sky-400 mb-3" />
-                    <p className="text-[11px] font-black uppercase tracking-[0.2em] text-white">
-                      S. Martín de la Vega
+                    <MapPin className="w-4 h-4 text-sky-400 mb-2.5" />
+                    <p className="text-[10px] font-black uppercase tracking-[0.22em] text-white">
+                      San Martín de la Vega
                     </p>
-                    <p className="text-sm text-gray-400 mt-2">
+                    <p className="text-xs text-gray-400 mt-2">
                       Atención cercana y real.
                     </p>
                   </div>
 
                   <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 backdrop-blur-sm">
-                    <Star className="w-5 h-5 text-sky-400 mb-3" />
-                    <p className="text-[11px] font-black uppercase tracking-[0.2em] text-white">
-                      Calidad 99%
+                    <Star className="w-4 h-4 text-sky-400 mb-2.5" />
+                    <p className="text-[10px] font-black uppercase tracking-[0.22em] text-white">
+                      Calidad 100%
                     </p>
-                    <p className="text-sm text-gray-400 mt-2">
+                    <p className="text-xs text-gray-400 mt-2">
                       Equivalencias muy logradas.
                     </p>
                   </div>
 
                   <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 backdrop-blur-sm">
-                    <Award className="w-5 h-5 text-sky-400 mb-3" />
-                    <p className="text-[11px] font-black uppercase tracking-[0.2em] text-white">
-                      10 años contigo
+                    <Award className="w-4 h-4 text-sky-400 mb-2.5" />
+                    <p className="text-[10px] font-black uppercase tracking-[0.22em] text-white">
+                      10 años top
                     </p>
-                    <p className="text-sm text-gray-400 mt-2">
+                    <p className="text-xs text-gray-400 mt-2">
                       Experiencia recomendando aromas.
                     </p>
                   </div>
@@ -327,7 +327,7 @@ const App: React.FC = () => {
           </div>
 
           <div className="text-center md:text-right text-xs font-bold text-gray-400">
-            © Lokeyokeria 2026 - San Martín de la Vega, Madrid.
+            © 2026 - San Martín de la Vega, Madrid.
             <br />
             Hecho con ❤️ para ti.
           </div>
