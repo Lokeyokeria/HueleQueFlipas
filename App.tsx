@@ -6,7 +6,7 @@ import Cart from './components/Cart';
 import { PERFUMES } from './data';
 import { Product, CartItem } from './types';
 import { Star, MapPin, Award, Truck, ShieldCheck, Gift, Search, X } from 'lucide-react';
-import mariaPhoto from './assets/maria-photo.jpg';
+import mariaPhoto from './maria-photo.jpg';
 
 const App: React.FC = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
