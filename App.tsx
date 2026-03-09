@@ -96,9 +96,9 @@ const App: React.FC = () => {
                 </div>
                 <div className="text-left">
                   <p className="text-xs font-black uppercase tracking-widest text-gray-900">
-                    Envío rápido
+                    Envío 24/48h
                   </p>
-                  <p className="text-sm text-gray-500">1.50€ a toda España</p>
+                  <p className="text-sm text-gray-500">1,50€ a toda España</p>
                 </div>
               </div>
 
@@ -137,7 +137,7 @@ const App: React.FC = () => {
               </span>
 
               <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter font-syne mb-6">
-                Nuestra Colección
+                Nuestra colección
               </h2>
 
               <p className="text-gray-500 max-w-2xl mx-auto font-medium mb-8 text-base md:text-lg">
@@ -258,7 +258,7 @@ const App: React.FC = () => {
                     <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center mb-4">
                       <Award className="text-sky-400" />
                     </div>
-                    <p className="text-xs font-bold uppercase tracking-widest">10 Años TOP</p>
+                    <p className="text-xs font-bold uppercase tracking-widest">10 años top</p>
                   </div>
                 </div>
               </div>
@@ -278,12 +278,12 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        <section className="py-16 md:py-20 bg-gradient-to-r from-gray-950 via-sky-600 to-gray-950 overflow-hidden whitespace-nowrap">
-          <div className="flex animate-marquee space-x-20">
+        <section className="py-8 md:py-10 bg-gradient-to-r from-gray-950 via-sky-600 to-gray-950 overflow-hidden whitespace-nowrap">
+          <div className="flex animate-marquee space-x-16">
             {[...Array(6)].map((_, i) => (
               <span
                 key={i}
-                className="text-4xl md:text-6xl font-black text-white/15 uppercase tracking-tighter italic"
+                className="text-5xl md:text-7xl font-black text-white/25 uppercase tracking-tighter italic"
               >
                 Huele que flipas • Huele que flipas • Huele que flipas • Huele que flipas
               </span>
