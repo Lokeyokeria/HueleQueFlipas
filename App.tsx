@@ -221,7 +221,7 @@ const App: React.FC = () => {
 
               <div className="flex flex-col justify-center">
                 <span className="text-sky-400 font-bold uppercase tracking-[0.22em] text-xs md:text-sm mb-4 block">
-                  Fundadora & Experta
+                  Fundadora
                 </span>
 
                 <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tighter font-syne leading-[0.92] mb-6">
@@ -246,7 +246,7 @@ const App: React.FC = () => {
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-gradient-to-r from-white via-gray-100 to-white text-gray-950 text-sm font-black uppercase tracking-[0.18em] border border-white/60 shadow-[0_12px_30px_rgba(255,255,255,0.14)] hover:shadow-[0_18px_40px_rgba(56,189,248,0.22)] hover:from-sky-100 hover:via-white hover:to-sky-100 transition-all duration-300"
                   >
-                    María, ayúdame a elegir
+                    María si, ayúdame a elegir:
                   </a>
                 </div>
 
@@ -254,7 +254,7 @@ const App: React.FC = () => {
                   <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 backdrop-blur-sm">
                     <MapPin className="w-5 h-5 text-sky-400 mb-3" />
                     <p className="text-[11px] font-black uppercase tracking-[0.2em] text-white">
-                      S. M. de la Vega
+                      S. Martín de la Vega
                     </p>
                     <p className="text-sm text-gray-400 mt-2">
                       Atención cercana y real.
@@ -264,7 +264,7 @@ const App: React.FC = () => {
                   <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 backdrop-blur-sm">
                     <Star className="w-5 h-5 text-sky-400 mb-3" />
                     <p className="text-[11px] font-black uppercase tracking-[0.2em] text-white">
-                      Calidad 1:1
+                      Calidad 99%
                     </p>
                     <p className="text-sm text-gray-400 mt-2">
                       Equivalencias muy logradas.
@@ -274,7 +274,7 @@ const App: React.FC = () => {
                   <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 backdrop-blur-sm">
                     <Award className="w-5 h-5 text-sky-400 mb-3" />
                     <p className="text-[11px] font-black uppercase tracking-[0.2em] text-white">
-                      10 años top
+                      10 años contigo
                     </p>
                     <p className="text-sm text-gray-400 mt-2">
                       Experiencia recomendando aromas.
@@ -327,7 +327,7 @@ const App: React.FC = () => {
           </div>
 
           <div className="text-center md:text-right text-xs font-bold text-gray-400">
-            © 2026 - San Martín de la Vega, Madrid.
+            © Lokeyokeria 2026 - San Martín de la Vega, Madrid.
             <br />
             Hecho con ❤️ para ti.
           </div>
