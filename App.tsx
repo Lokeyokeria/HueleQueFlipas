@@ -8,6 +8,14 @@ import { Product, CartItem } from './types';
 import { Star, MapPin, Award, Truck, ShieldCheck, Gift, Search, X } from 'lucide-react';
 import mariaPhoto from './maria-photo.jpg';
 
+const NICHO_CODES = ['N66', 'N92', 'N700', 'N800'];
+
+const getDisplayPrice = (product: Product | CartItem) => {
+  const code = product.number?.toUpperCase?.() || '';
+  if (NICHO_CODES.includes(code)) return 25.0;
+  return product.price;
+};
+
 const App: React.FC = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
@@ -322,11 +330,11 @@ const App: React.FC = () => {
               </p>
 
               <p className="text-sm text-gray-500 leading-relaxed">
-                Realiza tu pedido cómodamente desde la web. Cuando tengas tu perfume en el carrito, confirma la compra dando al boton "PAGAR CON BIZUM".
+                Realiza tu pedido cómodamente desde la web. Cuando tengas tu perfume en el carrito, confirma la compra dando al botón "PAGAR CON BIZUM".
               </p>
 
               <p className="text-sm text-gray-500 leading-relaxed mt-2">
-                Al hacerlo se abrirá nuestro WhatsApp. ENVÍA TU PREGUNTA y nos pondremos en contacto contigo para confirmar el pedido. Te facilitaremos el pago por Bizum de forma rápida y segura.
+                Al hacerlo se abrirá nuestro WhatsApp. Envíanos tu mensaje y nos pondremos en contacto contigo para confirmar el pedido. Te facilitaremos el pago por Bizum de forma rápida y segura.
               </p>
 
               <p className="text-sm text-gray-500 leading-relaxed mt-2">
@@ -334,7 +342,7 @@ const App: React.FC = () => {
               </p>
 
               <p className="text-sm text-gray-500 leading-relaxed mt-2">
-                Desde que el paquete esta enviado, lo recibirás normalmente en <strong>24 horas</strong>, siempre que el transporte funcione con normalidad.
+                Desde que el paquete está enviado, lo recibirás normalmente en <strong>24 horas</strong>, siempre que el transporte funcione con normalidad.
               </p>
             </div>
 
@@ -351,7 +359,7 @@ const App: React.FC = () => {
           <div className="text-center md:text-right text-xs font-bold text-gray-500">
             © 2026 - San Martín de la Vega, Madrid.
             <br />
-                   Hecho con ❤️ para ti.
+            Hecho con ❤️ para ti.
           </div>
         </div>
       </footer>
@@ -402,7 +410,7 @@ const App: React.FC = () => {
                 </span>
 
                 <span className="text-2xl font-black text-gray-900">
-                  {selectedProduct.price.toFixed(2)}€
+                  {getDisplayPrice(selectedProduct).toFixed(2)}€
                 </span>
               </div>
 
