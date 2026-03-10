@@ -3,14 +3,12 @@ import React from "react";
 const Hero: React.FC = () => {
   return (
     <section id="top" className="relative bg-white border-b border-gray-100 overflow-hidden">
-      
       {/* fondo suave */}
       <div className="absolute inset-0 flex justify-center pointer-events-none">
         <div className="w-[600px] h-[300px] bg-sky-400/20 blur-[120px] rounded-full mt-20"></div>
       </div>
 
       <div className="relative max-w-6xl mx-auto px-4 pt-28 pb-16 text-center">
-
         <span className="text-xs font-bold uppercase tracking-widest text-sky-600">
           Perfumes que flipan
         </span>
@@ -27,12 +25,12 @@ const Hero: React.FC = () => {
         </p>
 
         <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
-
           <a
             href="#productos"
-            className="px-8 py-4 bg-black text-white rounded-full font-bold uppercase tracking-widest text-sm hover:bg-sky-600 transition"
+            className="group relative inline-flex items-center justify-center overflow-hidden px-8 py-4 rounded-full bg-black text-white font-bold uppercase tracking-widest text-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_30px_rgba(0,0,0,0.18)]"
           >
-            Ver perfumes
+            <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[120%] group-hover:translate-x-[120%] transition-transform duration-1000" />
+            <span className="relative z-10">Ver perfumes</span>
           </a>
 
           <a
@@ -41,7 +39,6 @@ const Hero: React.FC = () => {
           >
             Te ayudamos a elegir
           </a>
-
         </div>
 
         {/* dirección tienda */}
@@ -50,11 +47,12 @@ const Hero: React.FC = () => {
             Tienda física
           </p>
           <p className="text-sm text-gray-500 leading-relaxed">
-            C/ Fray Bartolomé de las Casas, Nº 1 Local 3 — 28330 — San Martín de la Vega, Madrid <br/>
+            C/ Fray Bartolomé de las Casas, Nº 1 Local 3 — 28330 — San Martín de la Vega, Madrid
           </p>
         </div>
       </div>
     </section>
   );
 };
+
 export default Hero;
