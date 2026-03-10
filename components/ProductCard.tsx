@@ -39,9 +39,21 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
     }
   };
 
-  const getAromaText = () => {
-    return `Aroma ${product.family}`;
+  const getBadgeText = () => {
+    switch (product.line) {
+      case "nicho":
+        return "NICHO";
+      case "arabe":
+        return "ÁRABE";
+      case "selecta":
+        return "SELECTA";
+      default:
+        return null;
+    }
   };
+
+  const aromaText = `Aroma ${product.family}`;
+  const badgeText = getBadgeText();
 
   return (
     <div
@@ -63,10 +75,10 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
           </span>
         </div>
 
-        {product.line !== "normal" && (
+        {badgeText && (
           <div className="absolute bottom-3 left-3 bg-black/85 backdrop-blur px-3 py-1 rounded-full">
             <span className="text-[10px] font-black uppercase tracking-widest text-white">
-              {product.line}
+              {badgeText}
             </span>
           </div>
         )}
@@ -92,7 +104,7 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
         </p>
 
         <p className="text-xs text-gray-500 mt-3">
-          {getAromaText()}
+          {aromaText}
         </p>
 
         <p className="text-sm text-gray-700 font-semibold mt-1 mb-4">
