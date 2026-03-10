@@ -46,10 +46,10 @@ const Hero: React.FC = () => {
 
         {/* dirección tienda */}
         <div className="mt-10 text-center">
-          <p className="text-[11px] font-black uppercase tracking-[0.25em] text-gray-500 mb-2">
+          <p className="text-[10px] font-black uppercase tracking-[0.25em] text-gray-400 mb-2">
             Tienda física
           </p>
-          <p className="text-sm text-gray-600 leading-relaxed">
+          <p className="text-sm text-gray-500 leading-relaxed">
             C/ Fray Bartolomé de las Casas, Nº 1 Local 3 — 28330 — San Martín de la Vega, Madrid <br/>
           </p>
         </div>
