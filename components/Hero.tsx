@@ -51,8 +51,7 @@ const Hero: React.FC = () => {
           </p>
 
           <p className="text-sm text-gray-600 leading-relaxed">
-            C/ Fray Bartolomé de las Casas, Nº1 Local 3.<br/>
-            28330 — San Martín de la Vega — Madrid
+            C/ Fray Bartolomé de las Casas, Nº1 Local 3. 28330 — San Martín de la Vega — Madrid <br/>
           </p>
         </div>
 
