@@ -49,15 +49,12 @@ const Hero: React.FC = () => {
           <p className="text-[11px] font-black uppercase tracking-[0.25em] text-gray-500 mb-2">
             Tienda física
           </p>
-
           <p className="text-sm text-gray-600 leading-relaxed">
-            C/ Fray Bartolomé de las Casas, Nº1 Local 3. 28330 — San Martín de la Vega — Madrid <br/>
+            C/ Fray Bartolomé de las Casas, Nº 1 Local 3 — 28330 — San Martín de la Vega, Madrid <br/>
           </p>
         </div>
-
       </div>
     </section>
   );
 };
-
 export default Hero;
