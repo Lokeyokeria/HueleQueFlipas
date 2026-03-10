@@ -48,7 +48,6 @@ const Navbar: React.FC<NavbarProps> = ({ onCartClick, cartCount, onSearchClick }
 
             <a href="#about" className="hover:text-sky-800 transition-colors">
               María
-            </a>
           </div>
 
           <div className="flex items-center space-x-4">
