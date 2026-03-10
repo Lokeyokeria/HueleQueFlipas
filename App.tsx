@@ -246,7 +246,7 @@ const App: React.FC = () => {
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center px-7 py-3 rounded-full bg-gradient-to-r from-white via-gray-100 to-white text-gray-950 text-[12px] font-black uppercase tracking-[0.18em] border border-white/60 shadow-[0_10px_24px_rgba(255,255,255,0.10)] hover:shadow-[0_14px_32px_rgba(56,189,248,0.20)] hover:from-sky-100 hover:via-white hover:to-sky-100 hover:-translate-y-0.5 transition-all duration-300"
                   >
-                    María sí, ayúdame a elegir
+                    María sí, ayúdame a elegir.
                   </a>
                 </div>
 
@@ -274,7 +274,7 @@ const App: React.FC = () => {
                   <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 backdrop-blur-sm">
                     <Award className="w-4 h-4 text-sky-400 mb-2.5" />
                     <p className="text-[10px] font-black uppercase tracking-[0.22em] text-white">
-                      10 años top
+                      2016-2026 Gracias a tí.
                     </p>
                     <p className="text-xs text-gray-400 mt-2">
                       Experiencia recomendando aromas.
@@ -326,15 +326,15 @@ const App: React.FC = () => {
               </p>
 
               <p className="text-sm text-gray-500 leading-relaxed mt-2">
-                Al hacerlo se abrirá nuestro WhatsApp directamente. eNVIA TU PREGUNTA y nos pondremos en contacto contigo para confirmar el pedido. Te facilitarte el pago por Bizum de forma rápida y segura.
+                Al hacerlo se abrirá nuestro WhatsApp. ENVÍA TU PREGUNTA y nos pondremos en contacto contigo para confirmar el pedido. Te facilitaremos el pago por Bizum de forma rápida y segura.
               </p>
 
               <p className="text-sm text-gray-500 leading-relaxed mt-2">
-                Una vez recibido el pago, tu pedido se prepara y sale en un plazo aproximado de <strong>24 horas</strong>.
+                Una vez recibido el pago, tu pedido se prepara y sale en un plazo de <strong>24 horas</strong>.
               </p>
 
               <p className="text-sm text-gray-500 leading-relaxed mt-2">
-                Desde que el paquete es enviado, lo recibirás normalmente en <strong>24 horas</strong>, siempre que el transporte funcione con normalidad.
+                Desde que el paquete esta enviado, lo recibirás normalmente en <strong>24 horas</strong>, siempre que el transporte funcione con normalidad.
               </p>
             </div>
 
@@ -348,10 +348,10 @@ const App: React.FC = () => {
             </a>
           </div>
 
-          <div className="text-center md:text-right text-xs font-bold text-gray-400">
+          <div className="text-center md:text-right text-xs font-bold text-gray-500">
             © 2026 - San Martín de la Vega, Madrid.
             <br />
-            Hecho con ❤️ para ti.
+                   Hecho con ❤️ para ti.
           </div>
         </div>
       </footer>
