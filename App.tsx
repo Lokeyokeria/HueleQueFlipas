@@ -277,7 +277,7 @@ const App: React.FC = () => {
                       2016-2026 Gracias a tí.
                     </p>
                     <p className="text-xs text-gray-400 mt-2">
-                      Experiencia recomendando aromas.
+                      Recomendando aromas TOP.
                     </p>
                   </div>
                 </div>
