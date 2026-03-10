@@ -23,7 +23,7 @@ export const PERFUMES: Product[] = [
     size: '100 ml',
     price: 19.90,
     image: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&q=80&w=800',
-    description: 'Enigmático y elegante. De esos que dejan huella.'
+    description: 'Enigmático, elegante y de los que dejan huella.'
   },
   {
     id: '167',
@@ -35,7 +35,7 @@ export const PERFUMES: Product[] = [
     size: '100 ml',
     price: 19.90,
     image: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&q=80&w=800',
-    description: 'Intenso, envolvente y con carácter.'
+    description: 'Intenso, envolvente y con mucho carácter.'
   },
   {
     id: '174',
@@ -47,7 +47,7 @@ export const PERFUMES: Product[] = [
     size: '100 ml',
     price: 19.90,
     image: 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&q=80&w=800',
-    description: 'Fuerza, elegancia y magnetismo.'
+    description: 'Fuerza, elegancia y magnetismo en cada salida.'
   },
   {
     id: '224',
@@ -83,7 +83,7 @@ export const PERFUMES: Product[] = [
     size: '100 ml',
     price: 19.90,
     image: 'https://raw.githubusercontent.com/Lokeyokeria/HueleQueFlipas/main/equivalencia-hqf.jpg',
-    description: 'Ambicioso y con presencia.'
+    description: 'Ambicioso, llamativo y con mucha presencia.'
   },
   {
     id: '015',
@@ -96,5 +96,54 @@ export const PERFUMES: Product[] = [
     price: 19.90,
     image: 'https://raw.githubusercontent.com/Lokeyokeria/HueleQueFlipas/main/equivalencia-hqf.jpg',
     description: 'Actitud fuerte y personalidad marcada.'
+  },
+
+  {
+    id: 'N66',
+    number: 'N66',
+    name: 'Nº N66 – Madera Icónica',
+    brand: 'Santal 33 Le Labo',
+    category: 'UNISEX',
+    family: 'Amaderada Especiada',
+    size: '100 ml',
+    price: 25.00,
+    image: 'https://raw.githubusercontent.com/Lokeyokeria/HueleQueFlipas/main/equivalencia-hqf.jpg',
+    description: 'Un aroma elegante, seco y adictivo con vibra nicho de verdad.'
+  },
+  {
+    id: 'N92',
+    number: 'N92',
+    name: 'Nº N92 – Fruta Infinita',
+    brand: 'Erba Pura Xerjoff',
+    category: 'UNISEX',
+    family: 'Ámbar',
+    size: '100 ml',
+    price: 25.00,
+    image: 'https://raw.githubusercontent.com/Lokeyokeria/HueleQueFlipas/main/equivalencia-hqf.jpg',
+    description: 'Luminoso, envolvente y con ese punto jugoso que engancha.'
+  },
+  {
+    id: 'N700',
+    number: 'N700',
+    name: 'Nº N700 – Sombra Nómada',
+    brand: 'Ombre Nomade Louis Vuitton',
+    category: 'HOMBRE',
+    family: 'Ámbar Amaderada',
+    size: '100 ml',
+    price: 25.00,
+    image: 'https://raw.githubusercontent.com/Lokeyokeria/HueleQueFlipas/main/equivalencia-hqf.jpg',
+    description: 'Oscuro, elegante y profundo. De los que se recuerdan.'
+  },
+  {
+    id: 'N800',
+    number: 'N800',
+    name: 'Nº N800 – Oro Oriental',
+    brand: 'Arabians Tonka Montale',
+    category: 'UNISEX',
+    family: 'Ámbar Amaderada',
+    size: '100 ml',
+    price: 25.00,
+    image: 'https://raw.githubusercontent.com/Lokeyokeria/HueleQueFlipas/main/equivalencia-hqf.jpg',
+    description: 'Intenso, cálido y poderoso. Un aroma de presencia total.'
   }
 ];
