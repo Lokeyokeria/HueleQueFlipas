@@ -13,10 +13,10 @@ const Hero: React.FC = () => {
           Perfumes que flipan
         </span>
 
-        <h1 className="font-syne text-4xl md:text-6xl font-black tracking-tighter text-gray-900 mt-4 leading-tight">
+        <h1 className="font-syne text-4xl md:text-6xl font-black tracking-tighter text-gray-800 mt-4 leading-tight">
           Huelen caro.
           <br />
-          Cuestan muy poco.
+          Cuestan poco.
         </h1>
 
         <p className="text-gray-500 max-w-xl mx-auto mt-5 text-base md:text-lg leading-relaxed">
