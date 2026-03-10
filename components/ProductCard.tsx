@@ -16,11 +16,12 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
   const getLineLabel = () => {
     switch (product.line) {
       case "nicho":
-        return "Equivalencia nicho";
+        return "Colección nicho";
       case "arabe":
-        return "Equivalencia árabe de alta calidad";
+        return "Perfume árabe";
       case "selecta":
         return "Edición selecta";
+      case "normal":
       default:
         return "Inspirado en";
     }
@@ -31,9 +32,10 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
       case "nicho":
         return `Inspirado en ${product.brand}`;
       case "arabe":
-        return "Aroma intenso y envolvente";
+        return `Inspirado en ${product.brand}`;
       case "selecta":
-        return "Inspiración premium";
+        return `Inspirado en ${product.brand}`;
+      case "normal":
       default:
         return `Inspirado en ${product.brand}`;
     }
@@ -52,31 +54,31 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
     }
   };
 
-  const aromaText = `Aroma ${product.family}`;
+  const aromaText = `Familia olfativa: ${product.family}`;
   const badgeText = getBadgeText();
 
   return (
-    <div
+    <article
       className="group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer"
       onClick={() => onViewProduct?.(product)}
     >
       <div className="aspect-square overflow-hidden bg-gray-50 relative">
         <img
           src={imgSrc}
-          alt={product.name}
+          alt={`${product.name}, inspirado en ${product.brand}`}
           className="w-full h-full object-cover transition duration-500 group-hover:scale-105"
           loading="lazy"
           onError={() => setImgSrc(FALLBACK_IMAGE)}
         />
 
-        <div className="absolute top-3 left-3 bg-white/90 backdrop-blur px-3 py-1 rounded-full border border-gray-200">
+        <div className="absolute top-3 left-3 bg-white/90 backdrop-blur px-3 py-1 rounded-full border border-gray-200 shadow-sm">
           <span className="text-[11px] font-black tracking-widest text-gray-900">
             #{product.number}
           </span>
         </div>
 
         {badgeText && (
-          <div className="absolute bottom-3 left-3 bg-black/85 backdrop-blur px-3 py-1 rounded-full">
+          <div className="absolute bottom-3 left-3 bg-black/85 backdrop-blur px-3 py-1 rounded-full shadow-sm">
             <span className="text-[10px] font-black uppercase tracking-widest text-white">
               {badgeText}
             </span>
@@ -117,12 +119,12 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
             e.stopPropagation();
             onAddToCart(product);
           }}
-          className="w-full py-2 rounded-full bg-black text-white text-xs font-bold uppercase tracking-widest transition hover:bg-sky-600"
+          className="w-full py-2.5 rounded-full bg-black text-white text-xs font-bold uppercase tracking-widest transition hover:bg-sky-600"
         >
-          Añadir
+          Añadir al carrito
         </button>
       </div>
-    </div>
+    </article>
   );
 };
 
