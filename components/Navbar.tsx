@@ -37,16 +37,16 @@ const Navbar: React.FC<NavbarProps> = ({ onCartClick, cartCount, onSearchClick }
             <button
               type="button"
               onClick={goToTop}
-              className="hover:text-sky-600 transition-colors"
+              className="hover:text-sky-800 transition-colors"
             >
               Inicio
             </button>
 
-            <a href="#productos" className="hover:text-sky-600 transition-colors">
-              Colección
+            <a href="#productos" className="hover:text-sky-800 transition-colors">
+              Equivalencias
             </a>
 
-            <a href="#about" className="hover:text-sky-600 transition-colors">
+            <a href="#about" className="hover:text-sky-800 transition-colors">
               María
             </a>
           </div>
