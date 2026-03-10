@@ -1,3 +1,5 @@
+export type ProductLine = 'normal' | 'nicho' | 'arabe' | 'selecta';
+
 export interface Product {
   id: string;
   number: string;
@@ -9,6 +11,7 @@ export interface Product {
   price: number;
   image: string;
   description: string;
+  line: ProductLine;
 }
 
 export interface CartItem extends Product {
