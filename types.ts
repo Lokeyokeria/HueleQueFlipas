@@ -1,3 +1,4 @@
+export type ProductCategory = 'MUJER' | 'HOMBRE' | 'UNISEX';
 export type ProductLine = 'normal' | 'nicho' | 'arabe' | 'selecta';
 
 export interface Product {
@@ -5,7 +6,7 @@ export interface Product {
   number: string;
   name: string;
   brand: string;
-  category: 'MUJER' | 'HOMBRE' | 'UNISEX';
+  category: ProductCategory;
   family: string;
   size: string;
   price: number;
