@@ -10,8 +10,17 @@ interface Props {
 const FALLBACK_IMAGE =
   "https://raw.githubusercontent.com/Lokeyokeria/HueleQueFlipas/main/equivalencia-hqf.jpg";
 
+const NICHO_CODES = ["N66", "N92", "N700", "N800"];
+
 const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) => {
   const [imgSrc, setImgSrc] = useState(product.image || FALLBACK_IMAGE);
+
+  const code = product.number?.toUpperCase?.() || "";
+  const isNicho = NICHO_CODES.includes(code);
+
+  const label = isNicho ? "Equivalencia nicho" : "Inspirado en";
+  const aromaText = product.family ? `Aroma ${product.family}` : "Aroma";
+  const displayPrice = isNicho ? 25.0 : product.price;
 
   return (
     <div
@@ -32,6 +41,14 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
             #{product.number}
           </span>
         </div>
+
+        {isNicho && (
+          <div className="absolute bottom-3 left-3 bg-black/85 backdrop-blur px-3 py-1 rounded-full">
+            <span className="text-[10px] font-black uppercase tracking-widest text-white">
+              Niche
+            </span>
+          </div>
+        )}
       </div>
 
       <div className="p-4">
@@ -41,12 +58,20 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
           </h3>
 
           <span className="font-bold text-sm text-gray-900 whitespace-nowrap">
-            {product.price.toFixed(2)}€
+            {displayPrice.toFixed(2)}€
           </span>
         </div>
 
-        <p className="text-xs text-gray-500">
-          Inspirado en {product.brand}
+        <p className="text-[11px] uppercase tracking-widest text-gray-400 mb-1">
+          {label}
+        </p>
+
+        <p className="text-xs text-gray-600 leading-relaxed">
+          {product.brand}
+        </p>
+
+        <p className="text-xs text-gray-500 mt-3">
+          {aromaText}
         </p>
 
         <p className="text-sm text-gray-700 font-semibold mt-1 mb-4">
