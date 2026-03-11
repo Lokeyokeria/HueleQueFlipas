@@ -388,11 +388,11 @@ const App: React.FC = () => {
         </section>
 
         {/* BANNER HUELE QUE FLIPAS EN MOVIMIENTO */}
-        <section className="overflow-hidden bg-[#031426] border-y border-sky-400/10">
+        <section className="overflow-hidden bg-[#071e36] border-y border-sky-400/10">
           <div className="py-6 md:py-8">
             <div
               className="flex w-max whitespace-nowrap"
-              style={{ animation: 'hqfMarquee 90s linear infinite' }}
+              style={{ animation: 'hqfMarquee 120s linear infinite' }}
             >
               <span className="mx-6 text-[36px] md:text-[66px] font-black uppercase tracking-tighter font-syne text-sky-600/20">
                 HUELE QUE FLIPAS • HUELE QUE FLIPAS • HUELE QUE FLIPAS • HUELE QUE FLIPAS •
