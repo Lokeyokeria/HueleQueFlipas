@@ -28,17 +28,17 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
     }
   };
 
-  const getMarketingText = () => {
+  const getInspiredText = () => {
     switch (product.line) {
       case "nicho":
-        return `Inspiración nicho basada en ${product.brand}, creada para quienes quieren un aroma más exclusivo y con más personalidad.`;
+        return `Inspirada en ${product.brand}`;
       case "arabe":
-        return `Inspiración árabe basada en ${product.brand}, ideal para quienes buscan intensidad y carácter.`;
+        return `Inspirada en ${product.brand}`;
       case "selecta":
-        return `Edición selecta inspirada en ${product.brand}, pensada para quienes buscan algo especial.`;
+        return `Inspirada en ${product.brand}`;
       case "normal":
       default:
-        return `Inspirada en ${product.brand}, pensada para quienes buscan oler increíble sin pagar de más.`;
+        return `Inspirada en ${product.brand}`;
     }
   };
 
@@ -114,7 +114,7 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
         </p>
 
         <p className="text-[13px] text-gray-600 leading-relaxed">
-          {getMarketingText()}
+          {getInspiredText()}
         </p>
 
         <p className="text-[13px] text-gray-500 mt-3">
