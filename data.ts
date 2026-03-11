@@ -144,7 +144,7 @@ export const PERFUMES: Product[] = [
     family: 'Ámbar Vainilla',
     size: '100 ml',
     price: 19.90,
-    line: 'normal',
+    line: 'arabe',
     image: HQF_IMAGE,
     description: 'Dulce, tropical y cremosa, con vainilla, frutas tropicales y sándalo.'
   },
