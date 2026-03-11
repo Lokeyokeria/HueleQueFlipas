@@ -90,17 +90,36 @@ const App: React.FC = () => {
     );
   }, [activeCategory, searchTerm]);
 
-  const nicheProducts = useMemo(() => {
-    return filteredProducts.filter(product => product.line === 'nicho');
+  const equivalenceProducts = useMemo(() => {
+    return filteredProducts.filter(product => product.line === 'normal');
   }, [filteredProducts]);
 
-  const equivalenceProducts = useMemo(() => {
-    return filteredProducts.filter(product => product.line !== 'nicho');
+  const selectaProducts = useMemo(() => {
+    return filteredProducts.filter(
+      product => product.line === 'selecta' || product.line === 'arabe'
+    );
+  }, [filteredProducts]);
+
+  const nicheProducts = useMemo(() => {
+    return filteredProducts.filter(product => product.line === 'nicho');
   }, [filteredProducts]);
 
   const cartCount = useMemo(() => {
     return cartItems.reduce((acc, item) => acc + item.quantity, 0);
   }, [cartItems]);
+
+  const getModalLabel = (product: Product) => {
+    switch (product.line) {
+      case 'nicho':
+        return 'Colección nicho';
+      case 'selecta':
+        return 'Fragancia selecta';
+      case 'arabe':
+        return 'Perfume árabe';
+      default:
+        return 'Equivalencia';
+    }
+  };
 
   return (
     <div className="min-h-screen bg-white text-gray-900">
@@ -183,7 +202,7 @@ const App: React.FC = () => {
                 </span>
 
                 <p className="text-[11px] sm:text-xs text-gray-500 font-semibold uppercase tracking-[0.18em] mt-2">
-                  Incluye equivalencias y colección nicho
+                  Incluye equivalencias, fragancias selectas y colección nicho
                 </p>
               </div>
 
@@ -252,6 +271,41 @@ const App: React.FC = () => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                   {equivalenceProducts.map(product => (
+                    <ProductCard
+                      key={product.id}
+                      product={normalizeProductPrice(product)}
+                      onAddToCart={addToCart}
+                      onViewProduct={setSelectedProduct}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {selectaProducts.length > 0 && (
+              <div className="mb-20 rounded-[32px] bg-gradient-to-br from-[#f8fbff] via-[#eef6ff] to-[#e8f3ff] px-5 py-8 md:px-10 md:py-12 border border-sky-100 shadow-[0_18px_50px_rgba(59,130,246,0.08)]">
+                <div className="flex items-end justify-between gap-4 mb-8 flex-wrap">
+                  <div className="max-w-4xl">
+                    <p className="text-sky-700 text-xs font-black uppercase tracking-[0.22em] mb-2">
+                      Fragancias selectas
+                    </p>
+
+                    <h3 className="font-sans text-xl sm:text-2xl md:text-3xl font-bold tracking-tight leading-tight text-slate-900">
+                      Selección especial con perfumes premium y árabes destacados
+                    </h3>
+
+                    <p className="text-sm md:text-base text-slate-600 mt-3 leading-7">
+                      Aromas con un punto más exclusivo, perfiles más especiales y propuestas que destacan por personalidad y estilo.
+                    </p>
+                  </div>
+
+                  <p className="text-sm sm:text-base text-slate-500">
+                    {selectaProducts.length} resultado{selectaProducts.length === 1 ? '' : 's'}
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                  {selectaProducts.map(product => (
                     <ProductCard
                       key={product.id}
                       product={normalizeProductPrice(product)}
@@ -535,7 +589,7 @@ const App: React.FC = () => {
 
               <div className="p-6 md:p-8">
                 <p className="text-xs font-black uppercase tracking-[0.22em] text-sky-600 mb-3">
-                  {selectedProduct.line === 'nicho' ? 'Colección nicho' : 'Equivalencia'}
+                  {getModalLabel(selectedProduct)}
                 </p>
 
                 <h3 className="text-2xl md:text-3xl font-black tracking-tight text-gray-900 mb-3">
@@ -543,7 +597,7 @@ const App: React.FC = () => {
                 </h3>
 
                 <p className="text-[15px] text-gray-500 mb-2">
-                  Inspirado en <span className="font-semibold text-gray-700">{selectedProduct.brand}</span>
+                  Inspirada en <span className="font-semibold text-gray-700">{selectedProduct.brand}</span>
                 </p>
 
                 <p className="text-[15px] text-gray-500 mb-2">
