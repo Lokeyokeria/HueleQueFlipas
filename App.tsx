@@ -263,15 +263,17 @@ const App: React.FC = () => {
             {nicheProducts.length > 0 && (
               <div className="rounded-[32px] bg-gradient-to-br from-[#020817] via-[#031426] to-[#071e36] text-white px-5 py-8 md:px-10 md:py-12 shadow-[0_24px_60px_rgba(2,8,23,0.35)] border border-white/10">
                 <div className="flex items-end justify-between gap-4 mb-8 flex-wrap">
-                  <div>
+                  <div className="max-w-4xl">
                     <p className="text-sky-300 text-xs font-black uppercase tracking-[0.22em] mb-2">
                       Colección nicho
                     </p>
-                    <h3 className="text-2xl md:text-4xl font-black tracking-tight leading-tight">
+
+                    <h3 className="font-sans text-lg sm:text-xl md:text-2xl font-bold tracking-tight leading-snug text-white">
                       Fragancias especiales para quienes quieren algo más exclusivo
                     </h3>
-                    <p className="text-sm md:text-base text-gray-200 mt-3 max-w-2xl leading-relaxed">
-                      Aromas con personalidad, más selectos y con un punto más premium dentro de Huele Que Flipas.
+
+                    <p className="text-[12px] sm:text-[13px] md:text-sm text-gray-200 mt-3 leading-6 max-w-none md:whitespace-nowrap">
+                      Aromas con personalidad, más selectos y con un punto más premium dentro de <span className="whitespace-nowrap">Huele Que Flipas.</span>
                     </p>
                   </div>
 
