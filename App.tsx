@@ -15,6 +15,9 @@ const getDisplayPrice = (product: Product | CartItem) => {
   return product.price;
 };
 
+const PRODUCT_MODAL_IMAGE =
+  'https://raw.githubusercontent.com/Lokeyokeria/HueleQueFlipas/main/equivalencia-hqf.jpg';
+
 const App: React.FC = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
@@ -272,7 +275,7 @@ const App: React.FC = () => {
                       Fragancias especiales para quienes quieren algo más exclusivo
                     </h3>
 
-                    <p className="text-[12px] sm:text-[13px] md:text-sm text-gray-200 mt-3 leading-6 max-w-none md:whitespace-nowrap">
+                    <p className="text-[12px] sm:text-[13px] md:text-sm text-gray-200 mt-3 leading-6 max-w-none">
                       Aromas con personalidad, más selectos y con un punto más premium dentro de <span className="whitespace-nowrap">Huele Que Flipas.</span>
                     </p>
                   </div>
@@ -524,7 +527,7 @@ const App: React.FC = () => {
             <div className="grid md:grid-cols-2">
               <div className="bg-gray-50">
                 <img
-                  src={selectedProduct.image}
+                  src={PRODUCT_MODAL_IMAGE}
                   alt={selectedProduct.name}
                   className="w-full h-full object-cover min-h-[320px]"
                 />
