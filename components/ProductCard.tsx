@@ -12,6 +12,7 @@ const FALLBACK_IMAGE =
 
 const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) => {
   const [imgSrc, setImgSrc] = useState(product.image || FALLBACK_IMAGE);
+  const isNiche = product.line === "nicho";
 
   const getLineLabel = () => {
     switch (product.line) {
@@ -59,7 +60,13 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
 
   return (
     <article
-      className="group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+      className={`group rounded-2xl overflow-hidden transition-all duration-300 ${
+        onViewProduct ? "cursor-pointer" : ""
+      } ${
+        isNiche
+          ? "bg-white border border-sky-100 shadow-[0_12px_30px_rgba(14,165,233,0.08)] hover:shadow-[0_18px_38px_rgba(14,165,233,0.14)] hover:-translate-y-1"
+          : "bg-white border border-gray-100 shadow-sm hover:shadow-2xl hover:-translate-y-1"
+      }`}
       onClick={() => onViewProduct?.(product)}
     >
       <div className="aspect-square overflow-hidden bg-gray-50 relative">
@@ -78,7 +85,7 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
         </div>
 
         {badgeText && (
-          <div className="absolute bottom-3 left-3 bg-black/85 backdrop-blur px-3 py-1 rounded-full shadow-sm">
+          <div className="absolute bottom-3 left-3 bg-black/90 backdrop-blur px-3 py-1 rounded-full shadow-sm">
             <span className="text-[10px] font-black uppercase tracking-widest text-white">
               {badgeText}
             </span>
@@ -88,28 +95,28 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
 
       <div className="p-4">
         <div className="flex justify-between items-start gap-3 mb-2">
-          <h3 className="font-bold text-sm tracking-tight text-gray-900 leading-snug">
+          <h3 className="font-bold text-[15px] tracking-tight text-gray-900 leading-snug">
             {product.name}
           </h3>
 
-          <span className="font-bold text-sm text-gray-900 whitespace-nowrap">
+          <span className="font-bold text-[15px] text-gray-900 whitespace-nowrap">
             {product.price.toFixed(2)}€
           </span>
         </div>
 
-        <p className="text-[11px] uppercase tracking-widest text-gray-400 mb-1">
+        <p className={`text-xs uppercase tracking-widest mb-1 ${isNiche ? "text-sky-700" : "text-gray-400"}`}>
           {getLineLabel()}
         </p>
 
-        <p className="text-xs text-gray-600 leading-relaxed">
+        <p className="text-[13px] text-gray-600 leading-relaxed">
           {getSecondaryText()}
         </p>
 
-        <p className="text-xs text-gray-500 mt-3">
+        <p className="text-[13px] text-gray-500 mt-3">
           {aromaText}
         </p>
 
-        <p className="text-sm text-gray-700 font-semibold mt-1 mb-4">
+        <p className="text-[15px] text-gray-700 font-semibold mt-1 mb-4">
           {product.size}
         </p>
 
@@ -119,7 +126,7 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
             e.stopPropagation();
             onAddToCart(product);
           }}
-          className="w-full py-2.5 rounded-full bg-black text-white text-xs font-bold uppercase tracking-widest transition hover:bg-sky-600"
+          className="w-full py-2.5 rounded-full bg-black text-white text-[11px] sm:text-xs font-bold uppercase tracking-widest transition hover:bg-sky-600"
         >
           Añadir al carrito
         </button>
