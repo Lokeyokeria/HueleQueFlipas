@@ -24,23 +24,25 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
         return "Edición selecta";
       case "normal":
       default:
-        return "Inspirado en";
+        return "Equivalencia";
     }
   };
 
-  const getSecondaryText = () => {
+  const getMarketingText = () => {
     switch (product.line) {
       case "nicho":
-        return `Inspirado en ${product.brand}`;
+        return `Inspiración nicho basada en ${product.brand}, creada para quienes quieren un aroma más exclusivo y con más personalidad.`;
       case "arabe":
-        return `Inspirado en ${product.brand}`;
+        return `Inspiración árabe basada en ${product.brand}, ideal para quienes buscan intensidad y carácter.`;
       case "selecta":
-        return `Inspirado en ${product.brand}`;
+        return `Edición selecta inspirada en ${product.brand}, pensada para quienes buscan algo especial.`;
       case "normal":
       default:
-        return `Inspirado en ${product.brand}`;
+        return `Equivalencia inspirada en ${product.brand}, pensada para quienes buscan oler increíble sin pagar de más.`;
     }
   };
+
+  const aromaText = `Familia olfativa: ${product.family}`;
 
   const getBadgeText = () => {
     switch (product.line) {
@@ -55,7 +57,6 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
     }
   };
 
-  const aromaText = `Familia olfativa: ${product.family}`;
   const badgeText = getBadgeText();
 
   return (
@@ -104,12 +105,16 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
           </span>
         </div>
 
-        <p className={`text-xs uppercase tracking-widest mb-1 ${isNiche ? "text-sky-700" : "text-gray-400"}`}>
+        <p
+          className={`text-xs uppercase tracking-widest mb-2 ${
+            isNiche ? "text-sky-700" : "text-gray-400"
+          }`}
+        >
           {getLineLabel()}
         </p>
 
         <p className="text-[13px] text-gray-600 leading-relaxed">
-          {getSecondaryText()}
+          {getMarketingText()}
         </p>
 
         <p className="text-[13px] text-gray-500 mt-3">
