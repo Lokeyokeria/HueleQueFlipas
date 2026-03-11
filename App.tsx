@@ -173,9 +173,15 @@ const App: React.FC = () => {
         <section id="productos" className="py-24 px-4 bg-white">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
-              <span className="inline-block text-sky-600 text-xs font-black uppercase tracking-[0.25em] mb-4">
-                Colección destacada
-              </span>
+              <div className="mb-4">
+                <span className="inline-block text-sky-600 text-xs font-black uppercase tracking-[0.25em]">
+                  Colección destacada
+                </span>
+
+                <p className="text-[11px] sm:text-xs text-gray-500 font-semibold uppercase tracking-[0.18em] mt-2">
+                  Incluye equivalencias y colección nicho
+                </p>
+              </div>
 
               <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter font-syne mb-6">
                 Nuestra colección
@@ -219,7 +225,7 @@ const App: React.FC = () => {
               </div>
 
               <p className="text-sm text-gray-500">
-                Mostrando {filteredProducts.length} perfume{filteredProducts.length === 1 ? '' : 's'}
+                {filteredProducts.length} perfumes disponibles ahora mismo
               </p>
             </div>
 
