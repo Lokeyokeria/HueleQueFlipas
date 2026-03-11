@@ -392,7 +392,7 @@ const App: React.FC = () => {
           <div className="py-6 md:py-8">
             <div
               className="flex w-max whitespace-nowrap"
-              style={{ animation: 'hqfMarquee 120s linear infinite' }}
+              style={{ animation: 'hqfMarquee 100s linear infinite' }}
             >
               <span className="mx-6 text-[36px] md:text-[66px] font-black uppercase tracking-tighter font-syne text-sky-600/50">
                 HUELE QUE FLIPAS • HUELE QUE FLIPAS • HUELE QUE FLIPAS • HUELE QUE FLIPAS •
