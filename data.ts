@@ -1,161 +1,34 @@
-import { Product } from './types';
+{nicheProducts.length > 0 && (
+  <div className="rounded-[32px] bg-gradient-to-br from-[#020817] via-[#031426] to-[#071e36] text-white px-5 py-8 md:px-10 md:py-12 shadow-[0_24px_60px_rgba(2,8,23,0.35)] border border-white/10">
+    <div className="flex items-end justify-between gap-4 mb-8 flex-wrap">
+      <div className="max-w-4xl">
+        <p className="text-sky-300 text-xs font-black uppercase tracking-[0.22em] mb-2">
+          Colección nicho
+        </p>
 
-export const PERFUMES: Product[] = [
-  {
-    id: '060',
-    number: '060',
-    name: 'Nº 060 – Dulce Encanto',
-    brand: 'Fantasy',
-    category: 'MUJER',
-    family: 'Floral Frutal Gourmand',
-    size: '100 ml',
-    price: 19.90,
-    line: 'normal',
-    image: 'https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&q=80&w=800',
-    description: 'Dulce, adictivo y con vibra mágica.'
-  },
-  {
-    id: '078',
-    number: '078',
-    name: 'Nº 078 – Misterio Nocturno',
-    brand: 'Halloween',
-    category: 'MUJER',
-    family: 'Oriental Floral',
-    size: '100 ml',
-    price: 19.90,
-    line: 'normal',
-    image: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&q=80&w=800',
-    description: 'Enigmático, elegante y de los que dejan huella.'
-  },
-  {
-    id: '167',
-    number: '167',
-    name: 'Nº 167 – Energía Oscura',
-    brand: 'Black Opium',
-    category: 'MUJER',
-    family: 'Oriental Vainilla',
-    size: '100 ml',
-    price: 19.90,
-    line: 'normal',
-    image: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&q=80&w=800',
-    description: 'Intenso, envolvente y con mucho carácter.'
-  },
-  {
-    id: '174',
-    number: '174',
-    name: 'Nº 174 – Poder Divino',
-    brand: 'Olympea',
-    category: 'MUJER',
-    family: 'Oriental Floral',
-    size: '100 ml',
-    price: 19.90,
-    line: 'normal',
-    image: 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&q=80&w=800',
-    description: 'Fuerza, elegancia y magnetismo en cada salida.'
-  },
-  {
-    id: '224',
-    number: '224',
-    name: 'Nº 224 – Fuego Azul',
-    brand: 'Eros',
-    category: 'HOMBRE',
-    family: 'Aromática Fougère',
-    size: '100 ml',
-    price: 19.90,
-    line: 'normal',
-    image: 'https://raw.githubusercontent.com/Lokeyokeria/HueleQueFlipas/main/equivalencia-hqf.jpg',
-    description: 'Pasión, intensidad y energía pura.'
-  },
-  {
-    id: '004',
-    number: '004',
-    name: 'Nº 004 – Ciudad Nocturna',
-    brand: '212 Men',
-    category: 'HOMBRE',
-    family: 'Almizcle Amaderado Floral',
-    size: '100 ml',
-    price: 19.90,
-    line: 'normal',
-    image: 'https://raw.githubusercontent.com/Lokeyokeria/HueleQueFlipas/main/equivalencia-hqf.jpg',
-    description: 'Sofisticado, urbano y seguro.'
-  },
-  {
-    id: '010',
-    number: '010',
-    name: 'Nº 010 – Oro Salvaje',
-    brand: 'One Million',
-    category: 'HOMBRE',
-    family: 'Amaderada Especiada',
-    size: '100 ml',
-    price: 19.90,
-    line: 'normal',
-    image: 'https://raw.githubusercontent.com/Lokeyokeria/HueleQueFlipas/main/equivalencia-hqf.jpg',
-    description: 'Ambicioso, llamativo y con mucha presencia.'
-  },
-  {
-    id: '015',
-    number: '015',
-    name: 'Nº 015 – Espíritu Valiente',
-    brand: 'Only The Brave',
-    category: 'HOMBRE',
-    family: 'Oriental Amaderada',
-    size: '100 ml',
-    price: 19.90,
-    line: 'normal',
-    image: 'https://raw.githubusercontent.com/Lokeyokeria/HueleQueFlipas/main/equivalencia-hqf.jpg',
-    description: 'Actitud fuerte y personalidad marcada.'
-  },
+        <h3 className="font-sans text-lg sm:text-xl md:text-2xl font-bold tracking-tight leading-snug text-white">
+          Fragancias especiales para quienes quieren algo más exclusivo
+        </h3>
 
-  {
-    id: 'N66',
-    number: 'N66',
-    name: 'Nº N66 – Madera Icónica',
-    brand: 'Santal 33 Le Labo',
-    category: 'UNISEX',
-    family: 'Amaderada Especiada',
-    size: '100 ml',
-    price: 25.00,
-    line: 'nicho',
-    image: 'https://raw.githubusercontent.com/Lokeyokeria/HueleQueFlipas/main/equivalencia-hqf.jpg',
-    description: 'Un aroma elegante, seco y adictivo con vibra nicho de verdad.'
-  },
-  {
-    id: 'N92',
-    number: 'N92',
-    name: 'Nº N92 – Fruta Infinita',
-    brand: 'Erba Pura Xerjoff',
-    category: 'UNISEX',
-    family: 'Ámbar',
-    size: '100 ml',
-    price: 25.00,
-    line: 'nicho',
-    image: 'https://raw.githubusercontent.com/Lokeyokeria/HueleQueFlipas/main/equivalencia-hqf.jpg',
-    description: 'Luminoso, envolvente y con ese punto jugoso que engancha.'
-  },
-  {
-    id: 'N700',
-    number: 'N700',
-    name: 'Nº N700 – Sombra Nómada',
-    brand: 'Ombre Nomade Louis Vuitton',
-    category: 'HOMBRE',
-    family: 'Ámbar Amaderada',
-    size: '100 ml',
-    price: 25.00,
-    line: 'nicho',
-    image: 'https://raw.githubusercontent.com/Lokeyokeria/HueleQueFlipas/main/equivalencia-hqf.jpg',
-    description: 'Oscuro, elegante y profundo. De los que se recuerdan.'
-  },
-  {
-    id: 'N800',
-    number: 'N800',
-    name: 'Nº N800 – Oro Oriental',
-    brand: 'Arabians Tonka Montale',
-    category: 'UNISEX',
-    family: 'Ámbar Amaderada',
-    size: '100 ml',
-    price: 25.00,
-    line: 'nicho',
-    image: 'https://raw.githubusercontent.com/Lokeyokeria/HueleQueFlipas/main/equivalencia-hqf.jpg',
-    description: 'Intenso, cálido y poderoso. Un aroma de presencia total.'
-  }
-];
+        <p className="text-[12px] sm:text-[13px] md:text-sm text-gray-200 mt-3 leading-6 max-w-none lg:whitespace-nowrap">
+          Aromas con personalidad, más selectos y con un punto más premium dentro de <span className="whitespace-nowrap">Huele Que Flipas.</span>
+        </p>
+      </div>
+
+      <p className="text-sm sm:text-base text-gray-300">
+        {nicheProducts.length} resultado{nicheProducts.length === 1 ? '' : 's'}
+      </p>
+    </div>
+
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      {nicheProducts.map(product => (
+        <ProductCard
+          key={product.id}
+          product={normalizeProductPrice(product)}
+          onAddToCart={addToCart}
+          onViewProduct={setSelectedProduct}
+        />
+      ))}
+    </div>
+  </div>
+)}
