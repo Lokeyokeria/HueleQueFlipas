@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ProductCard from './components/ProductCard';
@@ -18,12 +18,38 @@ const getDisplayPrice = (product: Product | CartItem) => {
 const PRODUCT_MODAL_IMAGE =
   'https://raw.githubusercontent.com/Lokeyokeria/HueleQueFlipas/main/equivalencia-hqf.jpg';
 
+const CART_STORAGE_KEY = 'hqf-cart';
+
 const App: React.FC = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [activeCategory, setActiveCategory] = useState<CategoryFilter>('TODOS');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+
+  useEffect(() => {
+    try {
+      const savedCart = localStorage.getItem(CART_STORAGE_KEY);
+
+      if (savedCart) {
+        const parsedCart = JSON.parse(savedCart) as CartItem[];
+
+        if (Array.isArray(parsedCart)) {
+          setCartItems(parsedCart);
+        }
+      }
+    } catch (error) {
+      console.error('Error al recuperar el carrito:', error);
+    }
+  }, []);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cartItems));
+    } catch (error) {
+      console.error('Error al guardar el carrito:', error);
+    }
+  }, [cartItems]);
 
   const normalizeProductPrice = useCallback((product: Product): Product => {
     return {
