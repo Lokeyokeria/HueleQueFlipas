@@ -5,7 +5,7 @@ import ProductCard from './components/ProductCard';
 import Cart from './components/Cart';
 import { PERFUMES } from './data';
 import { Product, CartItem } from './types';
-import { Truck, ShieldCheck, Gift, Search } from 'lucide-react';
+import { Star, MapPin, Award, Truck, ShieldCheck, Gift, Search } from 'lucide-react';
 import mariaPhoto from './maria-photo.jpg';
 
 type CategoryFilter = 'TODOS' | 'MUJER' | 'HOMBRE' | 'UNISEX';
@@ -117,6 +117,7 @@ const App: React.FC = () => {
       <main>
         <Hero />
 
+        {/* INFO BARRA */}
         <section className="border-y border-gray-100 bg-white">
           <div className="max-w-7xl mx-auto px-4 py-6">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
@@ -157,7 +158,7 @@ const App: React.FC = () => {
 
                 <div className="text-left">
                   <p className="text-xs font-black uppercase tracking-widest text-gray-900">
-                    Compra con ayuda
+                    Compra con mi ayuda
                   </p>
                   <p className="text-sm text-gray-500">
                     Te guiamos para acertar
@@ -168,6 +169,7 @@ const App: React.FC = () => {
           </div>
         </section>
 
+        {/* PRODUCTOS */}
         <section id="productos" className="py-24 px-4 bg-white">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
@@ -209,6 +211,7 @@ const App: React.FC = () => {
                         ? 'bg-black text-white shadow-xl scale-105'
                         : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                     }`}
+                    aria-pressed={activeCategory === cat}
                   >
                     {cat}
                   </button>
@@ -256,7 +259,7 @@ const App: React.FC = () => {
                     <p className="text-sky-400 text-xs font-black uppercase tracking-[0.22em] mb-2">
                       Colección nicho
                     </p>
-                    <h3 className="text-2xl md:text-4xl font-black tracking-tight">
+                    <h3 className="text-2xl md:text-4xl font-black tracking-tight leading-tight">
                       Fragancias especiales para quienes quieren algo más exclusivo
                     </h3>
                     <p className="text-gray-300 mt-3 max-w-2xl">
@@ -294,6 +297,7 @@ const App: React.FC = () => {
           </div>
         </section>
 
+        {/* MARIA */}
         <section id="about" className="bg-gray-950 py-10 md:py-12 text-white relative overflow-hidden">
           <div className="max-w-6xl mx-auto px-4 relative z-10">
             <div className="grid lg:grid-cols-[260px_1fr] gap-8 lg:gap-12 items-center">
@@ -311,23 +315,183 @@ const App: React.FC = () => {
                 </div>
               </div>
 
-              <div>
-                <h2 className="text-4xl sm:text-5xl lg:text-[4rem] font-black leading-tight mb-6 font-syne">
+              <div className="flex flex-col justify-center">
+                <p className="text-sky-400 text-xs font-black uppercase tracking-[0.22em] mb-3">
+                  Fundadora de Lokeyokeria - Huele Que Flipas
+                </p>
+
+                <h2 className="text-4xl sm:text-5xl lg:text-[4.2rem] font-black uppercase tracking-tighter font-syne leading-[0.9] mb-5">
                   Soy María,
                   <br />
-                  tu guía olfativa.
+                  tu guía
+                  <br />
+                  olfativa.
                 </h2>
 
-                <p className="text-gray-300 leading-relaxed max-w-xl">
-                  Llevo más de <strong>10 años</strong> ayudando a encontrar perfumes
-                  que encajan con cada persona. Si no sabes cuál elegir,
-                  yo te ayudo.
+                <p className="text-[16px] text-gray-300 leading-relaxed max-w-2xl">
+                  Llevo más de <span className="text-white font-bold">10 años</span> ayudando a encontrar perfumes
+                  que encajan de verdad con cada persona. Si no sabes cuál elegir, <span className="text-white font-bold">yo te ayudo</span>.
+                  Cuéntame qué aromas te gustan — dulce, fresco, intenso o elegante — y te recomendaré una equivalencia que vaya contigo.
                 </p>
+
+                <div className="mt-6">
+                  <a
+                    href="https://api.whatsapp.com/send?phone=34640834686&text=Hola%20Mar%C3%ADa,%20ay%C3%BAdame%20a%20elegir%20un%20perfume"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-white text-gray-900 font-bold uppercase tracking-widest text-sm hover:bg-sky-100 transition"
+                  >
+                    María sí, ayúdame a elegir
+                  </a>
+                </div>
+
+                <div className="mt-7 grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl">
+                  <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
+                    <MapPin className="w-4 h-4 text-sky-400 mb-2" />
+
+                    <p className="text-[10px] font-black uppercase tracking-[0.22em] text-white">
+                      San Martín de la Vega
+                    </p>
+
+                    <p className="text-xs text-gray-400 mt-2">
+                      Atención cercana y real.
+                    </p>
+                  </div>
+
+                  <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
+                    <Star className="w-4 h-4 text-sky-400 mb-2" />
+
+                    <p className="text-[10px] font-black uppercase tracking-[0.22em] text-white">
+                      Calidad 100%
+                    </p>
+
+                    <p className="text-xs text-gray-400 mt-2">
+                      Equivalencias muy logradas.
+                    </p>
+                  </div>
+
+                  <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
+                    <Award className="w-4 h-4 text-sky-400 mb-2" />
+
+                    <p className="text-[10px] font-black uppercase tracking-[0.22em] text-white">
+                      10 años contigo.
+                    </p>
+
+                    <p className="text-xs text-gray-400 mt-2">
+                      Feliz recomendando aromas.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </section>
+
+        {/* BANNER HUELE QUE FLIPAS EN MOVIMIENTO */}
+        <section className="overflow-hidden bg-[#031426] border-y border-sky-500/10">
+          <div className="py-6 md:py-8">
+            <div
+              className="flex w-max whitespace-nowrap"
+              style={{ animation: 'hqfMarquee 24s linear infinite' }}
+            >
+              <span className="mx-6 text-[42px] md:text-[72px] font-black uppercase tracking-tighter font-syne text-sky-500/45">
+                HUELE QUE FLIPAS • HUELE QUE FLIPAS • HUELE QUE FLIPAS • HUELE QUE FLIPAS •
+              </span>
+              <span className="mx-6 text-[42px] md:text-[72px] font-black uppercase tracking-tighter font-syne text-sky-500/45">
+                HUELE QUE FLIPAS • HUELE QUE FLIPAS • HUELE QUE FLIPAS • HUELE QUE FLIPAS •
+              </span>
+            </div>
+          </div>
+        </section>
       </main>
+
+      {/* FOOTER BLANCO LARGO */}
+      <footer className="bg-white py-16 px-4 border-t border-gray-100">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-[220px_1fr_220px] gap-10 items-start">
+          <div>
+            <h3 className="text-2xl font-black uppercase tracking-tighter font-syne">
+              Huele Que Flipas
+            </h3>
+
+            <p className="text-sm text-gray-400 font-bold uppercase tracking-widest mt-2">
+              By Lokeyokeria.es
+            </p>
+          </div>
+
+          <div className="max-w-xl">
+            <a
+              href="#top"
+              className="inline-block font-black uppercase text-xs tracking-widest text-gray-700 hover:text-sky-600 transition"
+            >
+              Ir arriba
+            </a>
+
+            <div className="mt-8">
+              <p className="text-xs font-black uppercase tracking-[0.22em] text-gray-900 mb-4">
+                Pago por Bizum
+              </p>
+
+              <div className="space-y-4 text-sm leading-7 text-gray-500">
+                <p>
+                  Realiza tu pedido cómodamente desde la web. Cuando tengas tu perfume en el carrito,
+                  confirma la compra dando al botón <strong className="text-gray-800">“Pagar con Bizum”</strong>.
+                </p>
+
+                <p>
+                  Al hacerlo se abrirá nuestro WhatsApp. Envía tu consulta y nos pondremos
+                  en contacto contigo para confirmar el pedido. Te facilitaremos el pago por Bizum de forma
+                  rápida y segura.
+                </p>
+
+                <p>
+                  Una vez recibido el pago, tu pedido se prepara y sale en un plazo aproximado de 24 horas.
+                </p>
+
+                <p>
+                  Desde que el paquete es enviado, lo recibirás normalmente en 24/48 horas, siempre que
+                  el transporte funcione con normalidad.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-8">
+              <p className="text-xs font-black uppercase tracking-[0.22em] text-gray-900 mb-3">
+                Contáctanos
+              </p>
+
+              <a
+                href="https://api.whatsapp.com/send?phone=34640834686"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-sm text-gray-600 hover:text-sky-600 transition"
+              >
+                WhatsApp: 640 83 46 86
+              </a>
+
+              <p className="text-sm text-gray-500 mt-2">
+                San Martín de la Vega, Madrid
+              </p>
+            </div>
+          </div>
+
+          <div className="text-xs font-bold text-gray-400 md:text-right">
+            © 2026 — San Martín de la Vega, Madrid
+            <br />
+            Hecho con ❤️ para ti.
+          </div>
+        </div>
+      </footer>
+
+      <style>{`
+        @keyframes hqfMarquee {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+      `}</style>
 
       <Cart
         isOpen={isCartOpen}
