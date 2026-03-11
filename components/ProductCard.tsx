@@ -12,16 +12,19 @@ const FALLBACK_IMAGE =
 
 const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) => {
   const [imgSrc, setImgSrc] = useState(product.image || FALLBACK_IMAGE);
+
   const isNiche = product.line === "nicho";
+  const isSelecta = product.line === "selecta";
+  const isArabe = product.line === "arabe";
 
   const getLineLabel = () => {
     switch (product.line) {
       case "nicho":
         return "Colección nicho";
+      case "selecta":
+        return "Fragancia selecta";
       case "arabe":
         return "Perfume árabe";
-      case "selecta":
-        return "Edición selecta";
       case "normal":
       default:
         return "Equivalencia";
@@ -29,32 +32,55 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
   };
 
   const getInspiredText = () => {
-    switch (product.line) {
-      case "nicho":
-        return `Inspirada en ${product.brand}`;
-      case "arabe":
-        return `Inspirada en ${product.brand}`;
-      case "selecta":
-        return `Inspirada en ${product.brand}`;
-      case "normal":
-      default:
-        return `Inspirada en ${product.brand}`;
-    }
+    return `Inspirada en ${product.brand}`;
   };
-
-  const aromaText = `Familia olfativa: ${product.family}`;
 
   const getBadgeText = () => {
     switch (product.line) {
       case "nicho":
         return "NICHO";
-      case "arabe":
-        return "ÁRABE";
       case "selecta":
         return "SELECTA";
+      case "arabe":
+        return "ÁRABE";
       default:
         return null;
     }
+  };
+
+  const getCardStyle = () => {
+    if (isNiche) {
+      return "bg-white border border-sky-100 shadow-[0_12px_30px_rgba(14,165,233,0.08)] hover:shadow-[0_18px_38px_rgba(14,165,233,0.14)] hover:-translate-y-1";
+    }
+
+    if (isSelecta || isArabe) {
+      return "bg-white border border-sky-100 shadow-[0_10px_24px_rgba(59,130,246,0.06)] hover:shadow-[0_16px_34px_rgba(59,130,246,0.12)] hover:-translate-y-1";
+    }
+
+    return "bg-white border border-gray-100 shadow-sm hover:shadow-2xl hover:-translate-y-1";
+  };
+
+  const getLineColor = () => {
+    if (isNiche) return "text-sky-700";
+    if (isSelecta) return "text-sky-700";
+    if (isArabe) return "text-slate-600";
+    return "text-gray-400";
+  };
+
+  const getBadgeStyle = () => {
+    if (isNiche) {
+      return "bg-black/90 text-white";
+    }
+
+    if (isSelecta) {
+      return "bg-sky-700/90 text-white";
+    }
+
+    if (isArabe) {
+      return "bg-slate-800/90 text-white";
+    }
+
+    return "bg-black/90 text-white";
   };
 
   const badgeText = getBadgeText();
@@ -63,11 +89,7 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
     <article
       className={`group rounded-2xl overflow-hidden transition-all duration-300 ${
         onViewProduct ? "cursor-pointer" : ""
-      } ${
-        isNiche
-          ? "bg-white border border-sky-100 shadow-[0_12px_30px_rgba(14,165,233,0.08)] hover:shadow-[0_18px_38px_rgba(14,165,233,0.14)] hover:-translate-y-1"
-          : "bg-white border border-gray-100 shadow-sm hover:shadow-2xl hover:-translate-y-1"
-      }`}
+      } ${getCardStyle()}`}
       onClick={() => onViewProduct?.(product)}
     >
       <div className="aspect-square overflow-hidden bg-gray-50 relative">
@@ -86,8 +108,8 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
         </div>
 
         {badgeText && (
-          <div className="absolute bottom-3 left-3 bg-black/90 backdrop-blur px-3 py-1 rounded-full shadow-sm">
-            <span className="text-[10px] font-black uppercase tracking-widest text-white">
+          <div className={`absolute bottom-3 left-3 backdrop-blur px-3 py-1 rounded-full shadow-sm ${getBadgeStyle()}`}>
+            <span className="text-[10px] font-black uppercase tracking-widest">
               {badgeText}
             </span>
           </div>
@@ -105,11 +127,7 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
           </span>
         </div>
 
-        <p
-          className={`text-xs uppercase tracking-widest mb-2 ${
-            isNiche ? "text-sky-700" : "text-gray-400"
-          }`}
-        >
+        <p className={`text-xs uppercase tracking-widest mb-2 ${getLineColor()}`}>
           {getLineLabel()}
         </p>
 
@@ -118,7 +136,7 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
         </p>
 
         <p className="text-[13px] text-gray-500 mt-3">
-          {aromaText}
+          Familia olfativa: {product.family}
         </p>
 
         <p className="text-[15px] text-gray-700 font-semibold mt-1 mb-4">
