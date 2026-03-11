@@ -38,7 +38,7 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
         return `Edición selecta inspirada en ${product.brand}, pensada para quienes buscan algo especial.`;
       case "normal":
       default:
-        return `Equivalencia inspirada en ${product.brand}, pensada para quienes buscan oler increíble sin pagar de más.`;
+        return `Inspirada en ${product.brand}, pensada para quienes buscan oler increíble sin pagar de más.`;
     }
   };
 
