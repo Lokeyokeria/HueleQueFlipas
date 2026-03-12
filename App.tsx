@@ -85,6 +85,11 @@ const App: React.FC = () => {
     setCartItems(prev => prev.filter(i => i.id !== id));
   }, []);
 
+  const clearCart = useCallback(() => {
+    setCartItems([]);
+    localStorage.removeItem(CART_STORAGE_KEY);
+  }, []);
+
   const updateQuantity = useCallback((id: string, delta: number) => {
     setCartItems(prev =>
       prev.map(i => {
@@ -166,7 +171,6 @@ const App: React.FC = () => {
       <main>
         <Hero />
 
-        {/* INFO BARRA */}
         <section className="border-y border-gray-100 bg-white">
           <div className="max-w-7xl mx-auto px-4 py-6">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
@@ -218,7 +222,6 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* PRODUCTOS */}
         <section id="productos" className="py-24 px-4 bg-white">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
@@ -391,7 +394,6 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* MARIA */}
         <section id="about" className="bg-gray-950 py-10 md:py-12 text-white relative overflow-hidden">
           <div className="max-w-6xl mx-auto px-4 relative z-10">
             <div className="grid lg:grid-cols-[260px_1fr] gap-8 lg:gap-12 items-center">
@@ -481,7 +483,6 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* BANNER HUELE QUE FLIPAS EN MOVIMIENTO */}
         <section className="overflow-hidden bg-[#071e36] border-y border-sky-400/10">
           <div className="py-6 md:py-8">
             <div
@@ -499,7 +500,6 @@ const App: React.FC = () => {
         </section>
       </main>
 
-      {/* FOOTER BLANCO LARGO */}
       <footer className="bg-white py-16 px-4 border-t border-gray-100">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-[220px_1fr_220px] gap-10 items-start">
           <div>
@@ -670,6 +670,7 @@ const App: React.FC = () => {
         items={cartItems}
         onRemove={removeFromCart}
         onUpdateQuantity={updateQuantity}
+        onClearCart={clearCart}
       />
     </div>
   );
