@@ -8,6 +8,7 @@ interface Props {
   items: CartItem[];
   onRemove: (id: string) => void;
   onUpdateQuantity: (id: string, delta: number) => void;
+  onClearCart: () => void;
 }
 
 const SHIPPING_COST = 1.5;
@@ -21,7 +22,8 @@ const Cart: React.FC<Props> = ({
   onClose,
   items,
   onRemove,
-  onUpdateQuantity
+  onUpdateQuantity,
+  onClearCart
 }) => {
   const subtotal = useMemo(
     () => items.reduce((acc, item) => acc + item.price * item.quantity, 0),
@@ -192,6 +194,14 @@ Pagaré por Bizum a ${BIZUM_PHONE} (${BIZUM_NAME}).`;
               >
                 Enviar pedido por WhatsApp
               </a>
+
+              <button
+                type="button"
+                onClick={onClearCart}
+                className="w-full mt-3 py-3 rounded-2xl bg-gray-100 text-gray-600 text-xs font-black uppercase tracking-widest hover:bg-gray-200 transition"
+              >
+                Vaciar cesta
+              </button>
 
               <p className="text-[11px] text-center text-gray-400 mt-3 leading-5">
                 Te llevamos a WhatsApp con el pedido completo. Después te confirmamos el pago por Bizum.
