@@ -34,22 +34,32 @@ const Cart: React.FC<Props> = ({
   const whatsappMessage = useMemo(() => {
     if (items.length === 0) return "";
 
+    const now = new Date();
+    const orderCode = `HQF-${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, "0")}${String(
+      now.getDate()
+    ).padStart(2, "0")}-${String(now.getHours()).padStart(2, "0")}${String(
+      now.getMinutes()
+    ).padStart(2, "0")}${String(now.getSeconds()).padStart(2, "0")}`;
+
     const lines = items.map(
       (item) =>
-        `• #${item.number} ${item.name} x${item.quantity} - ${(item.price * item.quantity).toFixed(2)}€`
+        `• #${item.number} ${item.name} x${item.quantity} — ${(item.price * item.quantity).toFixed(2)}€`
     );
 
-    const text = `Hola, quiero hacer este pedido en Huele Que Flipas:%0A%0A${lines.join(
-      "%0A"
-    )}%0A%0ASubtotal: ${subtotal.toFixed(
-      2
-    )}€%0AEnvío: ${shipping.toFixed(
-      2
-    )}€%0ATotal: ${total.toFixed(
-      2
-    )}€%0A%0APagaré por Bizum a ${BIZUM_PHONE} (${BIZUM_NAME}).`;
+    const text = `Hola, quiero comprar en Huele Que Flipas.
 
-    return `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
+Pedido: ${orderCode}
+
+Productos:
+${lines.join("\n")}
+
+Subtotal: ${subtotal.toFixed(2)}€
+Envío: ${shipping.toFixed(2)}€
+Total: ${total.toFixed(2)}€
+
+Pagaré por Bizum a ${BIZUM_PHONE} (${BIZUM_NAME}).`;
+
+    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
   }, [items, subtotal, shipping, total]);
 
   if (!isOpen) return null;
@@ -110,7 +120,7 @@ const Cart: React.FC<Props> = ({
                       {item.name}
                     </h3>
 
-                    <p className="text-xs text-gray-500 mt-1">100 ml</p>
+                    <p className="text-xs text-gray-500 mt-1">{item.size}</p>
 
                     <div className="flex items-center justify-between mt-3 gap-3">
                       <div className="flex items-center gap-2 bg-gray-100 rounded-full px-2 py-1">
@@ -180,11 +190,11 @@ const Cart: React.FC<Props> = ({
                 rel="noreferrer"
                 className="w-full inline-flex items-center justify-center py-4 rounded-2xl bg-black text-white text-sm font-black uppercase tracking-widest hover:bg-sky-600 transition"
               >
-                Pagar con Bizum
+                Enviar pedido por WhatsApp
               </a>
 
-              <p className="text-[11px] text-center text-gray-400 mt-3">
-                Se abrirá WhatsApp con tu pedido y el número de Bizum.
+              <p className="text-[11px] text-center text-gray-400 mt-3 leading-5">
+                Te llevamos a WhatsApp con el pedido completo. Después te confirmamos el pago por Bizum.
               </p>
             </>
           ) : (
