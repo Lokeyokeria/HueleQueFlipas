@@ -425,7 +425,7 @@ export const PERFUMES: Product[] = [
   },
   {
     id: 'D25',
-    number: '2025',
+    number: 'D25',
     name: 'Nº D25 – Stronger With You Intensely',
     brand: 'Emporio Armani Stronger With You Intensely',
     category: 'HOMBRE',
