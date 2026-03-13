@@ -1,132 +1,137 @@
-<!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
-    <!-- SEO básico -->
-    <title>Huele Que Flipas | Perfumes de equivalencia que huelen a lujo</title>
-    <meta
-      name="description"
-      content="Perfumes de equivalencia con vibra premium: huelen a lujo sin pagar lujo. Compra fácil, envío rápido y ayuda para elegir tu aroma."
-    />
-    <meta name="robots" content="index,follow" />
-    <link rel="canonical" href="https://huelequeflipas.es/" />
+  <title>Huele Que Flipas | Perfumes de equivalencia premium fabricados en España</title>
+  <meta
+    name="description"
+    content="Descubre perfumes de equivalencia premium que huelen a lujo sin pagar lujo. Larga duración, envío 24/48h, envío barato, muestras en pedidos y atención cercana."
+  />
+  <meta
+    name="keywords"
+    content="perfumes de equivalencia, perfumes de equivalencia premium, perfumes inspirados, perfumes que huelen a lujo, perfumes hombre, perfumes mujer, perfumes unisex, perfumes nicho, perfumes árabes, equivalencias de perfumes"
+  />
+  <meta name="robots" content="index,follow" />
+  <meta name="author" content="Huele Que Flipas" />
+  <link rel="canonical" href="https://huelequeflipas.es/" />
 
-    <!-- Color navegador móvil -->
-    <meta name="theme-color" content="#0284c7" />
+  <meta name="theme-color" content="#0284c7" />
 
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Huele Que Flipas" />
-    <meta property="og:title" content="Huele Que Flipas | Perfumes de equivalencia que huelen a lujo" />
-    <meta
-      property="og:description"
-      content="Huelen a lujo sin pagar lujo. Colección unisex, vibe premium y ayuda para elegir."
-    />
-    <meta property="og:url" content="https://huelequeflipas.es/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:site_name" content="Huele Que Flipas" />
+  <meta property="og:title" content="Huele Que Flipas | Perfumes de equivalencia premium fabricados en España" />
+  <meta
+    property="og:description"
+    content="Perfumes de equivalencia premium con larga duración, envío 24/48h y calidad top. Huele a lujo sin pagar lujo."
+  />
+  <meta property="og:url" content="https://huelequeflipas.es/" />
+  <meta property="og:image" content="https://huelequeflipas.es/equivalencia-hqf.jpg" />
+  <meta property="og:image:alt" content="Huele Que Flipas perfumes de equivalencia premium" />
 
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Huele Que Flipas | Perfumes de equivalencia" />
-    <meta
-      name="twitter:description"
-      content="Perfumes de equivalencia con vibra premium. Huelen a lujo sin pagar lujo."
-    />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Huele Que Flipas | Perfumes de equivalencia premium" />
+  <meta
+    name="twitter:description"
+    content="Huelen a lujo sin pagar lujo. Perfumes de equivalencia premium con envío 24/48h y calidad top."
+  />
+  <meta name="twitter:image" content="https://huelequeflipas.es/equivalencia-hqf.jpg" />
 
-    <!-- Fuentes -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Syne:wght@400..800&display=swap"
-      rel="stylesheet"
-    />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Syne:wght@400..800&display=swap"
+    rel="stylesheet"
+  />
 
-    <!-- Tailwind -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              brand: {
-                DEFAULT: "#0B1220"
-              },
-              accent: {
-                DEFAULT: "#0284c7",
-                soft: "#38bdf8"
-              }
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              DEFAULT: "#0B1220"
+            },
+            accent: {
+              DEFAULT: "#0284c7",
+              soft: "#38bdf8"
             }
           }
         }
-      };
-    </script>
-
-    <style>
-      :root {
-        --nav-h: 80px;
       }
+    };
+  </script>
 
-      body {
-        font-family: "Plus Jakarta Sans", sans-serif;
-        background-color: #fafafa;
-      }
+  <style>
+    :root {
+      --nav-h: 80px;
+    }
 
-      h1, h2, h3, .font-syne {
-        font-family: "Syne", sans-serif;
-      }
+    body {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      background-color: #fafafa;
+    }
 
+    h1, h2, h3, .font-syne {
+      font-family: "Syne", sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: var(--nav-h);
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #e2e2e2;
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #d1d1d1;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
       html {
-        scroll-behavior: smooth;
-        scroll-padding-top: var(--nav-h);
+        scroll-behavior: auto;
       }
+    }
+  </style>
 
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-
-      ::-webkit-scrollbar-track {
-        background: #f1f1f1;
-      }
-
-      ::-webkit-scrollbar-thumb {
-        background: #e2e2e2;
-        border-radius: 10px;
-      }
-
-      ::-webkit-scrollbar-thumb:hover {
-        background: #d1d1d1;
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        html {
-          scroll-behavior: auto;
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "name": "Huele Que Flipas",
+          "url": "https://huelequeflipas.es/",
+          "logo": "https://huelequeflipas.es/equivalencia-hqf.jpg",
+          "areaServed": "ES",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "San Martín de la Vega",
+            "addressRegion": "Madrid",
+            "addressCountry": "ES"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "name": "Huele Que Flipas",
+          "url": "https://huelequeflipas.es/",
+          "inLanguage": "es"
         }
-      }
-    </style>
+      ]
+    }
+  </script>
 
-    <!-- Schema -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Huele Que Flipas",
-        "url": "https://huelequeflipas.es/",
-        "areaServed": "ES",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "San Martín de la Vega",
-          "addressRegion": "Madrid",
-          "addressCountry": "ES"
-        }
-      }
-    </script>
-
-    <!-- IMPORTANTE: carga la app -->
-    <script type="module" src="/index.tsx"></script>
-  </head>
-
-  <body>
-    <div id="root"></div>
-  </body>
-</html>
+  <script type="module" src="/index.tsx"></script>
+</head>
