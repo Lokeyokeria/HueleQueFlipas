@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ProductCard from './components/ProductCard';
 import Cart from './components/Cart';
+import SeoProductContent from "./components/SeoProductContent";
 import { PERFUMES } from './data';
 import { Product, CartItem } from './types';
 import { Star, MapPin, Award, Truck, ShieldCheck, Gift, Search, X } from 'lucide-react';
@@ -537,6 +538,9 @@ const App: React.FC = () => {
             </div>
           </div>
         </section>
+
+       <SeoProductContent products={PERFUMES} />
+        
       </main>
 
       <footer className="bg-white py-16 px-4 border-t border-gray-100">
