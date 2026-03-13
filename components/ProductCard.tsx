@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Product } from "../types";
 
 interface Props {
@@ -9,6 +9,8 @@ interface Props {
 
 const FALLBACK_IMAGE =
   "https://raw.githubusercontent.com/Lokeyokeria/HueleQueFlipas/main/equivalencia-hqf.jpg";
+
+const SITE_URL = "https://huelequeflipas.es";
 
 const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) => {
   const [imgSrc, setImgSrc] = useState(product.image || FALLBACK_IMAGE);
@@ -95,7 +97,42 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
     }
   };
 
+  const getSeoDescription = () => {
+    return `${product.name} es un perfume de equivalencia premium ${getInspiredText().toLowerCase()}, con familia olfativa ${product.family.toLowerCase()} y formato de ${product.size}.`;
+  };
+
   const badgeText = getBadgeText();
+
+  const productSchema = useMemo(() => {
+    const cleanDescription = getSeoDescription();
+
+    return {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: product.name,
+      sku: product.number,
+      mpn: product.number,
+      brand: {
+        "@type": "Brand",
+        name: product.brand,
+      },
+      category: `${product.category} - ${getLineLabel()}`,
+      description: cleanDescription,
+      image: [imgSrc || FALLBACK_IMAGE],
+      itemCondition: "https://schema.org/NewCondition",
+      offers: {
+        "@type": "Offer",
+        priceCurrency: "EUR",
+        price: product.price.toFixed(2),
+        availability: "https://schema.org/InStock",
+        url: SITE_URL,
+        seller: {
+          "@type": "Organization",
+          name: "Huele Que Flipas",
+        },
+      },
+    };
+  }, [imgSrc, product]);
 
   return (
     <article
@@ -103,11 +140,17 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
         onViewProduct ? "cursor-pointer" : ""
       } ${getCardStyle()}`}
       onClick={() => onViewProduct?.(product)}
+      aria-label={`${product.name}, ${getInspiredText().toLowerCase()}`}
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
+
       <div className="aspect-square overflow-hidden bg-gray-50 relative">
         <img
           src={imgSrc}
-          alt={`${product.name}, inspirado en ${product.brand}`}
+          alt={`${product.name}, perfume de equivalencia inspirado en ${product.brand}`}
           className="w-full h-full object-cover transition duration-500 group-hover:scale-105"
           loading="lazy"
           onError={() => setImgSrc(FALLBACK_IMAGE)}
@@ -119,14 +162,18 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
           </span>
         </div>
 
-        <div className={`absolute top-3 right-3 backdrop-blur px-3 py-1 rounded-full shadow-sm ${getCategoryStyle()}`}>
+        <div
+          className={`absolute top-3 right-3 backdrop-blur px-3 py-1 rounded-full shadow-sm ${getCategoryStyle()}`}
+        >
           <span className="text-[10px] font-black uppercase tracking-widest">
             {product.category}
           </span>
         </div>
 
         {badgeText && (
-          <div className={`absolute bottom-3 left-3 backdrop-blur px-3 py-1 rounded-full shadow-sm ${getBadgeStyle()}`}>
+          <div
+            className={`absolute bottom-3 left-3 backdrop-blur px-3 py-1 rounded-full shadow-sm ${getBadgeStyle()}`}
+          >
             <span className="text-[10px] font-black uppercase tracking-widest">
               {badgeText}
             </span>
@@ -157,8 +204,12 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
           Familia olfativa: {product.family}
         </p>
 
-        <p className="text-[15px] text-gray-700 font-semibold mt-1 mb-4">
+        <p className="text-[15px] text-gray-700 font-semibold mt-1 mb-3">
           {product.size}
+        </p>
+
+        <p className="text-[13px] text-gray-500 leading-6 mb-4">
+          {getSeoDescription()}
         </p>
 
         <button
