@@ -171,6 +171,45 @@ const App: React.FC = () => {
       <main>
         <Hero />
 
+        <section className="bg-white py-16 md:py-20 px-4 border-b border-gray-100">
+          <div className="max-w-6xl mx-auto">
+            <div className="max-w-4xl">
+              <p className="text-sky-600 text-xs font-black uppercase tracking-[0.22em] mb-4">
+                Perfumes de equivalencia premium
+              </p>
+
+              <h2 className="text-3xl md:text-5xl font-black tracking-tighter font-syne mb-6 text-gray-900">
+                Perfumes que huelen caro sin pagar de más
+              </h2>
+
+              <div className="space-y-5 text-gray-600 text-base md:text-lg leading-8">
+                <p>
+                  En <strong className="text-gray-900">Huele Que Flipas</strong> trabajamos con
+                  perfumes de equivalencia premium pensados para quienes quieren oler increíble sin
+                  pagar el precio de un perfume de lujo. Aquí puedes encontrar aromas inspirados en
+                  fragancias famosas, con una calidad muy cuidada, larga duración y un precio mucho
+                  más fácil de asumir.
+                </p>
+
+                <p>
+                  Nuestra colección reúne <strong className="text-gray-900">perfumes para hombre</strong>,
+                  <strong className="text-gray-900"> perfumes para mujer</strong> y
+                  <strong className="text-gray-900"> perfumes unisex</strong>, además de una selección
+                  más especial de <strong className="text-gray-900">perfumes nicho</strong> y
+                  <strong className="text-gray-900"> perfumes árabes</strong>. La idea es muy simple:
+                  ayudarte a encontrar un aroma que encaje contigo de verdad.
+                </p>
+
+                <p>
+                  Si te gustan los perfumes frescos, dulces, elegantes, intensos o con más personalidad,
+                  aquí tienes opciones para descubrir tu favorito. Y si no sabes por dónde empezar,
+                  María te ayuda a elegir el perfume que mejor vaya contigo.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="border-y border-gray-100 bg-white">
           <div className="max-w-7xl mx-auto px-4 py-6">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
