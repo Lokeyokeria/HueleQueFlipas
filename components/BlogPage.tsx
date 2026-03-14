@@ -2,36 +2,44 @@ import React from "react";
 
 export default function BlogPage() {
   const featuredPost = {
-    category: "Guías de perfumes",
-    title: "Top 10 perfumes de equivalencia para hombre que huelen a lujo",
+    category: "Inspiraciones famosas",
+    title: "Equivalencia Baccarat Rouge: la alternativa que huele a lujo sin pagar una fortuna",
     excerpt:
-      "Una selección pensada para quienes quieren oler potente, elegante y actual sin dejarse un dineral. Descubre aromas versátiles, intensos y con ese efecto de huele caro que engancha.",
+      "Si te vuelve loca esa vibra elegante, adictiva y súper reconocible, aquí te contamos cómo huele, por qué gusta tanto y por qué su equivalencia se ha convertido en una de las más buscadas.",
     readTime: "6 min",
-    slug: "/blog/top-10-perfumes-equivalencia-hombre",
+    slug: "/blog/equivalencia-baccarat-rouge",
   };
 
   const posts = [
     {
+      category: "Inspiraciones famosas",
+      title: "Equivalencia Baccarat Rouge: la alternativa que huele a lujo sin pagar una fortuna",
+      excerpt:
+        "Descubre cómo huele este perfume tan viral, para quién encaja y por qué su equivalencia arrasa entre quienes buscan aroma premium a precio inteligente.",
+      readTime: "6 min",
+      slug: "/blog/equivalencia-baccarat-rouge",
+    },
+    {
+      category: "Hombre",
+      title: "Top 10 perfumes de equivalencia para hombre que huelen a lujo",
+      excerpt:
+        "Una selección pensada para quienes quieren oler potente, elegante y actual sin dejarse un dineral.",
+      readTime: "6 min",
+      slug: "/blog/top-10-perfumes-equivalencia-hombre",
+    },
+    {
       category: "Duración",
       title: "Perfumes de equivalencia que más duran: nuestros favoritos",
       excerpt:
-        "Si buscas estela, fijación y cumplidos, aquí tienes una guía con perfumes que aguantan horas y dejan huella desde la mañana hasta la noche.",
+        "Si buscas estela, fijación y cumplidos, aquí tienes una guía con perfumes que aguantan horas y dejan huella.",
       readTime: "5 min",
       slug: "/blog/perfumes-equivalencia-que-mas-duran",
-    },
-    {
-      category: "Inspiraciones famosas",
-      title: "Equivalencia Baccarat Rouge: alternativas premium que flipan",
-      excerpt:
-        "Ese aroma adictivo, elegante y reconocible que tanto se busca. Te contamos cómo es, para quién encaja y qué opción elegir si te vuelve loca este perfil olfativo.",
-      readTime: "4 min",
-      slug: "/blog/equivalencia-baccarat-rouge",
     },
     {
       category: "Perfumes árabes",
       title: "Perfumes árabes que huelen caro y arrasan ahora mismo",
       excerpt:
-        "Intensos, envolventes y con personalidad. Una guía para descubrir perfumes árabes con vibra premium y precio mucho más inteligente.",
+        "Intensos, envolventes y con personalidad. Una guía para descubrir perfumes árabes con vibra premium.",
       readTime: "5 min",
       slug: "/blog/perfumes-arabes-que-huelen-caro",
     },
@@ -39,23 +47,15 @@ export default function BlogPage() {
       category: "Consejos",
       title: "Cómo elegir tu perfume de equivalencia sin fallar",
       excerpt:
-        "Te ayudamos a encontrar un perfume que vaya contigo según estilo, ocasión, estación del año y tipo de aroma que más te representa.",
+        "Te ayudamos a encontrar un perfume que vaya contigo según estilo, ocasión y tipo de aroma.",
       readTime: "4 min",
       slug: "/blog/como-elegir-perfume-equivalencia",
-    },
-    {
-      category: "Hombre",
-      title: "Perfumes frescos de hombre para diario que siempre funcionan",
-      excerpt:
-        "Limpios, atractivos y fáciles de llevar. Ideales para oficina, universidad, reuniones o planes de día con un toque muy top.",
-      readTime: "4 min",
-      slug: "/blog/perfumes-frescos-hombre-diario",
     },
     {
       category: "Mujer",
       title: "Perfumes dulces de mujer con efecto wow",
       excerpt:
-        "Si te gustan los aromas golosos, sensuales y con presencia, esta selección te va a encantar. Dulzura sí, pero con estilo.",
+        "Si te gustan los aromas golosos, sensuales y con presencia, esta selección te va a encantar.",
       readTime: "5 min",
       slug: "/blog/perfumes-dulces-mujer-efecto-wow",
     },
@@ -87,15 +87,6 @@ export default function BlogPage() {
             personalidad y conocer perfumes de equivalencia, árabes y nicho que
             merecen muchísimo la pena.
           </p>
-
-          <div style={styles.searchBox}>
-            <input
-              type="text"
-              placeholder="Busca artículos, perfumes o consejos..."
-              style={styles.searchInput}
-            />
-            <button style={styles.searchButton}>Explorar artículos</button>
-          </div>
         </div>
       </section>
 
@@ -201,10 +192,15 @@ export default function BlogPage() {
             </p>
 
             <div style={styles.ctaButtons}>
-              <a href="/maria" style={styles.ctaPrimary}>
+              <a
+                href="https://api.whatsapp.com/send?phone=34640834686&text=Hola%20Mar%C3%ADa,%20ay%C3%BAdame%20a%20elegir%20un%20perfume"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={styles.ctaPrimary}
+              >
                 Hablar con María
               </a>
-              <a href="/equivalencias" style={styles.ctaSecondary}>
+              <a href="/" style={styles.ctaSecondary}>
                 Ver perfumes
               </a>
             </div>
@@ -255,30 +251,6 @@ const styles: { [key: string]: React.CSSProperties } = {
     color: "#475569",
     maxWidth: "760px",
     marginTop: "20px",
-  },
-  searchBox: {
-    display: "flex",
-    gap: "12px",
-    flexWrap: "wrap",
-    marginTop: "30px",
-  },
-  searchInput: {
-    flex: 1,
-    minWidth: "260px",
-    padding: "14px 16px",
-    borderRadius: "16px",
-    border: "1px solid #cbd5e1",
-    fontSize: "15px",
-    outline: "none",
-  },
-  searchButton: {
-    backgroundColor: "#0f172a",
-    color: "#ffffff",
-    border: "none",
-    borderRadius: "16px",
-    padding: "14px 22px",
-    fontWeight: 700,
-    cursor: "pointer",
   },
   section: {
     padding: "30px 20px",
