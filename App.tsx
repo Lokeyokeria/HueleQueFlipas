@@ -662,8 +662,6 @@ const App: React.FC = () => {
             </div>
           </div>
         </section>
-
-        <SeoProductContent products={PERFUMES} />
       </main>
 
       <footer className="bg-white py-16 px-4 border-t border-gray-100">
