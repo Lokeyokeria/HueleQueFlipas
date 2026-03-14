@@ -8,6 +8,7 @@ import { PERFUMES } from './data';
 import { Product, CartItem } from './types';
 import { Star, MapPin, Award, Truck, ShieldCheck, Gift, Search, X } from 'lucide-react';
 import mariaPhoto from './maria-photo.jpg';
+import BlogPage from "./components/BlogPage";
 
 type CategoryFilter = 'TODOS' | 'MUJER' | 'HOMBRE' | 'UNISEX';
 
