@@ -15,49 +15,17 @@ export default function BlogPage() {
       category: "Inspiraciones famosas",
       title: "Equivalencia Baccarat Rouge: la alternativa que huele a lujo sin pagar una fortuna",
       excerpt:
-        "Descubre cómo huele este perfume tan viral, para quién encaja y por qué su equivalencia arrasa entre quienes buscan aroma premium a precio inteligente.",
+        "Descubre cómo huele este perfume tan buscado, para quién encaja y por qué su equivalencia arrasa entre quienes quieren aroma premium a precio inteligente.",
       readTime: "6 min",
       slug: "/blog/equivalencia-baccarat-rouge",
-    },
-    {
-      category: "Hombre",
-      title: "Top 10 perfumes de equivalencia para hombre que huelen a lujo",
-      excerpt:
-        "Una selección pensada para quienes quieren oler potente, elegante y actual sin dejarse un dineral.",
-      readTime: "6 min",
-      slug: "/blog/top-10-perfumes-equivalencia-hombre",
-    },
-    {
-      category: "Duración",
-      title: "Perfumes de equivalencia que más duran: nuestros favoritos",
-      excerpt:
-        "Si buscas estela, fijación y cumplidos, aquí tienes una guía con perfumes que aguantan horas y dejan huella.",
-      readTime: "5 min",
-      slug: "/blog/perfumes-equivalencia-que-mas-duran",
     },
     {
       category: "Perfumes árabes",
       title: "Perfumes árabes que huelen caro y arrasan ahora mismo",
       excerpt:
-        "Intensos, envolventes y con personalidad. Una guía para descubrir perfumes árabes con vibra premium.",
-      readTime: "5 min",
+        "Una selección con perfumes árabes y potentes que destacan por personalidad, presencia y ese efecto de perfume caro que engancha.",
+      readTime: "7 min",
       slug: "/blog/perfumes-arabes-que-huelen-caro",
-    },
-    {
-      category: "Consejos",
-      title: "Cómo elegir tu perfume de equivalencia sin fallar",
-      excerpt:
-        "Te ayudamos a encontrar un perfume que vaya contigo según estilo, ocasión y tipo de aroma.",
-      readTime: "4 min",
-      slug: "/blog/como-elegir-perfume-equivalencia",
-    },
-    {
-      category: "Mujer",
-      title: "Perfumes dulces de mujer con efecto wow",
-      excerpt:
-        "Si te gustan los aromas golosos, sensuales y con presencia, esta selección te va a encantar.",
-      readTime: "5 min",
-      slug: "/blog/perfumes-dulces-mujer-efecto-wow",
     },
   ];
 
@@ -68,8 +36,6 @@ export default function BlogPage() {
     "Hombre",
     "Mujer",
     "Unisex",
-    "Duración",
-    "Consejos",
   ];
 
   return (
@@ -84,8 +50,7 @@ export default function BlogPage() {
 
           <p style={styles.mainText}>
             Aquí encontrarás ideas para elegir mejor, descubrir aromas con
-            personalidad y conocer perfumes de equivalencia, árabes y nicho que
-            merecen muchísimo la pena.
+            personalidad y conocer perfumes que merecen muchísimo la pena.
           </p>
         </div>
       </section>
@@ -124,26 +89,23 @@ export default function BlogPage() {
               <p style={styles.eyebrow}>Por qué leer nuestro blog</p>
 
               <div style={styles.infoBlock}>
-                <h3 style={styles.infoTitle}>Consejos de verdad</h3>
+                <h3 style={styles.infoTitle}>Contenido útil de verdad</h3>
                 <p style={styles.infoText}>
-                  Contenido pensado para ayudarte a elegir bien, no para
-                  marearte con tecnicismos.
+                  Guías claras, directas y hechas para ayudarte a elegir mejor.
                 </p>
               </div>
 
               <div style={styles.infoBlock}>
-                <h3 style={styles.infoTitle}>Perfumes con estilo</h3>
+                <h3 style={styles.infoTitle}>Perfumes con personalidad</h3>
                 <p style={styles.infoText}>
-                  Descubre aromas premium, equivalencias muy logradas y opciones
-                  con calidad top.
+                  Selecciones reales con aromas que huelen increíble y tienen mucha presencia.
                 </p>
               </div>
 
               <div style={styles.infoBlock}>
                 <h3 style={styles.infoTitle}>Compra con confianza</h3>
                 <p style={styles.infoText}>
-                  Envío 24/48h, fabricado en España, atención cercana y más de
-                  10 años de experiencia.
+                  Envío 24/48h, atención cercana, calidad top y más de 10 años de experiencia.
                 </p>
               </div>
             </div>
@@ -153,9 +115,9 @@ export default function BlogPage() {
 
       <section style={styles.section}>
         <div style={styles.container}>
-          <p style={styles.eyebrow}>Últimos artículos</p>
+          <p style={styles.eyebrow}>Artículos publicados</p>
           <h2 style={styles.sectionTitle}>
-            Ideas para oler increíble y elegir mejor
+            Lo último en el blog
           </h2>
 
           <div style={styles.grid}>
@@ -187,8 +149,7 @@ export default function BlogPage() {
             </h2>
             <p style={styles.ctaText}>
               Cuéntanos qué tipo de aroma te gusta y te ayudamos a elegir una
-              equivalencia que vaya contigo. Fácil, rápido y con atención
-              cercana de verdad.
+              equivalencia que vaya contigo. Fácil, rápido y con atención cercana de verdad.
             </p>
 
             <div style={styles.ctaButtons}>
@@ -358,7 +319,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   grid: {
     display: "grid",
-    gridTemplateColumns: "repeat(3, 1fr)",
+    gridTemplateColumns: "repeat(2, 1fr)",
     gap: "20px",
   },
   postCard: {
