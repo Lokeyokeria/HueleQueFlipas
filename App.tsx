@@ -11,6 +11,12 @@ import { Product, CartItem } from './types';
 import { Star, MapPin, Award, Truck, ShieldCheck, Gift, Search, X } from 'lucide-react';
 import mariaPhoto from './maria-photo.jpg';
 
+import PerfumesHombre from './pages/PerfumesHombre';
+import PerfumesMujer from './pages/PerfumesMujer';
+import PerfumesArabes from './pages/PerfumesArabes';
+import PerfumesNicho from './pages/PerfumesNicho';
+import PerfumesDuraderos from './pages/PerfumesDuraderos';
+
 type CategoryFilter = 'TODOS' | 'MUJER' | 'HOMBRE' | 'UNISEX';
 
 const getDisplayPrice = (product: Product | CartItem) => {
@@ -177,6 +183,161 @@ const App: React.FC = () => {
   const isPerfumesArabesPost =
     currentPath === '/blog/perfumes-arabes-que-huelen-caro' ||
     currentHash === '#/blog/perfumes-arabes-que-huelen-caro';
+
+  const isPerfumesHombrePage =
+    currentPath === '/perfumes-hombre' ||
+    currentHash === '#/perfumes-hombre';
+
+  const isPerfumesMujerPage =
+    currentPath === '/perfumes-mujer' ||
+    currentHash === '#/perfumes-mujer';
+
+  const isPerfumesArabesPage =
+    currentPath === '/perfumes-arabes' ||
+    currentHash === '#/perfumes-arabes';
+
+  const isPerfumesNichoPage =
+    currentPath === '/perfumes-nicho' ||
+    currentHash === '#/perfumes-nicho';
+
+  const isPerfumesDuraderosPage =
+    currentPath === '/perfumes-que-mas-duran' ||
+    currentHash === '#/perfumes-que-mas-duran';
+
+  if (isPerfumesHombrePage) {
+    return (
+      <div className="min-h-screen bg-white text-gray-900">
+        <Navbar
+          onCartClick={() => setIsCartOpen(true)}
+          cartCount={cartCount}
+          onSearchClick={() => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+        />
+
+        <main>
+          <PerfumesHombre />
+        </main>
+
+        <Cart
+          isOpen={isCartOpen}
+          onClose={() => setIsCartOpen(false)}
+          items={cartItems}
+          onRemove={removeFromCart}
+          onUpdateQuantity={updateQuantity}
+          onClearCart={clearCart}
+        />
+      </div>
+    );
+  }
+
+  if (isPerfumesMujerPage) {
+    return (
+      <div className="min-h-screen bg-white text-gray-900">
+        <Navbar
+          onCartClick={() => setIsCartOpen(true)}
+          cartCount={cartCount}
+          onSearchClick={() => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+        />
+
+        <main>
+          <PerfumesMujer />
+        </main>
+
+        <Cart
+          isOpen={isCartOpen}
+          onClose={() => setIsCartOpen(false)}
+          items={cartItems}
+          onRemove={removeFromCart}
+          onUpdateQuantity={updateQuantity}
+          onClearCart={clearCart}
+        />
+      </div>
+    );
+  }
+
+  if (isPerfumesArabesPage) {
+    return (
+      <div className="min-h-screen bg-white text-gray-900">
+        <Navbar
+          onCartClick={() => setIsCartOpen(true)}
+          cartCount={cartCount}
+          onSearchClick={() => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+        />
+
+        <main>
+          <PerfumesArabes />
+        </main>
+
+        <Cart
+          isOpen={isCartOpen}
+          onClose={() => setIsCartOpen(false)}
+          items={cartItems}
+          onRemove={removeFromCart}
+          onUpdateQuantity={updateQuantity}
+          onClearCart={clearCart}
+        />
+      </div>
+    );
+  }
+
+  if (isPerfumesNichoPage) {
+    return (
+      <div className="min-h-screen bg-white text-gray-900">
+        <Navbar
+          onCartClick={() => setIsCartOpen(true)}
+          cartCount={cartCount}
+          onSearchClick={() => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+        />
+
+        <main>
+          <PerfumesNicho />
+        </main>
+
+        <Cart
+          isOpen={isCartOpen}
+          onClose={() => setIsCartOpen(false)}
+          items={cartItems}
+          onRemove={removeFromCart}
+          onUpdateQuantity={updateQuantity}
+          onClearCart={clearCart}
+        />
+      </div>
+    );
+  }
+
+  if (isPerfumesDuraderosPage) {
+    return (
+      <div className="min-h-screen bg-white text-gray-900">
+        <Navbar
+          onCartClick={() => setIsCartOpen(true)}
+          cartCount={cartCount}
+          onSearchClick={() => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+        />
+
+        <main>
+          <PerfumesDuraderos />
+        </main>
+
+        <Cart
+          isOpen={isCartOpen}
+          onClose={() => setIsCartOpen(false)}
+          items={cartItems}
+          onRemove={removeFromCart}
+          onUpdateQuantity={updateQuantity}
+          onClearCart={clearCart}
+        />
+      </div>
+    );
+  }
 
   if (isPerfumesArabesPost) {
     return (
