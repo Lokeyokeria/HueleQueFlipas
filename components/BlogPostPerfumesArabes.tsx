@@ -24,6 +24,9 @@ export default function BlogPostPerfumesArabes() {
               Perfumes árabes
             </span>
             <span className="rounded-full bg-white px-4 py-2 border border-slate-200">
+              Perfumes que duran
+            </span>
+            <span className="rounded-full bg-white px-4 py-2 border border-slate-200">
               7 min de lectura
             </span>
           </div>
@@ -95,7 +98,16 @@ export default function BlogPostPerfumesArabes() {
           <p className="mt-4 text-base leading-8 text-slate-700">
             Porque suelen transmitir más lujo, más duración y más personalidad. Mientras muchos
             perfumes comerciales van a lo fácil, los perfumes árabes suelen apostar por perfiles
-            más intensos, más adictivos y con un sello más reconocible. Y eso hoy atrae muchísimo.
+            más intensos, más adictivos y con un sello mucho más reconocible. Y eso hoy atrae muchísimo.
+          </p>
+
+          <p className="mt-4 text-base leading-8 text-slate-700">
+            Además, muchas personas que buscan{" "}
+            <a href="/perfumes-que-mas-duran" className="font-semibold text-sky-700 no-underline">
+              perfumes que más duran
+            </a>{" "}
+            terminan fijándose en perfiles árabes porque suelen dejar más huella, tener más cuerpo
+            y sentirse más potentes sobre la piel.
           </p>
 
           <h2 className="mt-12 text-3xl font-black tracking-tight text-slate-900">
@@ -112,8 +124,52 @@ export default function BlogPostPerfumesArabes() {
 
           <p className="mt-4 text-base leading-8 text-slate-700">
             Lo bueno es que todos encajan con esa idea que define a la marca: perfumes que
-            huelen a lujo sin pagar lujo. Además, trabajáis con envío 24/48h, atención cercana,
-            equivalencias muy logradas y más de 10 años de experiencia. :contentReference[oaicite:2]{index=2}
+            huelen a lujo sin pagar lujo. Además, en Huele Que Flipas trabajamos con envío 24/48h,
+            envío barato de 1,50€, atención cercana, equivalencias muy logradas y más de 10 años
+            de experiencia.
+          </p>
+
+          <h2 className="mt-12 text-3xl font-black tracking-tight text-slate-900">
+            Preguntas frecuentes sobre perfumes árabes
+          </h2>
+
+          <h3 className="mt-8 text-2xl font-black tracking-tight text-slate-900">
+            ¿Los perfumes árabes duran más?
+          </h3>
+
+          <p className="mt-4 text-base leading-8 text-slate-700">
+            Muchas veces sí. Suelen trabajar perfiles más intensos, ambarados, especiados o amaderados,
+            lo que normalmente da más presencia y mejor fijación.
+          </p>
+
+          <h3 className="mt-8 text-2xl font-black tracking-tight text-slate-900">
+            ¿Son demasiado fuertes?
+          </h3>
+
+          <p className="mt-4 text-base leading-8 text-slate-700">
+            Depende del perfume. Algunos son muy potentes y otros tienen un equilibrio más fácil de llevar.
+            Por eso conviene elegir según tu estilo y el efecto que buscas.
+          </p>
+
+          <h3 className="mt-8 text-2xl font-black tracking-tight text-slate-900">
+            ¿Sirven para diario?
+          </h3>
+
+          <p className="mt-4 text-base leading-8 text-slate-700">
+            Sí, aunque los perfiles más intensos suelen lucir muchísimo en tardes, noches o momentos
+            especiales. Los más versátiles también pueden funcionar genial a diario.
+          </p>
+
+          <h3 className="mt-8 text-2xl font-black tracking-tight text-slate-900">
+            ¿Dónde puedo ver más perfumes árabes?
+          </h3>
+
+          <p className="mt-4 text-base leading-8 text-slate-700">
+            Puedes descubrir más opciones en nuestra página de{" "}
+            <a href="/perfumes-arabes" className="font-semibold text-sky-700 no-underline">
+              perfumes árabes
+            </a>,
+            donde reunimos aromas con mucha presencia, personalidad y efecto wow.
           </p>
         </div>
 
