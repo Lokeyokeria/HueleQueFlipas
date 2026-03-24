@@ -62,11 +62,18 @@ type HistoryItem = {
   parts?: { text: string }[];
 };
 
-function getApiKey(): string {
-  const g = globalThis as unknown as {
-    API_KEY?: string;
-    process?: { env?: { API_KEY?: string; VITE_GEMINI_API_KEY?: string } };
+type GlobalWithEnv = typeof globalThis & {
+  API_KEY?: string;
+  process?: {
+    env?: {
+      API_KEY?: string;
+      VITE_GEMINI_API_KEY?: string;
+    };
   };
+};
+
+function getApiKey(): string {
+  const g = globalThis as GlobalWithEnv;
 
   const fromGlobal = (g.API_KEY || '').toString().trim();
   const fromProcessApiKey = (g.process?.env?.API_KEY || '').toString().trim();
@@ -77,15 +84,48 @@ function getApiKey(): string {
 
 function normalizeHistory(history: HistoryItem[] = []) {
   return history
-    .filter((item) => item && (item.text || item.parts?.[0]?.text))
+    .filter((item) => {
+      const text = item?.text || item?.parts?.[0]?.text || '';
+      return Boolean(text.toString().trim());
+    })
     .map((item) => ({
       role: item.role,
       parts: [
         {
-          text: item.text || item.parts?.[0]?.text || ''
-        }
-      ]
+          text: (item.text || item.parts?.[0]?.text || '').toString().trim(),
+        },
+      ],
     }));
+}
+
+function getFallbackResponse(message: string): string {
+  const text = message.toLowerCase();
+
+  if (text.includes('dulce')) {
+    return 'Si te gustan dulces, aquí hay opciones que suelen gustar muchísimo: perfiles vainilla, ámbar o más golosos. Si quieres, dime si lo prefieres más sexy, elegante o más potente y te afino mejor 😉';
+  }
+
+  if (text.includes('fresco')) {
+    return 'Si buscas algo fresco, te recomendaría tirar a perfumes más limpios, ligeros y fáciles de llevar a diario. Dime si lo quieres para hombre, mujer o unisex y te oriento mejor.';
+  }
+
+  if (text.includes('intenso') || text.includes('duradero')) {
+    return 'Si lo quieres intenso y con buena duración, lo ideal es ir a perfiles ambarados, especiados, vainilla, maderas o perfumes árabes. Si me dices para quién es, te digo por dónde tiraría yo.';
+  }
+
+  if (text.includes('unisex')) {
+    return 'Si buscas unisex, tienes una categoría muy buena para eso: aromas elegantes, equilibrados y con mucha personalidad. Cuéntame si lo quieres más limpio, dulce o con más presencia y te guío.';
+  }
+
+  if (text.includes('hombre')) {
+    return 'Si buscas perfume de hombre, te puedo orientar según estilo: fresco, elegante, intenso, sexy o todoterreno. Dime el rollo que buscas y te digo opciones que encajan muy bien.';
+  }
+
+  if (text.includes('mujer')) {
+    return 'Si buscas perfume de mujer, te puedo orientar según perfil: dulce, limpio, floral, elegante o con más huella. Dime cuál te gusta más y te ayudo a afinar.';
+  }
+
+  return 'Ahora mismo el chat inteligente no está conectado 🙏 Pero si me dices si lo quieres dulce, fresco, intenso, elegante, limpio o unisex, te ayudo igual a encontrar uno que te encaje.';
 }
 
 export async function getChatResponse(
@@ -93,10 +133,16 @@ export async function getChatResponse(
   history: HistoryItem[] = []
 ): Promise<string> {
   try {
+    const cleanMessage = message.trim();
+
+    if (!cleanMessage) {
+      return 'Cuéntame qué tipo de perfume te gusta y te ayudo a encontrar uno que encaje contigo.';
+    }
+
     const apiKey = getApiKey();
 
     if (!apiKey) {
-      return 'Ahora mismo el chat inteligente no está conectado 🙏 Pero si me dices si lo quieres dulce, fresco, intenso, elegante o unisex, te ayudo igual a encontrar uno que te encaje.';
+      return getFallbackResponse(cleanMessage);
     }
 
     const mod: any = await import('@google/genai');
@@ -106,7 +152,10 @@ export async function getChatResponse(
 
     const contents = [
       ...normalizeHistory(history),
-      { role: 'user', parts: [{ text: message.trim() }] }
+      {
+        role: 'user',
+        parts: [{ text: cleanMessage }],
+      },
     ];
 
     const response = await ai.models.generateContent({
@@ -115,8 +164,8 @@ export async function getChatResponse(
       config: {
         systemInstruction: SYSTEM_INSTRUCTION,
         temperature: 0.8,
-        topP: 0.95
-      }
+        topP: 0.95,
+      },
     });
 
     const text = response?.text?.trim();
@@ -128,6 +177,6 @@ export async function getChatResponse(
     return text;
   } catch (error) {
     console.error('Gemini API Error:', error);
-    return '¡Ups! Ahora mismo el chat está fallando 😅 Escríbeme si lo buscas dulce, fresco, intenso o elegante y seguimos, o si prefieres te atendemos por WhatsApp.';
+    return '¡Ups! Ahora mismo el chat está fallando 😅 Pero si me dices si lo buscas dulce, fresco, intenso, elegante o unisex, te sigo ayudando por aquí. Y si quieres cerrar pedido, por WhatsApp te atendemos genial.';
   }
 }
