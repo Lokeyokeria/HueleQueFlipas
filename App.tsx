@@ -33,6 +33,9 @@ type SeoPageConfig = {
   emptyText: string;
 };
 
+const linkClasses =
+  'font-bold text-sky-600 underline underline-offset-4 hover:text-sky-700 transition';
+
 const App: React.FC = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
@@ -166,6 +169,15 @@ const App: React.FC = () => {
       }));
   }, []);
 
+  const unisexProducts = useMemo(() => {
+    return PERFUMES
+      .filter(product => product.category === 'UNISEX')
+      .map(product => ({
+        ...product,
+        price: getDisplayPrice(product),
+      }));
+  }, []);
+
   const arabesProducts = useMemo(() => {
     return PERFUMES
       .filter(product => product.line === 'arabe')
@@ -231,6 +243,10 @@ const App: React.FC = () => {
   const isPerfumesMujerPage =
     currentPath === '/perfumes-mujer' ||
     currentHash === '#/perfumes-mujer';
+
+  const isPerfumesUnisexPage =
+    currentPath === '/perfumes-unisex' ||
+    currentHash === '#/perfumes-unisex';
 
   const isPerfumesArabesPage =
     currentPath === '/perfumes-arabes' ||
@@ -387,6 +403,25 @@ const App: React.FC = () => {
         emptyText: 'En cuanto subamos más referencias, aparecerán aquí.',
       },
       mujerProducts
+    );
+  }
+
+  if (isPerfumesUnisexPage) {
+    return renderSeoCategoryPage(
+      {
+        eyebrow: 'Perfumes de equivalencia unisex',
+        title: 'Perfumes de equivalencia unisex que huelen diferente y enganchan',
+        paragraphs: [
+          'Los perfumes unisex son perfectos para quienes no quieren encasillarse en lo típico. Son aromas versátiles, modernos y con personalidad, pensados para disfrutar del perfume sin etiquetas.',
+          'En Huele Que Flipas reunimos perfumes unisex con calidad top, larga duración y precio accesible para que encuentres fragancias elegantes, limpias, intensas o adictivas que encajen contigo.',
+          'Aquí descubrirás perfumes unisex equilibrados, originales y muy fáciles de llevar tanto a diario como en momentos especiales.',
+        ],
+        sectionLabel: 'Colección unisex',
+        sectionTitle: 'Perfumes unisex disponibles',
+        emptyTitle: 'Ahora mismo no hay perfumes unisex disponibles',
+        emptyText: 'En cuanto subamos más referencias, aparecerán aquí.',
+      },
+      unisexProducts
     );
   }
 
@@ -833,12 +868,32 @@ const App: React.FC = () => {
                 </p>
 
                 <p>
-                  Nuestra colección reúne <a href="/perfumes-hombre" className="text-gray-900 font-semibold underline">perfumes para hombre</a>,
-                  <a href="/perfumes-mujer" className="text-gray-900 font-semibold underline"> perfumes para mujer</a> y
-                  <strong className="text-gray-900"> perfumes unisex</strong>, además de una selección
-                  más especial de <a href="/perfumes-nicho" className="text-gray-900 font-semibold underline">perfumes nicho</a> y
-                  <a href="/perfumes-arabes" className="text-gray-900 font-semibold underline"> perfumes árabes</a>. La idea es muy simple:
-                  ayudarte a encontrar un aroma que encaje contigo de verdad.
+                  Nuestra colección reúne{' '}
+                  <a href="/perfumes-hombre" className={linkClasses}>
+                    perfumes para hombre
+                  </a>,{' '}
+                  <a href="/perfumes-mujer" className={linkClasses}>
+                    perfumes para mujer
+                  </a>,{' '}
+                  <a href="/perfumes-unisex" className={linkClasses}>
+                    perfumes unisex
+                  </a>, además de una selección más especial de{' '}
+                  <a href="/perfumes-nicho" className={linkClasses}>
+                    perfumes nicho
+                  </a>{' '}
+                  y{' '}
+                  <a href="/perfumes-arabes" className={linkClasses}>
+                    perfumes árabes
+                  </a>.
+                </p>
+
+                <p>
+                  La idea es muy simple: ayudarte a encontrar un aroma que encaje contigo de verdad.
+                  Y si buscas perfumes con más presencia y duración, pronto tendrás también una selección
+                  especial en{' '}
+                  <a href="/perfumes-que-mas-duran" className={linkClasses}>
+                    perfumes que más duran
+                  </a>.
                 </p>
 
                 <p>
