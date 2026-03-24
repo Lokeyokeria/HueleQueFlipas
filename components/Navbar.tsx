@@ -8,14 +8,9 @@ interface NavbarProps {
 }
 
 const Navbar: React.FC<NavbarProps> = ({ onCartClick, cartCount, onSearchClick }) => {
-  const goToTop = () => {
-    const topSection = document.getElementById('top');
 
-    if (topSection) {
-      topSection.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+  const goHome = () => {
+    window.location.href = "/";
   };
 
   return (
@@ -23,42 +18,82 @@ const Navbar: React.FC<NavbarProps> = ({ onCartClick, cartCount, onSearchClick }
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 sm:h-20">
           
+          {/* LOGO */}
           <div className="flex items-center space-x-2 cursor-pointer">
             <button
               type="button"
-              onClick={goToTop}
+              onClick={goHome}
               className="text-xl sm:text-2xl font-bold tracking-tighter text-black uppercase font-syne"
             >
               Huele <span className="text-sky-600">Que</span> Flipas
             </button>
           </div>
 
+          {/* MENU */}
           <div className="hidden md:flex items-center space-x-8 text-sm font-semibold uppercase tracking-widest">
             
             <button
               type="button"
-              onClick={goToTop}
+              onClick={goHome}
               className="hover:text-sky-800 transition-colors"
             >
               Inicio
             </button>
 
-            <a href="#productos" className="hover:text-sky-800 transition-colors">
+            <a
+              href="/#productos"
+              className="hover:text-sky-800 transition-colors"
+            >
               Equivalencias
             </a>
 
-            <a href="#about" className="hover:text-sky-800 transition-colors">
+            <a
+              href="/#maria"
+              className="hover:text-sky-800 transition-colors"
+            >
               María
             </a>
 
-            {/* NUEVO BOTÓN BLOG */}
-            <a href="/blog" className="hover:text-sky-800 transition-colors">
+            <a
+              href="/perfumes-hombre"
+              className="hover:text-sky-800 transition-colors"
+            >
+              Hombre
+            </a>
+
+            <a
+              href="/perfumes-mujer"
+              className="hover:text-sky-800 transition-colors"
+            >
+              Mujer
+            </a>
+
+            <a
+              href="/perfumes-unisex"
+              className="hover:text-sky-800 transition-colors"
+            >
+              Unisex
+            </a>
+
+            <a
+              href="/perfumes-que-mas-duran"
+              className="hover:text-sky-800 transition-colors text-sky-600 font-bold"
+            >
+              Top duración
+            </a>
+
+            <a
+              href="/blog"
+              className="hover:text-sky-800 transition-colors"
+            >
               Blog
             </a>
 
           </div>
 
+          {/* ICONOS */}
           <div className="flex items-center space-x-4">
+            
             <button
               type="button"
               onClick={onSearchClick}
@@ -90,6 +125,7 @@ const Navbar: React.FC<NavbarProps> = ({ onCartClick, cartCount, onSearchClick }
             >
               <Menu className="w-5 h-5" />
             </button>
+
           </div>
 
         </div>
