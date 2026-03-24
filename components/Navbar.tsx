@@ -8,30 +8,28 @@ interface NavbarProps {
 }
 
 const Navbar: React.FC<NavbarProps> = ({ onCartClick, cartCount, onSearchClick }) => {
-
   const goHome = () => {
-    window.location.href = "/";
+    window.location.href = '/';
   };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 sm:h-20">
-          
           {/* LOGO */}
           <div className="flex items-center space-x-2 cursor-pointer">
             <button
               type="button"
               onClick={goHome}
               className="text-xl sm:text-2xl font-bold tracking-tighter text-black uppercase font-syne"
+              aria-label="Ir al inicio"
             >
               Huele <span className="text-sky-600">Que</span> Flipas
             </button>
           </div>
 
-          {/* MENU */}
-          <div className="hidden md:flex items-center space-x-8 text-sm font-semibold uppercase tracking-widest">
-            
+          {/* MENU DESKTOP */}
+          <div className="hidden md:flex items-center space-x-6 lg:space-x-8 text-[11px] lg:text-sm font-semibold uppercase tracking-widest">
             <button
               type="button"
               onClick={goHome}
@@ -76,8 +74,22 @@ const Navbar: React.FC<NavbarProps> = ({ onCartClick, cartCount, onSearchClick }
             </a>
 
             <a
+              href="/perfumes-arabes"
+              className="hover:text-sky-800 transition-colors"
+            >
+              Árabes
+            </a>
+
+            <a
+              href="/perfumes-nicho"
+              className="hover:text-sky-800 transition-colors"
+            >
+              Nicho
+            </a>
+
+            <a
               href="/perfumes-que-mas-duran"
-              className="hover:text-sky-800 transition-colors text-sky-600 font-bold"
+              className="text-sky-600 hover:text-sky-800 transition-colors font-black"
             >
               Top duración
             </a>
@@ -88,15 +100,13 @@ const Navbar: React.FC<NavbarProps> = ({ onCartClick, cartCount, onSearchClick }
             >
               Blog
             </a>
-
           </div>
 
           {/* ICONOS */}
-          <div className="flex items-center space-x-4">
-            
+          <div className="flex items-center space-x-3 sm:space-x-4">
             <button
               type="button"
-              onClick={onSearchClick}
+              onClick={() => onSearchClick?.()}
               className="p-2 hover:bg-gray-100 rounded-full transition-colors"
               aria-label="Ir al buscador"
             >
@@ -121,13 +131,12 @@ const Navbar: React.FC<NavbarProps> = ({ onCartClick, cartCount, onSearchClick }
             <button
               type="button"
               className="md:hidden p-2 hover:bg-gray-100 rounded-full transition-colors"
-              aria-label="Abrir menú"
+              aria-label="Menú próximamente"
+              title="Menú próximamente"
             >
               <Menu className="w-5 h-5" />
             </button>
-
           </div>
-
         </div>
       </div>
     </nav>
