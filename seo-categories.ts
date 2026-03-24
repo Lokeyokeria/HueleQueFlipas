@@ -1,50 +1,50 @@
 export const seoCategories = [
   {
     slug: "perfumes-equivalencia",
-    title: "Perfumes de equivalencia",
+    title: "Perfumes de equivalencia que huelen caro",
     description:
-      "Descubre perfumes de equivalencia premium con larga duración, envío 24/48h y calidad top.",
+      "Perfumes de equivalencia premium con larga duración, fabricados en España y envío 24/48h. Huele a lujo sin pagar de más.",
   },
   {
     slug: "perfumes-hombre",
-    title: "Perfumes para hombre",
+    title: "Perfumes de equivalencia para hombre que huelen caro",
     description:
-      "Perfumes para hombre inspirados en fragancias famosas con aroma intenso y duradero.",
+      "Descubre perfumes de equivalencia para hombre con aroma intenso, elegante y duradero. Calidad top, envío 24/48h y precio accesible.",
   },
   {
     slug: "perfumes-mujer",
-    title: "Perfumes para mujer",
+    title: "Perfumes de equivalencia para mujer que huelen increíble",
     description:
-      "Perfumes para mujer con aromas elegantes, dulces y modernos inspirados en perfumes famosos.",
+      "Perfumes de equivalencia para mujer con aromas dulces, elegantes y adictivos. Larga duración, envío 24/48h y calidad top.",
   },
   {
     slug: "perfumes-unisex",
-    title: "Perfumes unisex",
+    title: "Perfumes de equivalencia unisex con personalidad",
     description:
-      "Perfumes unisex versátiles con personalidad y aroma premium.",
+      "Perfumes unisex modernos, versátiles y con aroma premium. Fragancias equilibradas que enganchan y duran.",
   },
   {
     slug: "perfumes-nicho",
-    title: "Perfumes nicho",
+    title: "Perfumes nicho de equivalencia con aroma exclusivo",
     description:
-      "Perfumes nicho inspirados en fragancias exclusivas y originales.",
+      "Perfumes nicho inspirados en fragancias exclusivas. Aromas con personalidad, diferentes y con ese efecto de perfume caro.",
   },
   {
     slug: "perfumes-arabes",
-    title: "Perfumes árabes",
+    title: "Perfumes árabes que huelen caro y duran muchísimo",
     description:
-      "Perfumes árabes intensos y elegantes con gran presencia y personalidad.",
+      "Perfumes árabes intensos, elegantes y con gran duración. Aromas con presencia para quienes quieren destacar.",
   },
   {
     slug: "top-ventas",
-    title: "Top ventas",
+    title: "Perfumes más vendidos que huelen brutal",
     description:
-      "Los perfumes más vendidos y favoritos de HueleQueFlipas.",
+      "Descubre los perfumes más vendidos de Huele Que Flipas. Aromas que arrasan por su olor, duración y relación calidad precio.",
   },
   {
     slug: "novedades",
-    title: "Novedades",
+    title: "Novedades en perfumes de equivalencia",
     description:
-      "Descubre las últimas novedades en perfumes y nuevas inspiraciones.",
+      "Últimas novedades en perfumes de equivalencia premium. Descubre nuevos aromas que están empezando a arrasar.",
   },
 ];
