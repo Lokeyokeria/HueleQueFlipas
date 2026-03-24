@@ -27,12 +27,21 @@ export default function BlogPage() {
       readTime: "7 min",
       slug: "/blog/perfumes-arabes-que-huelen-caro",
     },
+    {
+      category: "Perfumes duraderos",
+      title: "Perfumes que más duran: equivalencias con efecto WOW todo el día",
+      excerpt:
+        "Descubre perfumes que duran de verdad, con presencia, estela y ese efecto de perfume caro que no desaparece a las pocas horas.",
+      readTime: "8 min",
+      slug: "/blog/perfumes-que-mas-duran",
+    },
   ];
 
   const categories = [
     "Perfumes de equivalencia",
     "Perfumes árabes",
     "Perfumes nicho",
+    "Perfumes duraderos",
     "Perfumes hombre",
     "Perfumes mujer",
     "Perfumes unisex",
