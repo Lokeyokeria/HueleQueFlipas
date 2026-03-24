@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from "react";
+import { Eye } from "lucide-react";
 import { Product } from "../types";
 
 interface Props {
@@ -98,14 +99,12 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
   };
 
   const getSeoDescription = () => {
-    return `${product.name} es un perfume de equivalencia premium ${getInspiredText().toLowerCase()}, con familia olfativa ${product.family.toLowerCase()} y formato de ${product.size}.`;
+    return `${product.name} es un perfume de equivalencia premium inspirada en ${product.brand}, con familia olfativa ${product.family.toLowerCase()} y formato de ${product.size}.`;
   };
 
   const badgeText = getBadgeText();
 
   const productSchema = useMemo(() => {
-    const cleanDescription = getSeoDescription();
-
     return {
       "@context": "https://schema.org",
       "@type": "Product",
@@ -117,7 +116,7 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
         name: product.brand,
       },
       category: `${product.category} - ${getLineLabel()}`,
-      description: cleanDescription,
+      description: getSeoDescription(),
       image: [imgSrc || FALLBACK_IMAGE],
       itemCondition: "https://schema.org/NewCondition",
       offers: {
@@ -140,7 +139,7 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
         onViewProduct ? "cursor-pointer" : ""
       } ${getCardStyle()}`}
       onClick={() => onViewProduct?.(product)}
-      aria-label={`${product.name}, ${getInspiredText().toLowerCase()}`}
+      aria-label={`${product.name}, perfume de equivalencia inspirado en ${product.brand}`}
     >
       <script
         type="application/ld+json"
@@ -179,6 +178,21 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
             </span>
           </div>
         )}
+
+        {onViewProduct && (
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              onViewProduct(product);
+            }}
+            className="absolute bottom-3 right-3 inline-flex items-center gap-2 bg-white/90 backdrop-blur px-3 py-2 rounded-full border border-gray-200 shadow-sm text-[11px] font-black uppercase tracking-widest text-gray-900 hover:bg-white transition"
+            aria-label={`Ver detalle de ${product.name}`}
+          >
+            <Eye className="w-3.5 h-3.5" />
+            Ver
+          </button>
+        )}
       </div>
 
       <div className="p-4">
@@ -187,12 +201,12 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
             {product.name}
           </h3>
 
-          <span className="font-bold text-[15px] text-gray-900 whitespace-nowrap">
+          <span className="font-black text-[16px] text-gray-900 whitespace-nowrap">
             {product.price.toFixed(2)}€
           </span>
         </div>
 
-        <p className={`text-xs uppercase tracking-widest mb-2 ${getLineColor()}`}>
+        <p className={`text-[11px] uppercase tracking-widest mb-2 ${getLineColor()}`}>
           {getLineLabel()}
         </p>
 
@@ -200,17 +214,19 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
           {getInspiredText()}
         </p>
 
-        <p className="text-[13px] text-gray-500 mt-3">
+        <p className="text-[13px] text-gray-500 mt-2">
           Familia olfativa: {product.family}
         </p>
 
-        <p className="text-[15px] text-gray-700 font-semibold mt-1 mb-3">
-          {product.size}
-        </p>
+        <div className="flex items-center justify-between mt-3 mb-4">
+          <p className="text-[14px] text-gray-700 font-semibold">
+            {product.size}
+          </p>
 
-        <p className="text-[13px] text-gray-500 leading-6 mb-4">
-          {getSeoDescription()}
-        </p>
+          <span className="text-[11px] text-gray-400 font-bold uppercase tracking-widest">
+            Larga duración
+          </span>
+        </div>
 
         <button
           type="button"
