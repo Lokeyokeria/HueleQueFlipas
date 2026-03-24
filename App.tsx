@@ -11,12 +11,6 @@ import { Product, CartItem } from './types';
 import { Star, MapPin, Award, Truck, ShieldCheck, Gift, Search, X } from 'lucide-react';
 import mariaPhoto from './maria-photo.jpg';
 
-import PerfumesHombre from './pages/PerfumesHombre';
-import PerfumesMujer from './pages/PerfumesMujer';
-import PerfumesArabes from './pages/PerfumesArabes';
-import PerfumesNicho from './pages/PerfumesNicho';
-import PerfumesDuraderos from './pages/PerfumesDuraderos';
-
 type CategoryFilter = 'TODOS' | 'MUJER' | 'HOMBRE' | 'UNISEX';
 
 const getDisplayPrice = (product: Product | CartItem) => {
@@ -28,6 +22,16 @@ const PRODUCT_MODAL_IMAGE =
   'https://raw.githubusercontent.com/Lokeyokeria/HueleQueFlipas/main/equivalencia-hqf.jpg';
 
 const CART_STORAGE_KEY = 'hqf-cart';
+
+type SeoPageConfig = {
+  eyebrow: string;
+  title: string;
+  paragraphs: string[];
+  sectionLabel: string;
+  sectionTitle: string;
+  emptyTitle: string;
+  emptyText: string;
+};
 
 const App: React.FC = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -144,6 +148,42 @@ const App: React.FC = () => {
     return filteredProducts.filter(product => product.line === 'nicho');
   }, [filteredProducts]);
 
+  const hombreProducts = useMemo(() => {
+    return PERFUMES
+      .filter(product => product.category === 'HOMBRE')
+      .map(product => ({
+        ...product,
+        price: getDisplayPrice(product),
+      }));
+  }, []);
+
+  const mujerProducts = useMemo(() => {
+    return PERFUMES
+      .filter(product => product.category === 'MUJER')
+      .map(product => ({
+        ...product,
+        price: getDisplayPrice(product),
+      }));
+  }, []);
+
+  const arabesProducts = useMemo(() => {
+    return PERFUMES
+      .filter(product => product.line === 'arabe')
+      .map(product => ({
+        ...product,
+        price: getDisplayPrice(product),
+      }));
+  }, []);
+
+  const nichoProducts = useMemo(() => {
+    return PERFUMES
+      .filter(product => product.line === 'nicho')
+      .map(product => ({
+        ...product,
+        price: getDisplayPrice(product),
+      }));
+  }, []);
+
   const cartCount = useMemo(() => {
     return cartItems.reduce((acc, item) => acc + item.quantity, 0);
   }, [cartItems]);
@@ -204,7 +244,11 @@ const App: React.FC = () => {
     currentPath === '/perfumes-que-mas-duran' ||
     currentHash === '#/perfumes-que-mas-duran';
 
-  if (isPerfumesHombrePage) {
+  const renderSeoCategoryPage = (
+    config: SeoPageConfig,
+    products: Product[],
+    showProducts: boolean = true
+  ) => {
     return (
       <div className="min-h-screen bg-white text-gray-900">
         <Navbar
@@ -216,7 +260,84 @@ const App: React.FC = () => {
         />
 
         <main>
-          <PerfumesHombre />
+          <section className="bg-white min-h-screen pt-32 pb-16 px-4">
+            <div className="max-w-7xl mx-auto">
+              <div className="max-w-4xl mb-14">
+                <p className="text-sky-600 text-xs font-black uppercase tracking-[0.22em] mb-4">
+                  {config.eyebrow}
+                </p>
+
+                <h1 className="text-4xl md:text-6xl font-black tracking-tighter font-syne text-gray-900 mb-6">
+                  {config.title}
+                </h1>
+
+                <div className="max-w-3xl space-y-5 text-gray-600 text-base md:text-lg leading-8">
+                  {config.paragraphs.map((paragraph, index) => (
+                    <p key={index}>{paragraph}</p>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mb-8 flex items-end justify-between gap-4 flex-wrap">
+                <div>
+                  <p className="text-sky-600 text-xs font-black uppercase tracking-[0.22em] mb-2">
+                    {config.sectionLabel}
+                  </p>
+
+                  <h2 className="text-2xl md:text-3xl font-black tracking-tight text-gray-900">
+                    {config.sectionTitle}
+                  </h2>
+                </div>
+
+                {showProducts && (
+                  <p className="text-sm sm:text-base text-gray-500">
+                    {products.length} resultado{products.length === 1 ? '' : 's'}
+                  </p>
+                )}
+              </div>
+
+              {showProducts ? (
+                products.length > 0 ? (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    {products.map(product => (
+                      <ProductCard
+                        key={product.id}
+                        product={product}
+                        onAddToCart={addToCart}
+                        onViewProduct={setSelectedProduct}
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-center py-16 border border-dashed border-gray-200 rounded-3xl">
+                    <h3 className="text-2xl font-black mb-3 text-gray-900">
+                      {config.emptyTitle}
+                    </h3>
+
+                    <p className="text-gray-500 max-w-xl mx-auto text-base">
+                      {config.emptyText}
+                    </p>
+                  </div>
+                )
+              ) : (
+                <div className="rounded-[28px] border border-sky-100 bg-sky-50 px-6 py-8 md:px-10 md:py-10">
+                  <p className="text-sky-700 text-xs font-black uppercase tracking-[0.22em] mb-3">
+                    Selección en proceso
+                  </p>
+
+                  <h3 className="text-2xl md:text-3xl font-black tracking-tight text-gray-900 mb-4">
+                    Estamos preparando esta selección
+                  </h3>
+
+                  <p className="text-gray-600 text-base md:text-lg leading-8 max-w-3xl">
+                    Para marcar perfumes como “los que más duran” necesitamos un criterio real dentro del catálogo.
+                    Como ahora mismo ese dato no está definido en tus productos, prefiero no inventarlo. Cuando lo
+                    tengamos claro, aquí montamos una página brutal y bien trabajada.
+                  </p>
+                </div>
+              )}
+            </div>
+          </section>
         </main>
 
         <Cart
@@ -228,114 +349,102 @@ const App: React.FC = () => {
           onClearCart={clearCart}
         />
       </div>
+    );
+  };
+
+  if (isPerfumesHombrePage) {
+    return renderSeoCategoryPage(
+      {
+        eyebrow: 'Perfumes de equivalencia hombre',
+        title: 'Perfumes de equivalencia para hombre que huelen caro',
+        paragraphs: [
+          'Descubre perfumes de equivalencia para hombre con aroma elegante, intenso y duradero. Fragancias que transmiten seguridad, presencia y estilo sin pagar el precio de un perfume de lujo.',
+          'En Huele Que Flipas seleccionamos equivalencias muy logradas, fabricadas en España, con larga duración, envío 24/48h y precio accesible para que oler bien no sea un capricho imposible.',
+          'Aquí encontrarás perfumes masculinos frescos, amaderados, dulces, potentes y versátiles para el día a día o para momentos más especiales.',
+        ],
+        sectionLabel: 'Colección hombre',
+        sectionTitle: 'Perfumes para hombre disponibles',
+        emptyTitle: 'Ahora mismo no hay perfumes de hombre disponibles',
+        emptyText: 'En cuanto subamos más referencias, aparecerán aquí.',
+      },
+      hombreProducts
     );
   }
 
   if (isPerfumesMujerPage) {
-    return (
-      <div className="min-h-screen bg-white text-gray-900">
-        <Navbar
-          onCartClick={() => setIsCartOpen(true)}
-          cartCount={cartCount}
-          onSearchClick={() => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }}
-        />
-
-        <main>
-          <PerfumesMujer />
-        </main>
-
-        <Cart
-          isOpen={isCartOpen}
-          onClose={() => setIsCartOpen(false)}
-          items={cartItems}
-          onRemove={removeFromCart}
-          onUpdateQuantity={updateQuantity}
-          onClearCart={clearCart}
-        />
-      </div>
+    return renderSeoCategoryPage(
+      {
+        eyebrow: 'Perfumes de equivalencia mujer',
+        title: 'Perfumes de equivalencia para mujer que huelen caro',
+        paragraphs: [
+          'Descubre perfumes de equivalencia para mujer con aroma elegante, femenino y adictivo. Fragancias que dejan huella, elevan tu presencia y te hacen sentir increíble sin pagar de más.',
+          'En Huele Que Flipas reunimos equivalencias premium fabricadas en España, con larga duración, precio accesible, envío 24/48h y una selección pensada para quienes quieren calidad top sin complicarse.',
+          'Aquí encontrarás perfumes dulces, florales, frescos, intensos y sofisticados para cada momento: diario, salida especial o ese día en el que quieres oler brutal.',
+        ],
+        sectionLabel: 'Colección mujer',
+        sectionTitle: 'Perfumes para mujer disponibles',
+        emptyTitle: 'Ahora mismo no hay perfumes de mujer disponibles',
+        emptyText: 'En cuanto subamos más referencias, aparecerán aquí.',
+      },
+      mujerProducts
     );
   }
 
   if (isPerfumesArabesPage) {
-    return (
-      <div className="min-h-screen bg-white text-gray-900">
-        <Navbar
-          onCartClick={() => setIsCartOpen(true)}
-          cartCount={cartCount}
-          onSearchClick={() => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }}
-        />
-
-        <main>
-          <PerfumesArabes />
-        </main>
-
-        <Cart
-          isOpen={isCartOpen}
-          onClose={() => setIsCartOpen(false)}
-          items={cartItems}
-          onRemove={removeFromCart}
-          onUpdateQuantity={updateQuantity}
-          onClearCart={clearCart}
-        />
-      </div>
+    return renderSeoCategoryPage(
+      {
+        eyebrow: 'Perfumes árabes de equivalencia',
+        title: 'Perfumes árabes que huelen caro y duran muchísimo',
+        paragraphs: [
+          'Los perfumes árabes tienen ese punto intenso, adictivo y con personalidad que no pasa desapercibido. Son aromas con presencia, ideales para quienes quieren oler diferente y dejar huella.',
+          'En Huele Que Flipas seleccionamos perfumes árabes con calidad top, muy logrados y con una sensación más envolvente para quienes buscan algo especial sin pagar una fortuna.',
+          'Aquí encontrarás fragancias árabes potentes, elegantes y con un estilo más exclusivo para salir de lo típico y apostar por aromas con carácter.',
+        ],
+        sectionLabel: 'Colección árabe',
+        sectionTitle: 'Perfumes árabes disponibles',
+        emptyTitle: 'Ahora mismo no hay perfumes árabes disponibles',
+        emptyText: 'En cuanto subamos más referencias, aparecerán aquí.',
+      },
+      arabesProducts
     );
   }
 
   if (isPerfumesNichoPage) {
-    return (
-      <div className="min-h-screen bg-white text-gray-900">
-        <Navbar
-          onCartClick={() => setIsCartOpen(true)}
-          cartCount={cartCount}
-          onSearchClick={() => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }}
-        />
-
-        <main>
-          <PerfumesNicho />
-        </main>
-
-        <Cart
-          isOpen={isCartOpen}
-          onClose={() => setIsCartOpen(false)}
-          items={cartItems}
-          onRemove={removeFromCart}
-          onUpdateQuantity={updateQuantity}
-          onClearCart={clearCart}
-        />
-      </div>
+    return renderSeoCategoryPage(
+      {
+        eyebrow: 'Perfumes nicho de equivalencia',
+        title: 'Perfumes nicho de equivalencia con personalidad propia',
+        paragraphs: [
+          'Los perfumes nicho no están hechos para pasar desapercibidos. Son aromas con identidad, carácter y una sensación más exclusiva para quienes quieren oler diferente de verdad.',
+          'En Huele Que Flipas reunimos una selección nicho más especial, pensada para quien busca perfumes originales, con presencia y un punto más premium sin entrar en precios imposibles.',
+          'Aquí encontrarás fragancias más selectas, menos vistas y con un estilo único para salir de lo de siempre y llevar un aroma con más personalidad.',
+        ],
+        sectionLabel: 'Colección nicho',
+        sectionTitle: 'Perfumes nicho disponibles',
+        emptyTitle: 'Ahora mismo no hay perfumes nicho disponibles',
+        emptyText: 'En cuanto subamos más referencias, aparecerán aquí.',
+      },
+      nichoProducts
     );
   }
 
   if (isPerfumesDuraderosPage) {
-    return (
-      <div className="min-h-screen bg-white text-gray-900">
-        <Navbar
-          onCartClick={() => setIsCartOpen(true)}
-          cartCount={cartCount}
-          onSearchClick={() => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }}
-        />
-
-        <main>
-          <PerfumesDuraderos />
-        </main>
-
-        <Cart
-          isOpen={isCartOpen}
-          onClose={() => setIsCartOpen(false)}
-          items={cartItems}
-          onRemove={removeFromCart}
-          onUpdateQuantity={updateQuantity}
-          onClearCart={clearCart}
-        />
-      </div>
+    return renderSeoCategoryPage(
+      {
+        eyebrow: 'Perfumes de equivalencia que más duran',
+        title: 'Perfumes de equivalencia que más duran y mejor proyectan',
+        paragraphs: [
+          'Cuando buscas un perfume que dure de verdad, no quieres reaplicar cada dos horas. Quieres un aroma que te acompañe, se note y deje sensación de perfume caro durante más tiempo.',
+          'En Huele Que Flipas trabajamos equivalencias con muy buena duración, fabricadas en España y pensadas para que disfrutes de aromas intensos, elegantes y accesibles sin pagar una locura.',
+          'Esta página será la selección ideal para quienes priorizan fijación, presencia y rendimiento antes que cualquier otra cosa.',
+        ],
+        sectionLabel: 'Duración top',
+        sectionTitle: 'Selección de perfumes duraderos',
+        emptyTitle: 'Selección no disponible',
+        emptyText: 'En cuanto tengamos el criterio de duración definido dentro del catálogo, la activamos.',
+      },
+      [],
+      false
     );
   }
 
