@@ -23,7 +23,7 @@ export default function BlogPage() {
       category: "Perfumes árabes",
       title: "Perfumes árabes que huelen caro y arrasan ahora mismo",
       excerpt:
-        "Una selección con perfumes árabes y potentes que destacan por personalidad, presencia y ese efecto de perfume caro que engancha.",
+        "Una selección con perfumes árabes potentes que destacan por personalidad, presencia y ese efecto de perfume caro que engancha desde el primer spray.",
       readTime: "7 min",
       slug: "/blog/perfumes-arabes-que-huelen-caro",
     },
@@ -33,9 +33,9 @@ export default function BlogPage() {
     "Perfumes de equivalencia",
     "Perfumes árabes",
     "Perfumes nicho",
-    "Hombre",
-    "Mujer",
-    "Unisex",
+    "Perfumes hombre",
+    "Perfumes mujer",
+    "Perfumes unisex",
   ];
 
   return (
@@ -45,12 +45,13 @@ export default function BlogPage() {
           <div style={styles.badge}>Blog Huele Que Flipas</div>
 
           <h1 style={styles.mainTitle}>
-            Consejos, guías y perfumes que huelen caro sin pagar de más
+            Guías, ideas y perfumes que huelen caro sin pagar de más
           </h1>
 
           <p style={styles.mainText}>
-            Aquí encontrarás ideas para elegir mejor, descubrir aromas con
-            personalidad y conocer perfumes que merecen muchísimo la pena.
+            Aquí encontrarás consejos claros para elegir mejor, descubrir perfumes
+            con personalidad y conocer equivalencias que merecen muchísimo la pena.
+            Menos postureo y más aromas que te hagan flipar de verdad.
           </p>
         </div>
       </section>
@@ -91,7 +92,7 @@ export default function BlogPage() {
               <div style={styles.infoBlock}>
                 <h3 style={styles.infoTitle}>Contenido útil de verdad</h3>
                 <p style={styles.infoText}>
-                  Guías claras, directas y hechas para ayudarte a elegir mejor.
+                  Guías directas, sin rodeos y pensadas para ayudarte a elegir mejor.
                 </p>
               </div>
 
@@ -105,7 +106,7 @@ export default function BlogPage() {
               <div style={styles.infoBlock}>
                 <h3 style={styles.infoTitle}>Compra con confianza</h3>
                 <p style={styles.infoText}>
-                  Envío 24/48h, atención cercana, calidad top y más de 10 años de experiencia.
+                  Envío 24/48h, envío 1,50€, atención cercana, calidad top y más de 10 años de experiencia.
                 </p>
               </div>
             </div>
@@ -116,9 +117,7 @@ export default function BlogPage() {
       <section style={styles.section}>
         <div style={styles.container}>
           <p style={styles.eyebrow}>Artículos publicados</p>
-          <h2 style={styles.sectionTitle}>
-            Lo último en el blog
-          </h2>
+          <h2 style={styles.sectionTitle}>Lo último en el blog</h2>
 
           <div style={styles.grid}>
             {posts.map((post) => (
@@ -161,7 +160,7 @@ export default function BlogPage() {
               >
                 Hablar con María
               </a>
-              <a href="/" style={styles.ctaSecondary}>
+              <a href="/#productos" style={styles.ctaSecondary}>
                 Ver perfumes
               </a>
             </div>
@@ -182,7 +181,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   hero: {
     background: "linear-gradient(to bottom, #f0f9ff, #ffffff)",
     borderBottom: "1px solid #e2e8f0",
-    padding: "70px 20px 50px 20px",
+    padding: "90px 20px 56px 20px",
   },
   container: {
     maxWidth: "1200px",
@@ -201,14 +200,15 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   mainTitle: {
     fontSize: "48px",
-    lineHeight: 1.1,
+    lineHeight: 1.05,
     fontWeight: 900,
     margin: 0,
-    maxWidth: "900px",
+    maxWidth: "920px",
+    letterSpacing: "-1px",
   },
   mainText: {
     fontSize: "18px",
-    lineHeight: 1.7,
+    lineHeight: 1.75,
     color: "#475569",
     maxWidth: "760px",
     marginTop: "20px",
@@ -228,6 +228,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     fontSize: "14px",
     color: "#334155",
     backgroundColor: "#ffffff",
+    fontWeight: 600,
   },
   featuredCard: {
     display: "grid",
@@ -254,14 +255,15 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   featuredTitle: {
     fontSize: "38px",
-    lineHeight: 1.1,
+    lineHeight: 1.08,
     fontWeight: 900,
     marginTop: "14px",
     marginBottom: "16px",
+    letterSpacing: "-0.8px",
   },
   featuredText: {
     fontSize: "18px",
-    lineHeight: 1.7,
+    lineHeight: 1.75,
     color: "#475569",
     marginBottom: "18px",
   },
@@ -292,7 +294,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     padding: "14px 20px",
     borderRadius: "16px",
     textDecoration: "none",
-    fontWeight: 700,
+    fontWeight: 800,
   },
   infoBlock: {
     marginTop: "22px",
@@ -312,14 +314,15 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   sectionTitle: {
     fontSize: "40px",
-    lineHeight: 1.1,
+    lineHeight: 1.08,
     fontWeight: 900,
     marginTop: "10px",
     marginBottom: "28px",
+    letterSpacing: "-0.8px",
   },
   grid: {
     display: "grid",
-    gridTemplateColumns: "repeat(2, 1fr)",
+    gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
     gap: "20px",
   },
   postCard: {
@@ -352,10 +355,11 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   postTitle: {
     fontSize: "28px",
-    lineHeight: 1.2,
+    lineHeight: 1.15,
     fontWeight: 900,
     marginTop: "18px",
     marginBottom: "14px",
+    letterSpacing: "-0.5px",
   },
   postExcerpt: {
     fontSize: "15px",
@@ -385,10 +389,11 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   ctaTitle: {
     fontSize: "40px",
-    lineHeight: 1.1,
+    lineHeight: 1.08,
     fontWeight: 900,
     marginTop: "14px",
     marginBottom: "14px",
+    letterSpacing: "-0.8px",
   },
   ctaText: {
     fontSize: "17px",
