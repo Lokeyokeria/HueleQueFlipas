@@ -13,6 +13,10 @@ export interface Product {
   image: string;
   description: string;
   line: ProductLine;
+
+  // 🔥 NUEVO (no rompe nada, opcional)
+  slug?: string; // para SEO (ej: equivalencia-baccarat-rouge)
+  keywords?: string[]; // para búsquedas y futuro SEO interno
 }
 
 export interface CartItem extends Product {
