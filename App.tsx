@@ -833,11 +833,11 @@ const App: React.FC = () => {
                 </p>
 
                 <p>
-                  Nuestra colección reúne <strong className="text-gray-900">perfumes para hombre</strong>,
-                  <strong className="text-gray-900"> perfumes para mujer</strong> y
+                  Nuestra colección reúne <a href="/perfumes-hombre" className="text-gray-900 font-semibold underline">perfumes para hombre</a>,
+                  <a href="/perfumes-mujer" className="text-gray-900 font-semibold underline"> perfumes para mujer</a> y
                   <strong className="text-gray-900"> perfumes unisex</strong>, además de una selección
-                  más especial de <strong className="text-gray-900">perfumes nicho</strong> y
-                  <strong className="text-gray-900"> perfumes árabes</strong>. La idea es muy simple:
+                  más especial de <a href="/perfumes-nicho" className="text-gray-900 font-semibold underline">perfumes nicho</a> y
+                  <a href="/perfumes-arabes" className="text-gray-900 font-semibold underline"> perfumes árabes</a>. La idea es muy simple:
                   ayudarte a encontrar un aroma que encaje contigo de verdad.
                 </p>
 
