@@ -6,9 +6,20 @@ export function getPages() {
     title: category.title,
     description: category.description,
     url: `/${category.slug}`,
+
+    // 🔥 NUEVO (no rompe nada)
+    canonical: `https://huelequeflipas.es/${category.slug}`,
   }));
 }
 
 export function getPageBySlug(slug: string) {
-  return seoCategories.find((category) => category.slug === slug);
+  const category = seoCategories.find((c) => c.slug === slug);
+
+  if (!category) return null;
+
+  return {
+    ...category,
+    url: `/${category.slug}`,
+    canonical: `https://huelequeflipas.es/${category.slug}`,
+  };
 }
