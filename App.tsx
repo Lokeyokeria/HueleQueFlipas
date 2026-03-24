@@ -3,9 +3,10 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ProductCard from './components/ProductCard';
 import Cart from './components/Cart';
-import BlogPage from "./components/BlogPage";
-import BlogPostBaccaratRouge from "./components/BlogPostBaccaratRouge";
-import BlogPostPerfumesArabes from "./components/BlogPostPerfumesArabes";
+import BlogPage from './components/BlogPage';
+import BlogPostBaccaratRouge from './components/BlogPostBaccaratRouge';
+import BlogPostPerfumesArabes from './components/BlogPostPerfumesArabes';
+import BlogPostPerfumesDuraderos from './components/BlogPostPerfumesDuraderos';
 import { PERFUMES } from './data';
 import { Product, CartItem } from './types';
 import { Star, MapPin, Award, Truck, ShieldCheck, Gift, Search, X } from 'lucide-react';
@@ -35,6 +36,98 @@ type SeoPageConfig = {
 
 const linkClasses =
   'font-bold text-sky-600 underline underline-offset-4 hover:text-sky-700 transition';
+
+const Footer: React.FC<{ blogBack?: boolean }> = ({ blogBack = false }) => {
+  return (
+    <footer className="bg-white py-16 px-4 border-t border-gray-100">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-[220px_1fr_220px] gap-10 items-start">
+        <div>
+          <h3 className="text-2xl font-black uppercase tracking-tighter font-syne">
+            Huele Que Flipas
+          </h3>
+
+          <p className="text-sm text-gray-400 font-bold uppercase tracking-widest mt-2">
+            By Lokeyokeria.es
+          </p>
+
+          <p className="text-sm text-gray-500 mt-4 leading-6 max-w-[240px]">
+            Si quieres conocer nuestra web principal puedes visitar{' '}
+            <a
+              href="https://lokeyokeria.es"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-gray-700 underline underline-offset-4 hover:text-sky-600 transition"
+            >
+              Lokeyokeria.es
+            </a>.
+          </p>
+        </div>
+
+        <div className="max-w-xl">
+          <a
+            href={blogBack ? '/blog' : '/'}
+            className="inline-block font-black uppercase text-xs tracking-widest text-gray-700 hover:text-sky-600 transition"
+          >
+            {blogBack ? 'Volver al blog' : 'Volver al inicio'}
+          </a>
+
+          <div className="mt-8">
+            <p className="text-xs font-black uppercase tracking-[0.22em] text-gray-900 mb-4">
+              Pago por Bizum
+            </p>
+
+            <div className="space-y-4 text-[15px] leading-8 text-gray-500">
+              <p>
+                Realiza tu pedido cómodamente desde la web. Cuando tengas tu perfume en el carrito,
+                confirma la compra dando al botón <strong className="text-gray-800">“Pagar con Bizum”</strong>.
+              </p>
+
+              <p>
+                Al hacerlo se abrirá nuestro WhatsApp. Envía tu consulta y nos pondremos
+                en contacto contigo para confirmar el pedido. Te facilitaremos el pago por Bizum de forma
+                rápida y segura.
+              </p>
+
+              <p>
+                Una vez recibido el pago, tu pedido se prepara y sale en un plazo aproximado de 24 horas.
+              </p>
+
+              <p>
+                Desde que el paquete es enviado, lo recibirás normalmente en 24/48 horas, siempre que
+                el transporte funcione con normalidad.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-8">
+            <p className="text-xs font-black uppercase tracking-[0.22em] text-gray-900 mb-3">
+              Contáctanos
+            </p>
+
+            <a
+              href="https://api.whatsapp.com/send?phone=34640834686"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block text-[15px] text-gray-600 hover:text-sky-600 transition"
+            >
+              WhatsApp: 640 83 46 86
+            </a>
+
+            <p className="text-[15px] text-gray-500 mt-2">
+              San Martín de la Vega, Madrid
+            </p>
+          </div>
+        </div>
+
+        <div className="text-xs font-bold text-gray-400 md:text-right">
+          © 2026 — San Martín de la Vega, Madrid
+          <br />
+          Hecho con ❤️ para ti.
+        </div>
+      </div>
+    </footer>
+  );
+};
 
 const App: React.FC = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -66,6 +159,27 @@ const App: React.FC = () => {
       console.error('Error al guardar el carrito:', error);
     }
   }, [cartItems]);
+
+  useEffect(() => {
+    const scrollToHashSection = () => {
+      const hash = window.location.hash.replace('#', '');
+      if (!hash) return;
+
+      const target = document.getElementById(hash);
+      if (target) {
+        setTimeout(() => {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }, 150);
+      }
+    };
+
+    scrollToHashSection();
+    window.addEventListener('hashchange', scrollToHashSection);
+
+    return () => {
+      window.removeEventListener('hashchange', scrollToHashSection);
+    };
+  }, []);
 
   const normalizeProductPrice = useCallback((product: Product): Product => {
     return {
@@ -236,6 +350,10 @@ const App: React.FC = () => {
     currentPath === '/blog/perfumes-arabes-que-huelen-caro' ||
     currentHash === '#/blog/perfumes-arabes-que-huelen-caro';
 
+  const isPerfumesDuraderosPost =
+    currentPath === '/blog/perfumes-que-mas-duran' ||
+    currentHash === '#/blog/perfumes-que-mas-duran';
+
   const isPerfumesHombrePage =
     currentPath === '/perfumes-hombre' ||
     currentHash === '#/perfumes-hombre';
@@ -271,7 +389,7 @@ const App: React.FC = () => {
           onCartClick={() => setIsCartOpen(true)}
           cartCount={cartCount}
           onSearchClick={() => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.location.href = '/#productos';
           }}
         />
 
@@ -335,23 +453,7 @@ const App: React.FC = () => {
                     </p>
                   </div>
                 )
-              ) : (
-                <div className="rounded-[28px] border border-sky-100 bg-sky-50 px-6 py-8 md:px-10 md:py-10">
-                  <p className="text-sky-700 text-xs font-black uppercase tracking-[0.22em] mb-3">
-                    Selección en proceso
-                  </p>
-
-                  <h3 className="text-2xl md:text-3xl font-black tracking-tight text-gray-900 mb-4">
-                    Estamos preparando esta selección
-                  </h3>
-
-                  <p className="text-gray-600 text-base md:text-lg leading-8 max-w-3xl">
-                    Para marcar perfumes como “los que más duran” necesitamos un criterio real dentro del catálogo.
-                    Como ahora mismo ese dato no está definido en tus productos, prefiero no inventarlo. Cuando lo
-                    tengamos claro, aquí montamos una página brutal y bien trabajada.
-                  </p>
-                </div>
-              )}
+              ) : null}
             </div>
           </section>
         </main>
@@ -471,7 +573,7 @@ const App: React.FC = () => {
         paragraphs: [
           'Cuando buscas un perfume que dure de verdad, no quieres reaplicar cada dos horas. Quieres un aroma que te acompañe, se note y deje sensación de perfume caro durante más tiempo.',
           'En Huele Que Flipas trabajamos equivalencias con muy buena duración, fabricadas en España y pensadas para que disfrutes de aromas intensos, elegantes y accesibles sin pagar una locura.',
-          'Esta página será la selección ideal para quienes priorizan fijación, presencia y rendimiento antes que cualquier otra cosa.',
+          'Aquí reunimos perfumes para quienes priorizan fijación, presencia y rendimiento sin renunciar a oler brutal.',
         ],
         sectionLabel: 'Duración top',
         sectionTitle: 'Selección de perfumes duraderos',
@@ -490,7 +592,7 @@ const App: React.FC = () => {
           onCartClick={() => setIsCartOpen(true)}
           cartCount={cartCount}
           onSearchClick={() => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.location.href = '/#productos';
           }}
         />
 
@@ -498,93 +600,36 @@ const App: React.FC = () => {
           <BlogPostPerfumesArabes />
         </main>
 
-        <footer className="bg-white py-16 px-4 border-t border-gray-100">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-[220px_1fr_220px] gap-10 items-start">
-            <div>
-              <h3 className="text-2xl font-black uppercase tracking-tighter font-syne">
-                Huele Que Flipas
-              </h3>
+        <Footer blogBack />
 
-              <p className="text-sm text-gray-400 font-bold uppercase tracking-widest mt-2">
-                By Lokeyokeria.es
-              </p>
+        <Cart
+          isOpen={isCartOpen}
+          onClose={() => setIsCartOpen(false)}
+          items={cartItems}
+          onRemove={removeFromCart}
+          onUpdateQuantity={updateQuantity}
+          onClearCart={clearCart}
+        />
+      </div>
+    );
+  }
 
-              <p className="text-sm text-gray-500 mt-4 leading-6 max-w-[240px]">
-                Si quieres conocer nuestra web principal puedes visitar{' '}
-                <a
-                  href="https://lokeyokeria.es"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-semibold text-gray-700 underline underline-offset-4 hover:text-sky-600 transition"
-                >
-                  Lokeyokeria.es
-                </a>.
-              </p>
-            </div>
+  if (isPerfumesDuraderosPost) {
+    return (
+      <div className="min-h-screen bg-white text-gray-900">
+        <Navbar
+          onCartClick={() => setIsCartOpen(true)}
+          cartCount={cartCount}
+          onSearchClick={() => {
+            window.location.href = '/#productos';
+          }}
+        />
 
-            <div className="max-w-xl">
-              <a
-                href="/blog"
-                className="inline-block font-black uppercase text-xs tracking-widest text-gray-700 hover:text-sky-600 transition"
-              >
-                Volver al blog
-              </a>
+        <main>
+          <BlogPostPerfumesDuraderos />
+        </main>
 
-              <div className="mt-8">
-                <p className="text-xs font-black uppercase tracking-[0.22em] text-gray-900 mb-4">
-                  Pago por Bizum
-                </p>
-
-                <div className="space-y-4 text-[15px] leading-8 text-gray-500">
-                  <p>
-                    Realiza tu pedido cómodamente desde la web. Cuando tengas tu perfume en el carrito,
-                    confirma la compra dando al botón <strong className="text-gray-800">“Pagar con Bizum”</strong>.
-                  </p>
-
-                  <p>
-                    Al hacerlo se abrirá nuestro WhatsApp. Envía tu consulta y nos pondremos
-                    en contacto contigo para confirmar el pedido. Te facilitaremos el pago por Bizum de forma
-                    rápida y segura.
-                  </p>
-
-                  <p>
-                    Una vez recibido el pago, tu pedido se prepara y sale en un plazo aproximado de 24 horas.
-                  </p>
-
-                  <p>
-                    Desde que el paquete es enviado, lo recibirás normalmente en 24/48 horas, siempre que
-                    el transporte funcione con normalidad.
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-8">
-                <p className="text-xs font-black uppercase tracking-[0.22em] text-gray-900 mb-3">
-                  Contáctanos
-                </p>
-
-                <a
-                  href="https://api.whatsapp.com/send?phone=34640834686"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block text-[15px] text-gray-600 hover:text-sky-600 transition"
-                >
-                  WhatsApp: 640 83 46 86
-                </a>
-
-                <p className="text-[15px] text-gray-500 mt-2">
-                  San Martín de la Vega, Madrid
-                </p>
-              </div>
-            </div>
-
-            <div className="text-xs font-bold text-gray-400 md:text-right">
-              © 2026 — San Martín de la Vega, Madrid
-              <br />
-              Hecho con ❤️ para ti.
-            </div>
-          </div>
-        </footer>
+        <Footer blogBack />
 
         <Cart
           isOpen={isCartOpen}
@@ -605,7 +650,7 @@ const App: React.FC = () => {
           onCartClick={() => setIsCartOpen(true)}
           cartCount={cartCount}
           onSearchClick={() => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.location.href = '/#productos';
           }}
         />
 
@@ -613,93 +658,7 @@ const App: React.FC = () => {
           <BlogPostBaccaratRouge />
         </main>
 
-        <footer className="bg-white py-16 px-4 border-t border-gray-100">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-[220px_1fr_220px] gap-10 items-start">
-            <div>
-              <h3 className="text-2xl font-black uppercase tracking-tighter font-syne">
-                Huele Que Flipas
-              </h3>
-
-              <p className="text-sm text-gray-400 font-bold uppercase tracking-widest mt-2">
-                By Lokeyokeria.es
-              </p>
-
-              <p className="text-sm text-gray-500 mt-4 leading-6 max-w-[240px]">
-                Si quieres conocer nuestra web principal puedes visitar{' '}
-                <a
-                  href="https://lokeyokeria.es"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-semibold text-gray-700 underline underline-offset-4 hover:text-sky-600 transition"
-                >
-                  Lokeyokeria.es
-                </a>.
-              </p>
-            </div>
-
-            <div className="max-w-xl">
-              <a
-                href="/blog"
-                className="inline-block font-black uppercase text-xs tracking-widest text-gray-700 hover:text-sky-600 transition"
-              >
-                Volver al blog
-              </a>
-
-              <div className="mt-8">
-                <p className="text-xs font-black uppercase tracking-[0.22em] text-gray-900 mb-4">
-                  Pago por Bizum
-                </p>
-
-                <div className="space-y-4 text-[15px] leading-8 text-gray-500">
-                  <p>
-                    Realiza tu pedido cómodamente desde la web. Cuando tengas tu perfume en el carrito,
-                    confirma la compra dando al botón <strong className="text-gray-800">“Pagar con Bizum”</strong>.
-                  </p>
-
-                  <p>
-                    Al hacerlo se abrirá nuestro WhatsApp. Envía tu consulta y nos pondremos
-                    en contacto contigo para confirmar el pedido. Te facilitaremos el pago por Bizum de forma
-                    rápida y segura.
-                  </p>
-
-                  <p>
-                    Una vez recibido el pago, tu pedido se prepara y sale en un plazo aproximado de 24 horas.
-                  </p>
-
-                  <p>
-                    Desde que el paquete es enviado, lo recibirás normalmente en 24/48 horas, siempre que
-                    el transporte funcione con normalidad.
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-8">
-                <p className="text-xs font-black uppercase tracking-[0.22em] text-gray-900 mb-3">
-                  Contáctanos
-                </p>
-
-                <a
-                  href="https://api.whatsapp.com/send?phone=34640834686"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block text-[15px] text-gray-600 hover:text-sky-600 transition"
-                >
-                  WhatsApp: 640 83 46 86
-                </a>
-
-                <p className="text-[15px] text-gray-500 mt-2">
-                  San Martín de la Vega, Madrid
-                </p>
-              </div>
-            </div>
-
-            <div className="text-xs font-bold text-gray-400 md:text-right">
-              © 2026 — San Martín de la Vega, Madrid
-              <br />
-              Hecho con ❤️ para ti.
-            </div>
-          </div>
-        </footer>
+        <Footer blogBack />
 
         <Cart
           isOpen={isCartOpen}
@@ -720,7 +679,7 @@ const App: React.FC = () => {
           onCartClick={() => setIsCartOpen(true)}
           cartCount={cartCount}
           onSearchClick={() => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.location.href = '/#productos';
           }}
         />
 
@@ -728,93 +687,7 @@ const App: React.FC = () => {
           <BlogPage />
         </main>
 
-        <footer className="bg-white py-16 px-4 border-t border-gray-100">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-[220px_1fr_220px] gap-10 items-start">
-            <div>
-              <h3 className="text-2xl font-black uppercase tracking-tighter font-syne">
-                Huele Que Flipas
-              </h3>
-
-              <p className="text-sm text-gray-400 font-bold uppercase tracking-widest mt-2">
-                By Lokeyokeria.es
-              </p>
-
-              <p className="text-sm text-gray-500 mt-4 leading-6 max-w-[240px]">
-                Si quieres conocer nuestra web principal puedes visitar{' '}
-                <a
-                  href="https://lokeyokeria.es"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-semibold text-gray-700 underline underline-offset-4 hover:text-sky-600 transition"
-                >
-                  Lokeyokeria.es
-                </a>.
-              </p>
-            </div>
-
-            <div className="max-w-xl">
-              <a
-                href="/"
-                className="inline-block font-black uppercase text-xs tracking-widest text-gray-700 hover:text-sky-600 transition"
-              >
-                Volver al inicio
-              </a>
-
-              <div className="mt-8">
-                <p className="text-xs font-black uppercase tracking-[0.22em] text-gray-900 mb-4">
-                  Pago por Bizum
-                </p>
-
-                <div className="space-y-4 text-[15px] leading-8 text-gray-500">
-                  <p>
-                    Realiza tu pedido cómodamente desde la web. Cuando tengas tu perfume en el carrito,
-                    confirma la compra dando al botón <strong className="text-gray-800">“Pagar con Bizum”</strong>.
-                  </p>
-
-                  <p>
-                    Al hacerlo se abrirá nuestro WhatsApp. Envía tu consulta y nos pondremos
-                    en contacto contigo para confirmar el pedido. Te facilitaremos el pago por Bizum de forma
-                    rápida y segura.
-                  </p>
-
-                  <p>
-                    Una vez recibido el pago, tu pedido se prepara y sale en un plazo aproximado de 24 horas.
-                  </p>
-
-                  <p>
-                    Desde que el paquete es enviado, lo recibirás normalmente en 24/48 horas, siempre que
-                    el transporte funcione con normalidad.
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-8">
-                <p className="text-xs font-black uppercase tracking-[0.22em] text-gray-900 mb-3">
-                  Contáctanos
-                </p>
-
-                <a
-                  href="https://api.whatsapp.com/send?phone=34640834686"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block text-[15px] text-gray-600 hover:text-sky-600 transition"
-                >
-                  WhatsApp: 640 83 46 86
-                </a>
-
-                <p className="text-[15px] text-gray-500 mt-2">
-                  San Martín de la Vega, Madrid
-                </p>
-              </div>
-            </div>
-
-            <div className="text-xs font-bold text-gray-400 md:text-right">
-              © 2026 — San Martín de la Vega, Madrid
-              <br />
-              Hecho con ❤️ para ti.
-            </div>
-          </div>
-        </footer>
+        <Footer />
 
         <Cart
           isOpen={isCartOpen}
@@ -1129,7 +1002,7 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        <section id="about" className="bg-gray-950 py-10 md:py-12 text-white relative overflow-hidden">
+        <section id="maria" className="bg-gray-950 py-10 md:py-12 text-white relative overflow-hidden">
           <div className="max-w-6xl mx-auto px-4 relative z-10">
             <div className="grid lg:grid-cols-[260px_1fr] gap-8 lg:gap-12 items-center">
               <div className="flex justify-center lg:justify-start">
@@ -1179,11 +1052,9 @@ const App: React.FC = () => {
                 <div className="mt-7 grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl">
                   <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
                     <MapPin className="w-4 h-4 text-sky-400 mb-2" />
-
                     <p className="text-[11px] font-black uppercase tracking-[0.22em] text-white">
                       San Martín de la Vega
                     </p>
-
                     <p className="text-sm text-gray-400 mt-2">
                       Atención cercana y real.
                     </p>
@@ -1191,11 +1062,9 @@ const App: React.FC = () => {
 
                   <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
                     <Star className="w-4 h-4 text-sky-400 mb-2" />
-
                     <p className="text-[11px] font-black uppercase tracking-[0.22em] text-white">
                       Calidad 100%
                     </p>
-
                     <p className="text-sm text-gray-400 mt-2">
                       Equivalencias muy logradas.
                     </p>
@@ -1203,11 +1072,9 @@ const App: React.FC = () => {
 
                   <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
                     <Award className="w-4 h-4 text-sky-400 mb-2" />
-
                     <p className="text-[11px] font-black uppercase tracking-[0.22em] text-white">
                       10 años contigo.
                     </p>
-
                     <p className="text-sm text-gray-400 mt-2">
                       Feliz recomendando aromas.
                     </p>
@@ -1235,93 +1102,7 @@ const App: React.FC = () => {
         </section>
       </main>
 
-      <footer className="bg-white py-16 px-4 border-t border-gray-100">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-[220px_1fr_220px] gap-10 items-start">
-          <div>
-            <h3 className="text-2xl font-black uppercase tracking-tighter font-syne">
-              Huele Que Flipas
-            </h3>
-
-            <p className="text-sm text-gray-400 font-bold uppercase tracking-widest mt-2">
-              By Lokeyokeria.es
-            </p>
-
-            <p className="text-sm text-gray-500 mt-4 leading-6 max-w-[240px]">
-              Si quieres conocer nuestra web principal puedes visitar{' '}
-              <a
-                href="https://lokeyokeria.es"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-semibold text-gray-700 underline underline-offset-4 hover:text-sky-600 transition"
-              >
-                Lokeyokeria.es
-              </a>.
-            </p>
-          </div>
-
-          <div className="max-w-xl">
-            <a
-              href="#top"
-              className="inline-block font-black uppercase text-xs tracking-widest text-gray-700 hover:text-sky-600 transition"
-            >
-              Ir arriba
-            </a>
-
-            <div className="mt-8">
-              <p className="text-xs font-black uppercase tracking-[0.22em] text-gray-900 mb-4">
-                Pago por Bizum
-              </p>
-
-              <div className="space-y-4 text-[15px] leading-8 text-gray-500">
-                <p>
-                  Realiza tu pedido cómodamente desde la web. Cuando tengas tu perfume en el carrito,
-                  confirma la compra dando al botón <strong className="text-gray-800">“Pagar con Bizum”</strong>.
-                </p>
-
-                <p>
-                  Al hacerlo se abrirá nuestro WhatsApp. Envía tu consulta y nos pondremos
-                  en contacto contigo para confirmar el pedido. Te facilitaremos el pago por Bizum de forma
-                  rápida y segura.
-                </p>
-
-                <p>
-                  Una vez recibido el pago, tu pedido se prepara y sale en un plazo aproximado de 24 horas.
-                </p>
-
-                <p>
-                  Desde que el paquete es enviado, lo recibirás normalmente en 24/48 horas, siempre que
-                  el transporte funcione con normalidad.
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-8">
-              <p className="text-xs font-black uppercase tracking-[0.22em] text-gray-900 mb-3">
-                Contáctanos
-              </p>
-
-              <a
-                href="https://api.whatsapp.com/send?phone=34640834686"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block text-[15px] text-gray-600 hover:text-sky-600 transition"
-              >
-                WhatsApp: 640 83 46 86
-              </a>
-
-              <p className="text-[15px] text-gray-500 mt-2">
-                San Martín de la Vega, Madrid
-              </p>
-            </div>
-          </div>
-
-          <div className="text-xs font-bold text-gray-400 md:text-right">
-            © 2026 — San Martín de la Vega, Madrid
-            <br />
-            Hecho con ❤️ para ti.
-          </div>
-        </div>
-      </footer>
+      <Footer />
 
       <style>{`
         @keyframes hqfMarquee {
