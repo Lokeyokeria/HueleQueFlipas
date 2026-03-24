@@ -1,6 +1,38 @@
 {
   "rewrites": [
     {
+      "source": "/blog/:slug",
+      "destination": "/"
+    },
+    {
+      "source": "/perfumes-hombre",
+      "destination": "/"
+    },
+    {
+      "source": "/perfumes-mujer",
+      "destination": "/"
+    },
+    {
+      "source": "/perfumes-unisex",
+      "destination": "/"
+    },
+    {
+      "source": "/perfumes-arabes",
+      "destination": "/"
+    },
+    {
+      "source": "/perfumes-nicho",
+      "destination": "/"
+    },
+    {
+      "source": "/perfumes-que-mas-duran",
+      "destination": "/"
+    },
+    {
+      "source": "/blog",
+      "destination": "/"
+    },
+    {
       "source": "/(.*)",
       "destination": "/"
     }
