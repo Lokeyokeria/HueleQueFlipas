@@ -14,14 +14,17 @@ export default function BlogPostBaccaratRouge() {
           </h1>
 
           <p className="mt-6 text-lg leading-8 text-slate-600">
-            Si te vuelve loca ese aroma elegante, adictivo y súper reconocible, aquí te contamos
-            cómo es el perfume inspirado en Baccarat Rouge, por qué gusta tanto y qué tipo de persona
-            suele enamorarse de este perfil olfativo.
+            Si te vuelve loca esa vibra elegante, adictiva y súper reconocible, aquí te contamos
+            cómo huele, por qué gusta tanto y por qué su equivalencia se ha convertido en una de las
+            más buscadas por quienes quieren oler caro sin pagar una locura.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3 text-sm text-slate-500">
             <span className="rounded-full bg-white px-4 py-2 border border-slate-200">
               Inspiraciones famosas
+            </span>
+            <span className="rounded-full bg-white px-4 py-2 border border-slate-200">
+              Perfumes unisex
             </span>
             <span className="rounded-full bg-white px-4 py-2 border border-slate-200">
               6 min de lectura
@@ -53,7 +56,7 @@ export default function BlogPostBaccaratRouge() {
           <p className="mt-4 text-base leading-8 text-slate-700">
             Mucha gente lo percibe como un perfume cálido, moderno y con aura de lujo. Tiene ese estilo
             que funciona muy bien tanto en mujer como en hombre, así que encaja perfecto si te gustan los
-            aromas unisex con presencia.
+            aromas unisex con presencia y personalidad.
           </p>
 
           <h2 className="mt-12 text-3xl font-black tracking-tight text-slate-900">
@@ -62,7 +65,7 @@ export default function BlogPostBaccaratRouge() {
 
           <p className="mt-4 text-base leading-8 text-slate-700">
             Porque no huele a lo de siempre. Tiene algo diferente. Es refinado, moderno y muy memorable.
-            Además, proyecta una imagen de perfume caro sin necesidad de ser agresivo. Va más de elegancia
+            Además, proyecta una imagen de perfume caro sin necesidad de resultar agresivo. Va más de elegancia
             que de exceso. Y eso hace que guste muchísimo a personas que quieren oler especiales, limpias,
             sofisticadas y con personalidad.
           </p>
@@ -85,7 +88,7 @@ export default function BlogPostBaccaratRouge() {
 
           <p className="mt-6 text-base leading-8 text-slate-700">
             Es muy buena opción para cenas, eventos, planes especiales o incluso para diario si te gustan
-            los perfumes con ese efecto pulido y lujoso.
+            los perfumes con ese efecto pulido, moderno y lujoso.
           </p>
 
           <h2 className="mt-12 text-3xl font-black tracking-tight text-slate-900">
@@ -100,8 +103,14 @@ export default function BlogPostBaccaratRouge() {
           </p>
 
           <p className="mt-4 text-base leading-8 text-slate-700">
-            Además, si no sabes si este tipo de perfume va contigo, María puede ayudarte a elegir según tu
-            estilo, tus gustos y el tipo de aroma que más te representa.
+            Además, si te gustan este tipo de perfiles, también suele interesar mucho explorar otros{" "}
+            <a href="/perfumes-unisex" className="font-semibold text-sky-700 no-underline">
+              perfumes unisex
+            </a>{" "}
+            o echar un vistazo a nuestra selección de{" "}
+            <a href="/perfumes-que-mas-duran" className="font-semibold text-sky-700 no-underline">
+              perfumes que más duran
+            </a>.
           </p>
 
           <h2 className="mt-12 text-3xl font-black tracking-tight text-slate-900">
@@ -117,6 +126,46 @@ export default function BlogPostBaccaratRouge() {
           <p className="mt-4 text-base leading-8 text-slate-700">
             Si te atraen los perfumes que dejan recuerdo, tienen presencia y hacen que la gente te pregunte
             qué llevas, este tipo de fragancia merece muchísimo la pena.
+          </p>
+
+          <h2 className="mt-12 text-3xl font-black tracking-tight text-slate-900">
+            Preguntas frecuentes sobre la equivalencia Baccarat Rouge
+          </h2>
+
+          <h3 className="mt-8 text-2xl font-black tracking-tight text-slate-900">
+            ¿Es un perfume para hombre o mujer?
+          </h3>
+
+          <p className="mt-4 text-base leading-8 text-slate-700">
+            Tiene un perfil claramente unisex. Suele gustar a quien busca un perfume elegante, diferente
+            y con una sensación muy cuidada sobre la piel.
+          </p>
+
+          <h3 className="mt-8 text-2xl font-black tracking-tight text-slate-900">
+            ¿Es un perfume dulce?
+          </h3>
+
+          <p className="mt-4 text-base leading-8 text-slate-700">
+            Tiene un punto dulce, sí, pero no resulta empalagoso. Lo interesante es que mezcla ese matiz
+            con limpieza, calidez y una sensación muy sofisticada.
+          </p>
+
+          <h3 className="mt-8 text-2xl font-black tracking-tight text-slate-900">
+            ¿Sirve para diario o solo para ocasiones especiales?
+          </h3>
+
+          <p className="mt-4 text-base leading-8 text-slate-700">
+            Sirve para ambas cosas. Para diario da una imagen muy elegante y para eventos o cenas tiene
+            ese punto memorable que funciona genial.
+          </p>
+
+          <h3 className="mt-8 text-2xl font-black tracking-tight text-slate-900">
+            ¿La equivalencia dura bien?
+          </h3>
+
+          <p className="mt-4 text-base leading-8 text-slate-700">
+            En Huele Que Flipas trabajamos equivalencias con muy buena duración y calidad top, para que
+            la experiencia sea potente, agradable y merezca la pena de verdad.
           </p>
         </div>
 
@@ -136,7 +185,9 @@ export default function BlogPostBaccaratRouge() {
 
           <div className="mt-8 flex flex-wrap gap-4">
             <a
-              href="/maria"
+              href="https://api.whatsapp.com/send?phone=34640834686&text=Hola%20Mar%C3%ADa,%20me%20gusta%20el%20estilo%20de%20Baccarat%20Rouge%20y%20quiero%20una%20equivalencia"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center rounded-2xl bg-white px-6 py-3 text-sm font-semibold text-slate-900"
             >
               Hablar con María
