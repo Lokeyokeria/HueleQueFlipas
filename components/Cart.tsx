@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { X, Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
 import { CartItem } from "../types";
 
@@ -32,6 +32,26 @@ const Cart: React.FC<Props> = ({
 
   const shipping = items.length > 0 ? SHIPPING_COST : 0;
   const total = subtotal + shipping;
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
+    window.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener("keydown", handleEscape);
+    };
+  }, [isOpen, onClose]);
 
   const whatsappMessage = useMemo(() => {
     if (items.length === 0) return "";
@@ -67,10 +87,16 @@ Pagaré por Bizum a ${BIZUM_PHONE} (${BIZUM_NAME}).`;
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[60]">
-      <div className="absolute inset-0 bg-black/45 backdrop-blur-sm" onClick={onClose} />
+    <div className="fixed inset-0 z-[60]" aria-modal="true" role="dialog">
+      <div
+        className="absolute inset-0 bg-black/45 backdrop-blur-sm"
+        onClick={onClose}
+      />
 
-      <aside className="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl flex flex-col">
+      <aside
+        className="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl flex flex-col"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100">
           <div className="flex items-center gap-3">
             <ShoppingBag className="w-5 h-5 text-sky-600" />
@@ -83,6 +109,7 @@ Pagaré por Bizum a ${BIZUM_PHONE} (${BIZUM_NAME}).`;
             type="button"
             onClick={onClose}
             className="p-2 rounded-full hover:bg-gray-100 transition"
+            aria-label="Cerrar cesta"
           >
             <X className="w-5 h-5" />
           </button>
@@ -130,6 +157,7 @@ Pagaré por Bizum a ${BIZUM_PHONE} (${BIZUM_NAME}).`;
                           type="button"
                           onClick={() => onUpdateQuantity(item.id, -1)}
                           className="p-1"
+                          aria-label={`Quitar una unidad de ${item.name}`}
                         >
                           <Minus className="w-3 h-3" />
                         </button>
@@ -142,6 +170,7 @@ Pagaré por Bizum a ${BIZUM_PHONE} (${BIZUM_NAME}).`;
                           type="button"
                           onClick={() => onUpdateQuantity(item.id, 1)}
                           className="p-1"
+                          aria-label={`Añadir una unidad de ${item.name}`}
                         >
                           <Plus className="w-3 h-3" />
                         </button>
@@ -155,6 +184,7 @@ Pagaré por Bizum a ${BIZUM_PHONE} (${BIZUM_NAME}).`;
                         type="button"
                         onClick={() => onRemove(item.id)}
                         className="text-gray-300 hover:text-red-500 transition"
+                        aria-label={`Eliminar ${item.name} de la cesta`}
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>
@@ -204,7 +234,7 @@ Pagaré por Bizum a ${BIZUM_PHONE} (${BIZUM_NAME}).`;
               </button>
 
               <p className="text-[11px] text-center text-gray-400 mt-3 leading-5">
-                Te llevamos a WhatsApp con el pedido completo. Después te confirmamos el pago por Bizum.
+                Te llevamos a WhatsApp con el pedido completo y después te confirmamos el pago por Bizum.
               </p>
             </>
           ) : (
