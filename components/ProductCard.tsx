@@ -53,14 +53,14 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
 
   const getCardStyle = () => {
     if (isNiche) {
-      return "bg-white border border-sky-100 shadow-[0_12px_30px_rgba(14,165,233,0.08)] hover:shadow-[0_18px_38px_rgba(14,165,233,0.14)] hover:-translate-y-1";
+      return "bg-white border border-sky-100 shadow-[0_10px_24px_rgba(14,165,233,0.06)] hover:shadow-[0_16px_34px_rgba(14,165,233,0.12)] hover:-translate-y-1";
     }
 
     if (isSelecta || isArabe) {
       return "bg-white border border-sky-100 shadow-[0_10px_24px_rgba(59,130,246,0.06)] hover:shadow-[0_16px_34px_rgba(59,130,246,0.12)] hover:-translate-y-1";
     }
 
-    return "bg-white border border-gray-100 shadow-sm hover:shadow-2xl hover:-translate-y-1";
+    return "bg-white border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1";
   };
 
   const getLineColor = () => {
@@ -146,7 +146,7 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
       />
 
-      <div className="aspect-square overflow-hidden bg-gray-50 relative">
+      <div className="aspect-[4/5] overflow-hidden bg-gray-50 relative">
         <img
           src={imgSrc}
           alt={`${product.name}, perfume de equivalencia inspirado en ${product.brand}`}
@@ -155,25 +155,25 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
           onError={() => setImgSrc(FALLBACK_IMAGE)}
         />
 
-        <div className="absolute top-3 left-3 bg-white/90 backdrop-blur px-3 py-1 rounded-full border border-gray-200 shadow-sm">
-          <span className="text-[11px] font-black tracking-widest text-gray-900">
+        <div className="absolute top-2.5 left-2.5 bg-white/90 backdrop-blur px-2.5 py-1 rounded-full border border-gray-200 shadow-sm">
+          <span className="text-[10px] font-black tracking-widest text-gray-900">
             #{product.number}
           </span>
         </div>
 
         <div
-          className={`absolute top-3 right-3 backdrop-blur px-3 py-1 rounded-full shadow-sm ${getCategoryStyle()}`}
+          className={`absolute top-2.5 right-2.5 backdrop-blur px-2.5 py-1 rounded-full shadow-sm ${getCategoryStyle()}`}
         >
-          <span className="text-[10px] font-black uppercase tracking-widest">
+          <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-widest">
             {product.category}
           </span>
         </div>
 
         {badgeText && (
           <div
-            className={`absolute bottom-3 left-3 backdrop-blur px-3 py-1 rounded-full shadow-sm ${getBadgeStyle()}`}
+            className={`absolute bottom-2.5 left-2.5 backdrop-blur px-2.5 py-1 rounded-full shadow-sm ${getBadgeStyle()}`}
           >
-            <span className="text-[10px] font-black uppercase tracking-widest">
+            <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-widest">
               {badgeText}
             </span>
           </div>
@@ -186,44 +186,44 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
               e.stopPropagation();
               onViewProduct(product);
             }}
-            className="absolute bottom-3 right-3 inline-flex items-center gap-2 bg-white/90 backdrop-blur px-3 py-2 rounded-full border border-gray-200 shadow-sm text-[11px] font-black uppercase tracking-widest text-gray-900 hover:bg-white transition"
+            className="absolute bottom-2.5 right-2.5 inline-flex items-center gap-1.5 bg-white/90 backdrop-blur px-2.5 py-1.5 rounded-full border border-gray-200 shadow-sm text-[10px] font-black uppercase tracking-widest text-gray-900 hover:bg-white transition"
             aria-label={`Ver detalle de ${product.name}`}
           >
-            <Eye className="w-3.5 h-3.5" />
+            <Eye className="w-3 h-3" />
             Ver
           </button>
         )}
       </div>
 
-      <div className="p-4">
-        <div className="flex justify-between items-start gap-3 mb-2">
-          <h3 className="font-bold text-[15px] tracking-tight text-gray-900 leading-snug">
+      <div className="p-3.5 sm:p-4 space-y-2">
+        <div className="flex justify-between items-start gap-2">
+          <h3 className="text-sm sm:text-[15px] font-bold tracking-tight text-gray-900 leading-tight line-clamp-2 min-h-[2.5rem]">
             {product.name}
           </h3>
 
-          <span className="font-black text-[16px] text-gray-900 whitespace-nowrap">
+          <span className="font-black text-sm sm:text-[16px] text-gray-900 whitespace-nowrap">
             {product.price.toFixed(2)}€
           </span>
         </div>
 
-        <p className={`text-[11px] uppercase tracking-widest mb-2 ${getLineColor()}`}>
+        <p className={`text-[10px] sm:text-[11px] uppercase tracking-widest ${getLineColor()}`}>
           {getLineLabel()}
         </p>
 
-        <p className="text-[13px] text-gray-600 leading-relaxed">
+        <p className="text-[12px] sm:text-[13px] text-gray-600 leading-snug line-clamp-2 min-h-[2rem]">
           {getInspiredText()}
         </p>
 
-        <p className="text-[13px] text-gray-500 mt-2">
+        <p className="text-[12px] sm:text-[13px] text-gray-500 leading-snug line-clamp-2 min-h-[2rem]">
           Familia olfativa: {product.family}
         </p>
 
-        <div className="flex items-center justify-between mt-3 mb-4">
-          <p className="text-[14px] text-gray-700 font-semibold">
+        <div className="flex items-center justify-between pt-1">
+          <p className="text-[12px] sm:text-[13px] text-gray-700 font-semibold">
             {product.size}
           </p>
 
-          <span className="text-[11px] text-gray-400 font-bold uppercase tracking-widest">
+          <span className="text-[9px] sm:text-[10px] text-gray-400 font-bold uppercase tracking-widest">
             Larga duración
           </span>
         </div>
@@ -234,7 +234,7 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
             e.stopPropagation();
             onAddToCart(product);
           }}
-          className="w-full py-2.5 rounded-full bg-black text-white text-[11px] sm:text-xs font-bold uppercase tracking-widest transition hover:bg-sky-600"
+          className="w-full py-2 rounded-full bg-black text-white text-[10px] sm:text-[11px] font-bold uppercase tracking-widest transition hover:bg-sky-600"
         >
           Añadir al carrito
         </button>
