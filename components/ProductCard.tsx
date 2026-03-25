@@ -138,24 +138,20 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
           onError={() => setImgSrc(FALLBACK_IMAGE)}
         />
 
-        {/* Nº */}
         <div className="absolute top-2.5 left-2.5 bg-white/90 px-2.5 py-1 rounded-full border text-[10px] font-black">
           #{product.number}
         </div>
 
-        {/* CATEGORÍA */}
         <div className={`absolute top-2.5 right-2.5 px-2.5 py-1 rounded-full text-[9px] sm:text-[10px] font-black uppercase md:uppercase ${getCategoryStyle()}`}>
           {product.category}
         </div>
 
-        {/* BADGE */}
         {badgeText && (
           <div className={`absolute bottom-2.5 left-2.5 px-2.5 py-1 rounded-full text-[9px] sm:text-[10px] font-black uppercase md:uppercase ${getBadgeStyle()}`}>
             {badgeText}
           </div>
         )}
 
-        {/* BOTÓN VER */}
         {onViewProduct && (
           <button
             onClick={(e) => {
@@ -177,6 +173,7 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
           🔥 Muy vendido esta semana
         </span>
 
+        {/* NOMBRE + PRECIO */}
         <div className="flex justify-between items-start gap-2">
           <h3 className="text-sm sm:text-[15px] font-bold leading-tight line-clamp-2">
             {product.name}
@@ -186,6 +183,11 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
             {product.price.toFixed(2)}€
           </span>
         </div>
+
+        {/* ⭐ PRUEBA SOCIAL */}
+        <p className="text-[11px] text-gray-400">
+          ⭐ 4.8 · +120 personas ya lo usan
+        </p>
 
         <p className={`text-[10px] sm:text-[11px] uppercase md:uppercase tracking-widest ${getLineColor()}`}>
           {getLineLabel()}
@@ -197,6 +199,17 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
 
         <p className="text-[12px] sm:text-[13px] text-gray-500">
           {product.family}
+        </p>
+
+        {/* ETIQUETAS */}
+        <div className="flex gap-2 flex-wrap">
+          <span className="text-[10px] bg-gray-100 px-2 py-1 rounded-full">🔥 Noche</span>
+          <span className="text-[10px] bg-gray-100 px-2 py-1 rounded-full">💘 Citas</span>
+        </div>
+
+        {/* MARÍA */}
+        <p className="text-[11px] text-sky-600 font-semibold">
+          💬 María: “Este perfume engancha desde el primer momento.”
         </p>
 
         <div className="flex justify-between items-center">
