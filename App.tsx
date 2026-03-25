@@ -903,7 +903,7 @@ const App: React.FC = () => {
               </h2>
 
               <p className="text-gray-500 max-w-2xl mx-auto font-medium text-base md:text-lg">
-                   Dentro de cada categoría, podrás ver todos los perfumes disponibles cada día.
+                   Pincha dentro de cada categoría, podrás ver todos los perfumes disponibles.
               </p>
             </div>
             <HomeCollectionSection
