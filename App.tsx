@@ -9,7 +9,7 @@ import BlogPostPerfumesArabes from './components/BlogPostPerfumesArabes';
 import BlogPostPerfumesDuraderos from './components/BlogPostPerfumesDuraderos';
 import { PERFUMES } from './data';
 import { Product, CartItem } from './types';
-import { Star, MapPin, Award, Truck, ShieldCheck, Gift, Search, X } from 'lucide-react';
+import { Star, MapPin, Award, Truck, ShieldCheck, Gift, X } from 'lucide-react';
 import mariaPhoto from './maria-photo.jpg';
 
 type CategoryFilter = 'TODOS' | 'MUJER' | 'HOMBRE' | 'UNISEX';
@@ -59,7 +59,8 @@ const Footer: React.FC<{ blogBack?: boolean }> = ({ blogBack = false }) => {
               className="font-semibold text-gray-700 underline underline-offset-4 hover:text-sky-600 transition"
             >
               Lokeyokeria.es
-            </a>.
+            </a>
+            .
           </p>
         </div>
 
@@ -79,22 +80,24 @@ const Footer: React.FC<{ blogBack?: boolean }> = ({ blogBack = false }) => {
             <div className="space-y-4 text-[15px] leading-8 text-gray-500">
               <p>
                 Realiza tu pedido cómodamente desde la web. Cuando tengas tu perfume en el carrito,
-                confirma la compra dando al botón <strong className="text-gray-800">“Pagar con Bizum”</strong>.
+                confirma la compra dando al botón{' '}
+                <strong className="text-gray-800">“Pagar con Bizum”</strong>.
               </p>
 
               <p>
-                Al hacerlo se abrirá nuestro WhatsApp. Envía tu consulta y nos pondremos
-                en contacto contigo para confirmar el pedido. Te facilitaremos el pago por Bizum de forma
-                rápida y segura.
+                Al hacerlo se abrirá nuestro WhatsApp. Envía tu consulta y nos pondremos en
+                contacto contigo para confirmar el pedido. Te facilitaremos el pago por Bizum de
+                forma rápida y segura.
               </p>
 
               <p>
-                Una vez recibido el pago, tu pedido se prepara y sale en un plazo aproximado de 24 horas.
+                Una vez recibido el pago, tu pedido se prepara y sale en un plazo aproximado de 24
+                horas.
               </p>
 
               <p>
-                Desde que el paquete es enviado, lo recibirás normalmente en 24/48 horas, siempre que
-                el transporte funcione con normalidad.
+                Desde que el paquete es enviado, lo recibirás normalmente en 24/48 horas, siempre
+                que el transporte funcione con normalidad.
               </p>
             </div>
           </div>
@@ -113,9 +116,7 @@ const Footer: React.FC<{ blogBack?: boolean }> = ({ blogBack = false }) => {
               WhatsApp: 640 83 46 86
             </a>
 
-            <p className="text-[15px] text-gray-500 mt-2">
-              San Martín de la Vega, Madrid
-            </p>
+            <p className="text-[15px] text-gray-500 mt-2">San Martín de la Vega, Madrid</p>
           </div>
         </div>
 
@@ -129,11 +130,113 @@ const Footer: React.FC<{ blogBack?: boolean }> = ({ blogBack = false }) => {
   );
 };
 
+type HomeCollectionSectionProps = {
+  id?: string;
+  eyebrow: string;
+  title: string;
+  description: string;
+  products: Product[];
+  href: string;
+  buttonLabel: string;
+  dark?: boolean;
+  softBlue?: boolean;
+  onAddToCart: (product: Product) => void;
+  onViewProduct: (product: Product) => void;
+};
+
+const HomeCollectionSection: React.FC<HomeCollectionSectionProps> = ({
+  id,
+  eyebrow,
+  title,
+  description,
+  products,
+  href,
+  buttonLabel,
+  dark = false,
+  softBlue = false,
+  onAddToCart,
+  onViewProduct,
+}) => {
+  if (products.length === 0) return null;
+
+  const sectionClasses = dark
+    ? 'rounded-[32px] bg-gradient-to-br from-[#020817] via-[#031426] to-[#071e36] text-white px-5 py-8 md:px-10 md:py-12 shadow-[0_24px_60px_rgba(2,8,23,0.35)] border border-white/10'
+    : softBlue
+      ? 'rounded-[32px] bg-gradient-to-br from-[#f8fbff] via-[#eef6ff] to-[#e8f3ff] px-5 py-8 md:px-10 md:py-12 border border-sky-100 shadow-[0_18px_50px_rgba(59,130,246,0.08)]'
+      : 'rounded-[32px] bg-white px-5 py-8 md:px-10 md:py-12 border border-gray-100 shadow-sm';
+
+  const eyebrowClasses = dark
+    ? 'text-sky-300'
+    : softBlue
+      ? 'text-sky-700'
+      : 'text-sky-600';
+
+  const titleClasses = dark
+    ? 'text-white'
+    : 'text-gray-900';
+
+  const descriptionClasses = dark
+    ? 'text-gray-200'
+    : 'text-gray-600';
+
+  const countClasses = dark
+    ? 'text-gray-300'
+    : 'text-gray-500';
+
+  const buttonClasses = dark
+    ? 'inline-flex items-center justify-center px-8 py-4 rounded-full bg-white text-gray-900 font-black uppercase tracking-widest text-xs sm:text-sm hover:bg-sky-100 transition'
+    : 'inline-flex items-center justify-center px-8 py-4 rounded-full bg-black text-white font-black uppercase tracking-widest text-xs sm:text-sm hover:bg-sky-600 transition';
+
+  return (
+    <section id={id} className="mb-10 md:mb-14">
+      <div className={sectionClasses}>
+        <div className="flex items-end justify-between gap-4 mb-8 flex-wrap">
+          <div className="max-w-4xl">
+            <p className={`${eyebrowClasses} text-xs font-black uppercase tracking-[0.22em] mb-2`}>
+              {eyebrow}
+            </p>
+
+            <h2
+              className={`text-2xl sm:text-3xl md:text-4xl font-black tracking-tight leading-tight ${titleClasses}`}
+            >
+              {title}
+            </h2>
+
+            <p className={`text-sm md:text-base mt-3 leading-7 max-w-3xl ${descriptionClasses}`}>
+              {description}
+            </p>
+          </div>
+
+          <p className={`text-sm sm:text-base ${countClasses}`}>
+            {products.length} resultado{products.length === 1 ? '' : 's'}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {products.map(product => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              onAddToCart={onAddToCart}
+              onViewProduct={onViewProduct}
+            />
+          ))}
+        </div>
+
+        <div className="mt-8 text-center">
+          <a href={href} className={buttonClasses}>
+            {buttonLabel}
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const App: React.FC = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [activeCategory, setActiveCategory] = useState<CategoryFilter>('TODOS');
-  const [searchTerm, setSearchTerm] = useState('');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   useEffect(() => {
@@ -199,9 +302,7 @@ const App: React.FC = () => {
 
       if (existing) {
         return prev.map(i =>
-          i.id === productWithCorrectPrice.id
-            ? { ...i, quantity: i.quantity + 1 }
-            : i
+          i.id === productWithCorrectPrice.id ? { ...i, quantity: i.quantity + 1 } : i
         );
       }
 
@@ -233,82 +334,71 @@ const App: React.FC = () => {
     );
   }, []);
 
-  const filteredProducts = useMemo(() => {
-    const byCategory =
-      activeCategory === 'TODOS'
-        ? PERFUMES
-        : PERFUMES.filter(p => p.category === activeCategory);
-
-    const term = searchTerm.trim().toLowerCase();
-
-    if (!term) return byCategory;
-
-    return byCategory.filter(product =>
-      product.name.toLowerCase().includes(term) ||
-      product.brand.toLowerCase().includes(term) ||
-      product.family.toLowerCase().includes(term) ||
-      product.number.toLowerCase().includes(term)
-    );
-  }, [activeCategory, searchTerm]);
-
   const equivalenceProducts = useMemo(() => {
-    return filteredProducts.filter(product => product.line === 'normal');
-  }, [filteredProducts]);
+    return PERFUMES.filter(product => product.line === 'normal').map(normalizeProductPrice);
+  }, [normalizeProductPrice]);
 
   const selectaProducts = useMemo(() => {
-    return filteredProducts.filter(
-      product => product.line === 'selecta' || product.line === 'arabe'
+    return PERFUMES.filter(product => product.line === 'selecta' || product.line === 'arabe').map(
+      normalizeProductPrice
     );
-  }, [filteredProducts]);
+  }, [normalizeProductPrice]);
 
   const nicheProducts = useMemo(() => {
-    return filteredProducts.filter(product => product.line === 'nicho');
-  }, [filteredProducts]);
+    return PERFUMES.filter(product => product.line === 'nicho').map(normalizeProductPrice);
+  }, [normalizeProductPrice]);
 
   const hombreProducts = useMemo(() => {
-    return PERFUMES
-      .filter(product => product.category === 'HOMBRE')
-      .map(product => ({
-        ...product,
-        price: getDisplayPrice(product),
-      }));
-  }, []);
+    return PERFUMES.filter(product => product.category === 'HOMBRE').map(normalizeProductPrice);
+  }, [normalizeProductPrice]);
 
   const mujerProducts = useMemo(() => {
-    return PERFUMES
-      .filter(product => product.category === 'MUJER')
-      .map(product => ({
-        ...product,
-        price: getDisplayPrice(product),
-      }));
-  }, []);
+    return PERFUMES.filter(product => product.category === 'MUJER').map(normalizeProductPrice);
+  }, [normalizeProductPrice]);
 
   const unisexProducts = useMemo(() => {
-    return PERFUMES
-      .filter(product => product.category === 'UNISEX')
-      .map(product => ({
-        ...product,
-        price: getDisplayPrice(product),
-      }));
-  }, []);
+    return PERFUMES.filter(product => product.category === 'UNISEX').map(normalizeProductPrice);
+  }, [normalizeProductPrice]);
 
   const arabesProducts = useMemo(() => {
-    return PERFUMES
-      .filter(product => product.line === 'arabe')
-      .map(product => ({
-        ...product,
-        price: getDisplayPrice(product),
-      }));
-  }, []);
+    return PERFUMES.filter(product => product.line === 'arabe').map(normalizeProductPrice);
+  }, [normalizeProductPrice]);
 
   const nichoProducts = useMemo(() => {
-    return PERFUMES
-      .filter(product => product.line === 'nicho')
-      .map(product => ({
-        ...product,
-        price: getDisplayPrice(product),
-      }));
-  }, []);
+    return PERFUMES.filter(product => product.line === 'nicho').map(normalizeProductPrice);
+  }, [normalizeProductPrice]);
+
+  const homeHombreProducts = useMemo(() => hombreProducts.slice(0, 4), [hombreProducts]);
+  const homeMujerProducts = useMemo(() => mujerProducts.slice(0, 4), [mujerProducts]);
+  const homeUnisexProducts = useMemo(() => unisexProducts.slice(0, 4), [unisexProducts]);
+  const homeArabesProducts = useMemo(() => arabesProducts.slice(0, 4), [arabesProducts]);
+  const homeNichoProducts = useMemo(() => nichoProducts.slice(0, 4), [nichoProducts]);
+
+  const duraderosProducts = useMemo(() => {
+    const preferredNumbers = ['8015', '8016', '8017', '7000', '7006', '015', '147', '234'];
+
+    const preferred = preferredNumbers
+      .map(number => PERFUMES.find(product => product.number === number))
+      .filter(Boolean) as Product[];
+
+    const uniquePreferred = preferred.filter(
+      (product, index, self) => self.findIndex(item => item.id === product.id) === index
+    );
+
+    const fallback = PERFUMES.filter(product => {
+      const family = product.family.toLowerCase();
+
+      return (
+        product.line === 'arabe' ||
+        product.line === 'nicho' ||
+        family.includes('oriental') ||
+        family.includes('ámbar') ||
+        family.includes('amaderad')
+      );
+    }).filter(product => !uniquePreferred.some(item => item.id === product.id));
+
+    return [...uniquePreferred, ...fallback].slice(0, 4).map(normalizeProductPrice);
+  }, [normalizeProductPrice]);
 
   const cartCount = useMemo(() => {
     return cartItems.reduce((acc, item) => acc + item.quantity, 0);
@@ -327,20 +417,12 @@ const App: React.FC = () => {
     }
   };
 
-  const currentPath =
-    typeof window !== 'undefined'
-      ? window.location.pathname
-      : '';
+  const currentPath = typeof window !== 'undefined' ? window.location.pathname : '';
 
-  const currentHash =
-    typeof window !== 'undefined'
-      ? window.location.hash
-      : '';
+  const currentHash = typeof window !== 'undefined' ? window.location.hash : '';
 
   const isBlogPage =
-    currentPath === '/blog' ||
-    currentHash === '#/blog' ||
-    currentHash === '#blog';
+    currentPath === '/blog' || currentHash === '#/blog' || currentHash === '#blog';
 
   const isBaccaratRougePost =
     currentPath === '/blog/equivalencia-baccarat-rouge' ||
@@ -355,28 +437,22 @@ const App: React.FC = () => {
     currentHash === '#/blog/perfumes-que-mas-duran';
 
   const isPerfumesHombrePage =
-    currentPath === '/perfumes-hombre' ||
-    currentHash === '#/perfumes-hombre';
+    currentPath === '/perfumes-hombre' || currentHash === '#/perfumes-hombre';
 
   const isPerfumesMujerPage =
-    currentPath === '/perfumes-mujer' ||
-    currentHash === '#/perfumes-mujer';
+    currentPath === '/perfumes-mujer' || currentHash === '#/perfumes-mujer';
 
   const isPerfumesUnisexPage =
-    currentPath === '/perfumes-unisex' ||
-    currentHash === '#/perfumes-unisex';
+    currentPath === '/perfumes-unisex' || currentHash === '#/perfumes-unisex';
 
   const isPerfumesArabesPage =
-    currentPath === '/perfumes-arabes' ||
-    currentHash === '#/perfumes-arabes';
+    currentPath === '/perfumes-arabes' || currentHash === '#/perfumes-arabes';
 
   const isPerfumesNichoPage =
-    currentPath === '/perfumes-nicho' ||
-    currentHash === '#/perfumes-nicho';
+    currentPath === '/perfumes-nicho' || currentHash === '#/perfumes-nicho';
 
   const isPerfumesDuraderosPage =
-    currentPath === '/perfumes-que-mas-duran' ||
-    currentHash === '#/perfumes-que-mas-duran';
+    currentPath === '/perfumes-que-mas-duran' || currentHash === '#/perfumes-que-mas-duran';
 
   const renderSeoCategoryPage = (
     config: SeoPageConfig,
@@ -448,9 +524,7 @@ const App: React.FC = () => {
                       {config.emptyTitle}
                     </h3>
 
-                    <p className="text-gray-500 max-w-xl mx-auto text-base">
-                      {config.emptyText}
-                    </p>
+                    <p className="text-gray-500 max-w-xl mx-auto text-base">{config.emptyText}</p>
                   </div>
                 )
               ) : null}
@@ -573,15 +647,15 @@ const App: React.FC = () => {
         paragraphs: [
           'Cuando buscas un perfume que dure de verdad, no quieres reaplicar cada dos horas. Quieres un aroma que te acompañe, se note y deje sensación de perfume caro durante más tiempo.',
           'En Huele Que Flipas trabajamos equivalencias con muy buena duración, fabricadas en España y pensadas para que disfrutes de aromas intensos, elegantes y accesibles sin pagar una locura.',
-          'Aquí reunimos perfumes para quienes priorizan fijación, presencia y rendimiento sin renunciar a oler brutal.',
+          'Aquí reunimos una selección con perfumes más intensos, envolventes y con mejor presencia para quienes priorizan fijación y rendimiento sin renunciar a oler brutal.',
         ],
         sectionLabel: 'Duración top',
         sectionTitle: 'Selección de perfumes duraderos',
         emptyTitle: 'Selección no disponible',
-        emptyText: 'En cuanto tengamos el criterio de duración definido dentro del catálogo, la activamos.',
+        emptyText: 'En cuanto tengamos más referencias marcadas, las verás aquí.',
       },
-      [],
-      false
+      duraderosProducts,
+      true
     );
   }
 
@@ -709,11 +783,6 @@ const App: React.FC = () => {
         onSearchClick={() => {
           const section = document.getElementById('productos');
           section?.scrollIntoView({ behavior: 'smooth' });
-
-          setTimeout(() => {
-            const input = document.getElementById('product-search') as HTMLInputElement | null;
-            input?.focus();
-          }, 400);
         }}
       />
 
@@ -744,35 +813,39 @@ const App: React.FC = () => {
                   Nuestra colección reúne{' '}
                   <a href="/perfumes-hombre" className={linkClasses}>
                     perfumes para hombre
-                  </a>,{' '}
+                  </a>
+                  ,{' '}
                   <a href="/perfumes-mujer" className={linkClasses}>
                     perfumes para mujer
-                  </a>,{' '}
+                  </a>
+                  ,{' '}
                   <a href="/perfumes-unisex" className={linkClasses}>
                     perfumes unisex
-                  </a>, además de una selección más especial de{' '}
+                  </a>
+                  , además de una selección más especial de{' '}
                   <a href="/perfumes-nicho" className={linkClasses}>
                     perfumes nicho
                   </a>{' '}
                   y{' '}
                   <a href="/perfumes-arabes" className={linkClasses}>
                     perfumes árabes
-                  </a>.
+                  </a>
+                  .
+                </p>
+
+                <p>
+                  También tienes una selección especial de{' '}
+                  <a href="/perfumes-que-mas-duran" className={linkClasses}>
+                    perfumes que más duran
+                  </a>{' '}
+                  para quienes buscan más fijación, más presencia y un aroma que acompañe durante
+                  horas.
                 </p>
 
                 <p>
                   La idea es muy simple: ayudarte a encontrar un aroma que encaje contigo de verdad.
-                  Y si buscas perfumes con más presencia y duración, pronto tendrás también una selección
-                  especial en{' '}
-                  <a href="/perfumes-que-mas-duran" className={linkClasses}>
-                    perfumes que más duran
-                  </a>.
-                </p>
-
-                <p>
-                  Si te gustan los perfumes frescos, dulces, elegantes, intensos o con más personalidad,
-                  aquí tienes opciones para descubrir tu favorito. Y si no sabes por dónde empezar,
-                  María te ayuda a elegir el perfume que mejor vaya contigo.
+                  Y si no sabes por dónde empezar, María te ayuda a elegir el perfume que mejor vaya
+                  contigo.
                 </p>
               </div>
             </div>
@@ -791,9 +864,7 @@ const App: React.FC = () => {
                   <p className="text-xs font-black uppercase tracking-widest text-gray-900">
                     Envío 24/48h
                   </p>
-                  <p className="text-sm text-gray-500">
-                    1,50€ a toda España
-                  </p>
+                  <p className="text-sm text-gray-500">1,50€ a toda España</p>
                 </div>
               </div>
 
@@ -806,9 +877,7 @@ const App: React.FC = () => {
                   <p className="text-xs font-black uppercase tracking-widest text-gray-900">
                     Pago fácil
                   </p>
-                  <p className="text-sm text-gray-500">
-                    Bizum seguro y directo
-                  </p>
+                  <p className="text-sm text-gray-500">Bizum seguro y directo</p>
                 </div>
               </div>
 
@@ -821,184 +890,98 @@ const App: React.FC = () => {
                   <p className="text-xs font-black uppercase tracking-widest text-gray-900">
                     Compra con mi ayuda
                   </p>
-                  <p className="text-sm text-gray-500">
-                    Te guiamos para acertar
-                  </p>
+                  <p className="text-sm text-gray-500">Te guiamos para acertar</p>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        <section id="productos" className="py-24 px-4 bg-white">
+        <section id="productos" className="py-20 md:py-24 px-4 bg-white">
           <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
-              <div className="mb-4">
-                <span className="inline-block text-sky-600 text-xs font-black uppercase tracking-[0.25em]">
-                  Colección destacada
-                </span>
+            <div className="text-center mb-14">
+              <span className="inline-block text-sky-600 text-xs font-black uppercase tracking-[0.25em]">
+                Colecciones destacadas
+              </span>
 
-                <p className="text-[11px] sm:text-xs text-gray-500 font-semibold uppercase tracking-[0.18em] mt-2">
-                  Incluye equivalencias, fragancias selectas y colección nicho
-                </p>
-              </div>
-
-              <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter font-syne mb-6">
-                Nuestra colección
+              <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter font-syne mt-4 mb-5">
+                Descubre tu aroma
               </h2>
 
-              <p className="text-gray-500 max-w-2xl mx-auto font-medium mb-8 text-base md:text-lg">
-                Elige tu aroma, añádelo al carrito y huele increíble sin pagar de más.
-              </p>
-
-              <div className="max-w-xl mx-auto mb-8">
-                <div className="relative">
-                  <Search className="w-4 h-4 text-gray-400 absolute left-4 top-1/2 -translate-y-1/2" />
-
-                  <input
-                    id="product-search"
-                    type="text"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    placeholder="Busca por número, perfume o marca..."
-                    className="w-full pl-11 pr-4 py-4 rounded-2xl border border-gray-200 bg-white text-sm outline-none focus:border-sky-500"
-                  />
-                </div>
-              </div>
-
-              <div className="flex flex-wrap justify-center gap-4 mb-6">
-                {(['TODOS', 'MUJER', 'HOMBRE', 'UNISEX'] as CategoryFilter[]).map(cat => (
-                  <button
-                    key={cat}
-                    type="button"
-                    onClick={() => setActiveCategory(cat)}
-                    className={`px-6 py-3 rounded-full text-sm font-black tracking-widest uppercase transition-all duration-300 ${
-                      activeCategory === cat
-                        ? 'bg-black text-white shadow-xl scale-105'
-                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                    }`}
-                    aria-pressed={activeCategory === cat}
-                  >
-                    {cat}
-                  </button>
-                ))}
-              </div>
-
-              <p className="text-sm sm:text-base text-gray-500">
-                {filteredProducts.length} perfumes disponibles ahora mismo
+              <p className="text-gray-500 max-w-2xl mx-auto font-medium text-base md:text-lg">
+                En la home te enseñamos solo una selección para que todo se vea más limpio. Dentro
+                de cada categoría podrás ver todos los perfumes disponibles.
               </p>
             </div>
 
-            {equivalenceProducts.length > 0 && (
-              <div className="mb-20">
-                <div className="flex items-end justify-between gap-4 mb-8 flex-wrap">
-                  <div>
-                    <p className="text-sky-600 text-xs font-black uppercase tracking-[0.22em] mb-2">
-                      Equivalencias
-                    </p>
-                    <h3 className="text-2xl md:text-3xl font-black tracking-tight">
-                      Perfumes para el día a día
-                    </h3>
-                  </div>
+            <HomeCollectionSection
+              eyebrow="Top duración"
+              title="Perfumes que más duran y mejor proyectan"
+              description="Una selección para quienes quieren más fijación, más presencia y un aroma que se note de verdad durante horas."
+              products={duraderosProducts}
+              href="/perfumes-que-mas-duran"
+              buttonLabel="Ver perfumes de larga duración"
+              softBlue
+              onAddToCart={addToCart}
+              onViewProduct={setSelectedProduct}
+            />
 
-                  <p className="text-sm sm:text-base text-gray-500">
-                    {equivalenceProducts.length} resultado{equivalenceProducts.length === 1 ? '' : 's'}
-                  </p>
-                </div>
+            <HomeCollectionSection
+              eyebrow="Colección hombre"
+              title="Perfumes para hombre que huelen caro"
+              description="Cuatro perfumes para empezar a descubrir aromas masculinos con presencia, estilo y muy buena duración."
+              products={homeHombreProducts}
+              href="/perfumes-hombre"
+              buttonLabel="Ver perfumes de hombre"
+              onAddToCart={addToCart}
+              onViewProduct={setSelectedProduct}
+            />
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                  {equivalenceProducts.map(product => (
-                    <ProductCard
-                      key={product.id}
-                      product={normalizeProductPrice(product)}
-                      onAddToCart={addToCart}
-                      onViewProduct={setSelectedProduct}
-                    />
-                  ))}
-                </div>
-              </div>
-            )}
+            <HomeCollectionSection
+              eyebrow="Colección mujer"
+              title="Perfumes para mujer que enganchan"
+              description="Una selección pensada para quienes buscan fragancias femeninas con elegancia, personalidad y ese punto adictivo que deja huella."
+              products={homeMujerProducts}
+              href="/perfumes-mujer"
+              buttonLabel="Ver perfumes de mujer"
+              onAddToCart={addToCart}
+              onViewProduct={setSelectedProduct}
+            />
 
-            {selectaProducts.length > 0 && (
-              <div className="mb-20 rounded-[32px] bg-gradient-to-br from-[#f8fbff] via-[#eef6ff] to-[#e8f3ff] px-5 py-8 md:px-10 md:py-12 border border-sky-100 shadow-[0_18px_50px_rgba(59,130,246,0.08)]">
-                <div className="flex items-end justify-between gap-4 mb-8 flex-wrap">
-                  <div className="max-w-4xl">
-                    <p className="text-sky-700 text-xs font-black uppercase tracking-[0.22em] mb-2">
-                      Fragancias selectas
-                    </p>
+            <HomeCollectionSection
+              eyebrow="Colección unisex"
+              title="Perfumes unisex diferentes y adictivos"
+              description="Aromas versátiles, modernos y con personalidad para quienes quieren salirse de lo típico y oler distinto."
+              products={homeUnisexProducts}
+              href="/perfumes-unisex"
+              buttonLabel="Ver perfumes unisex"
+              onAddToCart={addToCart}
+              onViewProduct={setSelectedProduct}
+            />
 
-                    <h3 className="font-sans text-xl sm:text-2xl md:text-3xl font-bold tracking-tight leading-tight text-slate-900">
-                      Selección especial con perfumes premium y árabes destacados
-                    </h3>
+            <HomeCollectionSection
+              eyebrow="Colección árabe"
+              title="Perfumes árabes intensos y con personalidad"
+              description="Fragancias con presencia, carácter y un estilo más envolvente para quienes buscan algo especial."
+              products={homeArabesProducts}
+              href="/perfumes-arabes"
+              buttonLabel="Ver perfumes árabes"
+              softBlue
+              onAddToCart={addToCart}
+              onViewProduct={setSelectedProduct}
+            />
 
-                    <p className="text-sm md:text-base text-slate-600 mt-3 leading-7">
-                      Aromas con un punto más exclusivo, perfiles más especiales y propuestas que destacan por personalidad y estilo.
-                    </p>
-                  </div>
-
-                  <p className="text-sm sm:text-base text-slate-500">
-                    {selectaProducts.length} resultado{selectaProducts.length === 1 ? '' : 's'}
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                  {selectaProducts.map(product => (
-                    <ProductCard
-                      key={product.id}
-                      product={normalizeProductPrice(product)}
-                      onAddToCart={addToCart}
-                      onViewProduct={setSelectedProduct}
-                    />
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {nicheProducts.length > 0 && (
-              <div className="rounded-[32px] bg-gradient-to-br from-[#020817] via-[#031426] to-[#071e36] text-white px-5 py-8 md:px-10 md:py-12 shadow-[0_24px_60px_rgba(2,8,23,0.35)] border border-white/10">
-                <div className="flex items-end justify-between gap-4 mb-8 flex-wrap">
-                  <div className="max-w-4xl">
-                    <p className="text-sky-300 text-xs font-black uppercase tracking-[0.22em] mb-2">
-                      Colección nicho
-                    </p>
-
-                    <h3 className="font-sans text-lg sm:text-xl md:text-2xl font-bold tracking-tight leading-snug text-white">
-                      Fragancias especiales para quienes quieren algo más exclusivo
-                    </h3>
-
-                    <p className="text-[12px] sm:text-[13px] md:text-sm text-gray-200 mt-3 leading-6 max-w-none">
-                      Aromas con personalidad, más selectos y con un punto más premium dentro de <span className="whitespace-nowrap">Huele Que Flipas.</span>
-                    </p>
-                  </div>
-
-                  <p className="text-sm sm:text-base text-gray-300">
-                    {nicheProducts.length} resultado{nicheProducts.length === 1 ? '' : 's'}
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                  {nicheProducts.map(product => (
-                    <ProductCard
-                      key={product.id}
-                      product={normalizeProductPrice(product)}
-                      onAddToCart={addToCart}
-                      onViewProduct={setSelectedProduct}
-                    />
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {filteredProducts.length === 0 && (
-              <div className="text-center py-16 border border-dashed border-gray-200 rounded-3xl">
-                <h3 className="text-2xl font-black mb-3">
-                  No hemos encontrado perfumes con esa búsqueda
-                </h3>
-                <p className="text-gray-500 max-w-xl mx-auto text-base">
-                  Prueba con el número, la marca, la familia olfativa o cambia el filtro para ver más opciones.
-                </p>
-              </div>
-            )}
+            <HomeCollectionSection
+              eyebrow="Colección nicho"
+              title="Aromas que no son para todos"
+              description="Una selección más exclusiva, con personalidad propia y ese punto especial para quienes no quieren llevar lo de siempre."
+              products={homeNichoProducts}
+              href="/perfumes-nicho"
+              buttonLabel="Ver perfumes nicho"
+              dark
+              onAddToCart={addToCart}
+              onViewProduct={setSelectedProduct}
+            />
           </div>
         </section>
 
@@ -1033,9 +1016,11 @@ const App: React.FC = () => {
                 </h2>
 
                 <p className="text-[16px] md:text-[17px] text-gray-300 leading-relaxed max-w-2xl">
-                  Llevo más de <span className="text-white font-bold">10 años</span> ayudando a encontrar perfumes
-                  que encajan de verdad con cada persona. Si no sabes cuál elegir, <span className="text-white font-bold">yo te ayudo</span>.
-                  Cuéntame qué aromas te gustan — dulce, fresco, intenso o elegante — y te recomendaré una equivalencia que vaya contigo.
+                  Llevo más de <span className="text-white font-bold">10 años</span> ayudando a
+                  encontrar perfumes que encajan de verdad con cada persona. Si no sabes cuál
+                  elegir, <span className="text-white font-bold">yo te ayudo</span>. Cuéntame qué
+                  aromas te gustan — dulce, fresco, intenso o elegante — y te recomendaré una
+                  equivalencia que vaya contigo.
                 </p>
 
                 <div className="mt-6">
@@ -1055,9 +1040,7 @@ const App: React.FC = () => {
                     <p className="text-[11px] font-black uppercase tracking-[0.22em] text-white">
                       San Martín de la Vega
                     </p>
-                    <p className="text-sm text-gray-400 mt-2">
-                      Atención cercana y real.
-                    </p>
+                    <p className="text-sm text-gray-400 mt-2">Atención cercana y real.</p>
                   </div>
 
                   <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
@@ -1065,9 +1048,7 @@ const App: React.FC = () => {
                     <p className="text-[11px] font-black uppercase tracking-[0.22em] text-white">
                       Calidad 100%
                     </p>
-                    <p className="text-sm text-gray-400 mt-2">
-                      Equivalencias muy logradas.
-                    </p>
+                    <p className="text-sm text-gray-400 mt-2">Equivalencias muy logradas.</p>
                   </div>
 
                   <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
@@ -1075,9 +1056,7 @@ const App: React.FC = () => {
                     <p className="text-[11px] font-black uppercase tracking-[0.22em] text-white">
                       10 años contigo.
                     </p>
-                    <p className="text-sm text-gray-400 mt-2">
-                      Feliz recomendando aromas.
-                    </p>
+                    <p className="text-sm text-gray-400 mt-2">Feliz recomendando aromas.</p>
                   </div>
                 </div>
               </div>
@@ -1151,11 +1130,13 @@ const App: React.FC = () => {
                 </h3>
 
                 <p className="text-[15px] text-gray-500 mb-2">
-                  Inspirada en <span className="font-semibold text-gray-700">{selectedProduct.brand}</span>
+                  Inspirada en{' '}
+                  <span className="font-semibold text-gray-700">{selectedProduct.brand}</span>
                 </p>
 
                 <p className="text-[15px] text-gray-500 mb-2">
-                  Familia olfativa: <span className="font-semibold text-gray-700">{selectedProduct.family}</span>
+                  Familia olfativa:{' '}
+                  <span className="font-semibold text-gray-700">{selectedProduct.family}</span>
                 </p>
 
                 <p className="text-[15px] text-gray-500 mb-5">
