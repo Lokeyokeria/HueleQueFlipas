@@ -670,16 +670,6 @@ const App: React.FC = () => {
                     </p>
                   </div>
 
-                  <div className="rounded-2xl bg-sky-50 border border-sky-100 px-4 py-4 mb-6">
-                    <p className="text-[11px] font-black uppercase tracking-[0.22em] text-sky-700 mb-2">
-                      María recomienda
-                    </p>
-                    <p className="text-sm text-sky-900 leading-6">
-                      Si buscas un perfume con personalidad, buena duración y ese efecto de “qué
-                      bien hueles”, este es de los que merecen la pena de verdad.
-                    </p>
-                  </div>
-
                   <p className="text-base text-gray-600 leading-7 mb-8">
                     {product.description}
                   </p>
@@ -1359,16 +1349,6 @@ const App: React.FC = () => {
                 <p className="text-base text-gray-600 leading-7 mb-6">
                   {selectedProduct.description}
                 </p>
-
-                <div className="rounded-2xl bg-sky-50 border border-sky-100 px-4 py-4 mb-6">
-                  <p className="text-[11px] font-black uppercase tracking-[0.22em] text-sky-700 mb-2">
-                    María recomienda
-                  </p>
-                  <p className="text-sm text-sky-900 leading-6">
-                    Este perfume es de los que huelen a caro, se notan bien y dejan una sensación
-                    elegante desde el primer momento.
-                  </p>
-                </div>
 
                 <div className="flex items-center justify-between gap-4 mb-6">
                   <span className="text-2xl font-black text-gray-900">
