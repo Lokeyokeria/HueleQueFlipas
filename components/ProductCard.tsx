@@ -28,7 +28,6 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
         return "Fragancia selecta";
       case "arabe":
         return "Perfume árabe";
-      case "normal":
       default:
         return "Equivalencia";
     }
@@ -71,18 +70,9 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
   };
 
   const getBadgeStyle = () => {
-    if (isNiche) {
-      return "bg-black/90 text-white";
-    }
-
-    if (isSelecta) {
-      return "bg-sky-700/90 text-white";
-    }
-
-    if (isArabe) {
-      return "bg-slate-800/90 text-white";
-    }
-
+    if (isNiche) return "bg-black/90 text-white";
+    if (isSelecta) return "bg-sky-700/90 text-white";
+    if (isArabe) return "bg-slate-800/90 text-white";
     return "bg-black/90 text-white";
   };
 
@@ -92,7 +82,6 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
         return "bg-rose-50/95 text-rose-700 border border-rose-200";
       case "HOMBRE":
         return "bg-sky-50/95 text-sky-700 border border-sky-200";
-      case "UNISEX":
       default:
         return "bg-violet-50/95 text-violet-700 border border-violet-200";
     }
@@ -110,7 +99,6 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
       "@type": "Product",
       name: product.name,
       sku: product.number,
-      mpn: product.number,
       brand: {
         "@type": "Brand",
         name: product.brand,
@@ -118,17 +106,12 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
       category: `${product.category} - ${getLineLabel()}`,
       description: getSeoDescription(),
       image: [imgSrc || FALLBACK_IMAGE],
-      itemCondition: "https://schema.org/NewCondition",
       offers: {
         "@type": "Offer",
         priceCurrency: "EUR",
         price: product.price.toFixed(2),
         availability: "https://schema.org/InStock",
         url: SITE_URL,
-        seller: {
-          "@type": "Organization",
-          name: "Huele Que Flipas",
-        },
       },
     };
   }, [imgSrc, product]);
@@ -139,105 +122,105 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
         onViewProduct ? "cursor-pointer" : ""
       } ${getCardStyle()}`}
       onClick={() => onViewProduct?.(product)}
-      aria-label={`${product.name}, perfume de equivalencia inspirado en ${product.brand}`}
     >
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
       />
 
+      {/* IMAGEN */}
       <div className="aspect-[4/5] overflow-hidden bg-gray-50 relative">
         <img
           src={imgSrc}
-          alt={`${product.name}, perfume de equivalencia inspirado en ${product.brand}`}
+          alt={product.name}
           className="w-full h-full object-cover transition duration-500 group-hover:scale-105"
           loading="lazy"
           onError={() => setImgSrc(FALLBACK_IMAGE)}
         />
 
-        <div className="absolute top-2.5 left-2.5 bg-white/90 backdrop-blur px-2.5 py-1 rounded-full border border-gray-200 shadow-sm">
-          <span className="text-[10px] font-black tracking-widest text-gray-900">
-            #{product.number}
-          </span>
+        {/* Nº */}
+        <div className="absolute top-2.5 left-2.5 bg-white/90 px-2.5 py-1 rounded-full border text-[10px] font-black">
+          #{product.number}
         </div>
 
-        <div
-          className={`absolute top-2.5 right-2.5 backdrop-blur px-2.5 py-1 rounded-full shadow-sm ${getCategoryStyle()}`}
-        >
-          <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-widest">
-            {product.category}
-          </span>
+        {/* CATEGORÍA */}
+        <div className={`absolute top-2.5 right-2.5 px-2.5 py-1 rounded-full text-[9px] sm:text-[10px] font-black uppercase md:uppercase ${getCategoryStyle()}`}>
+          {product.category}
         </div>
 
+        {/* BADGE */}
         {badgeText && (
-          <div
-            className={`absolute bottom-2.5 left-2.5 backdrop-blur px-2.5 py-1 rounded-full shadow-sm ${getBadgeStyle()}`}
-          >
-            <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-widest">
-              {badgeText}
-            </span>
+          <div className={`absolute bottom-2.5 left-2.5 px-2.5 py-1 rounded-full text-[9px] sm:text-[10px] font-black uppercase md:uppercase ${getBadgeStyle()}`}>
+            {badgeText}
           </div>
         )}
 
+        {/* BOTÓN VER */}
         {onViewProduct && (
           <button
-            type="button"
             onClick={(e) => {
               e.stopPropagation();
               onViewProduct(product);
             }}
-            className="absolute bottom-2.5 right-2.5 inline-flex items-center gap-1.5 bg-white/90 backdrop-blur px-2.5 py-1.5 rounded-full border border-gray-200 shadow-sm text-[10px] font-black uppercase tracking-widest text-gray-900 hover:bg-white transition"
-            aria-label={`Ver detalle de ${product.name}`}
+            className="absolute bottom-2.5 right-2.5 bg-white/90 px-2.5 py-1.5 rounded-full text-[10px] font-black uppercase md:uppercase flex items-center gap-1"
           >
-            <Eye className="w-3 h-3" />
-            Ver
+            <Eye className="w-3 h-3" /> Ver
           </button>
         )}
       </div>
 
-      <div className="p-3.5 sm:p-4 space-y-2">
+      {/* CONTENIDO */}
+      <div className="p-3.5 sm:p-4 space-y-2.5">
+
+        {/* URGENCIA */}
+        <span className="text-[9px] sm:text-[10px] text-sky-600 font-bold uppercase md:uppercase tracking-widest">
+          🔥 Muy vendido esta semana
+        </span>
+
         <div className="flex justify-between items-start gap-2">
-          <h3 className="text-sm sm:text-[15px] font-bold tracking-tight text-gray-900 leading-tight line-clamp-2 min-h-[2.5rem]">
+          <h3 className="text-sm sm:text-[15px] font-bold leading-tight line-clamp-2">
             {product.name}
           </h3>
 
-          <span className="font-black text-sm sm:text-[16px] text-gray-900 whitespace-nowrap">
+          <span className="font-black text-sm sm:text-[16px]">
             {product.price.toFixed(2)}€
           </span>
         </div>
 
-        <p className={`text-[10px] sm:text-[11px] uppercase tracking-widest ${getLineColor()}`}>
+        <p className={`text-[10px] sm:text-[11px] uppercase md:uppercase tracking-widest ${getLineColor()}`}>
           {getLineLabel()}
         </p>
 
-        <p className="text-[12px] sm:text-[13px] text-gray-600 leading-snug line-clamp-2 min-h-[2rem]">
+        <p className="text-[12px] sm:text-[13px] text-gray-600">
           {getInspiredText()}
         </p>
 
-        <p className="text-[12px] sm:text-[13px] text-gray-500 leading-snug line-clamp-2 min-h-[2rem]">
-          Familia olfativa: {product.family}
+        <p className="text-[12px] sm:text-[13px] text-gray-500">
+          {product.family}
         </p>
 
-        <div className="flex items-center justify-between pt-1">
-          <p className="text-[12px] sm:text-[13px] text-gray-700 font-semibold">
-            {product.size}
-          </p>
-
-          <span className="text-[9px] sm:text-[10px] text-gray-400 font-bold uppercase tracking-widest">
+        <div className="flex justify-between items-center">
+          <span className="text-[12px] font-semibold">{product.size}</span>
+          <span className="text-[10px] text-gray-400 font-bold uppercase md:uppercase">
             Larga duración
           </span>
         </div>
 
+        {/* CTA */}
         <button
-          type="button"
           onClick={(e) => {
             e.stopPropagation();
             onAddToCart(product);
           }}
-          className="w-full py-2 rounded-full bg-black text-white text-[10px] sm:text-[11px] font-bold uppercase tracking-widest transition hover:bg-sky-600"
+          className="w-full py-2.5 rounded-full bg-black text-white text-[11px] font-black uppercase md:uppercase tracking-widest hover:bg-sky-600 transition active:scale-[0.97]"
         >
-          Añadir al carrito
+          {product.price.toFixed(2)}€ · LO QUIERO
         </button>
+
+        {/* CONFIANZA */}
+        <p className="text-[10px] text-gray-400 text-center">
+          🚚 24/48h · 🎁 Muestras · 🇪🇸 España
+        </p>
       </div>
     </article>
   );
