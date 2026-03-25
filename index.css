@@ -2,7 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 🔥 Animación menú */
+/* 🔥 RESET SUAVE (mejora look premium) */
+html, body {
+  scroll-behavior: smooth;
+}
+
+/* 🔥 Animación fade (overlay menú) */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -10,4 +15,38 @@
   to {
     opacity: 1;
   }
+}
+
+/* 🔥 Animación menú lateral (slide tipo app) */
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* 👉 Clase para usar animación */
+.animate-slideInLeft {
+  animation: slideInLeft 0.3s ease forwards;
+}
+
+/* 🔥 MEJORA UX: quitar highlight azul móvil */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 🔥 SCROLL más limpio */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
 }
