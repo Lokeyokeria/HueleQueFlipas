@@ -128,7 +128,6 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
       />
 
-      {/* IMAGEN */}
       <div className="aspect-[4/5] overflow-hidden bg-gray-50 relative">
         <img
           src={imgSrc}
@@ -165,15 +164,7 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
         )}
       </div>
 
-      {/* CONTENIDO */}
       <div className="p-3.5 sm:p-4 space-y-2.5">
-
-        {/* URGENCIA */}
-        <span className="text-[9px] sm:text-[10px] text-sky-600 font-bold uppercase md:uppercase tracking-widest">
-          🔥 Muy vendido esta semana
-        </span>
-
-        {/* NOMBRE + PRECIO */}
         <div className="flex justify-between items-start gap-2">
           <h3 className="text-sm sm:text-[15px] font-bold leading-tight line-clamp-2">
             {product.name}
@@ -196,7 +187,21 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
           {product.family}
         </p>
 
-        {/* CTA */}
+        <p className="text-[11px] text-gray-400">
+          ⭐ 4.8 · +120 personas ya lo usan
+        </p>
+
+        <p className="text-[11px] text-sky-600 font-semibold">
+          💬 María: “Este perfume engancha desde el primer momento.”
+        </p>
+
+        <div className="flex justify-between items-center">
+          <span className="text-[12px] font-semibold">{product.size}</span>
+          <span className="text-[10px] text-gray-400 font-bold uppercase md:uppercase">
+            Larga duración
+          </span>
+        </div>
+
         <button
           onClick={(e) => {
             e.stopPropagation();
@@ -207,9 +212,8 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
           {product.price.toFixed(2)}€ · LO QUIERO
         </button>
 
-        {/* CONFIANZA */}
         <p className="text-[10px] text-gray-400 text-center">
-          🚚 24/48h · 🎁 Muestras de regalo · España
+          🚚 24/48h · 🎁 Muestras · 🇪🇸 España
         </p>
       </div>
     </article>
