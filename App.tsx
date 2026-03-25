@@ -9,7 +9,7 @@ import BlogPostPerfumesArabes from './components/BlogPostPerfumesArabes';
 import BlogPostPerfumesDuraderos from './components/BlogPostPerfumesDuraderos';
 import { PERFUMES } from './data';
 import { Product, CartItem } from './types';
-import { Star, MapPin, Award, Truck, ShieldCheck, Gift, X } from 'lucide-react';
+import { Star, MapPin, Award, Truck, ShieldCheck, Gift, X, ArrowLeft } from 'lucide-react';
 import mariaPhoto from './maria-photo.jpg';
 
 type CategoryFilter = 'TODOS' | 'MUJER' | 'HOMBRE' | 'UNISEX';
@@ -36,6 +36,19 @@ type SeoPageConfig = {
 
 const linkClasses =
   'font-bold text-sky-600 underline underline-offset-4 hover:text-sky-700 transition';
+
+const slugifyProduct = (product: Product) => {
+  const safeName = `${product.name}-${product.number}`
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+
+  return safeName;
+};
+
+const getProductUrl = (product: Product) => `/producto/${slugifyProduct(product)}`;
 
 const Footer: React.FC<{ blogBack?: boolean }> = ({ blogBack = false }) => {
   return (
@@ -172,9 +185,7 @@ const HomeCollectionSection: React.FC<HomeCollectionSectionProps> = ({
       : 'text-sky-600';
 
   const titleClasses = dark ? 'text-white' : 'text-gray-900';
-
   const descriptionClasses = dark ? 'text-gray-200' : 'text-gray-600';
-
   const countClasses = dark ? 'text-gray-300' : 'text-gray-500';
 
   const buttonClasses = dark
@@ -232,6 +243,7 @@ const App: React.FC = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [activeCategory, setActiveCategory] = useState<CategoryFilter>('TODOS');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [isMobileView, setIsMobileView] = useState(false);
 
   useEffect(() => {
     try {
@@ -275,6 +287,19 @@ const App: React.FC = () => {
 
     return () => {
       window.removeEventListener('hashchange', scrollToHashSection);
+    };
+  }, []);
+
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobileView(window.innerWidth < 768);
+    };
+
+    checkIfMobile();
+    window.addEventListener('resize', checkIfMobile);
+
+    return () => {
+      window.removeEventListener('resize', checkIfMobile);
     };
   }, []);
 
@@ -411,9 +436,37 @@ const App: React.FC = () => {
     }
   };
 
-  const currentPath = typeof window !== 'undefined' ? window.location.pathname : '';
+  const handleProductView = useCallback(
+    (product: Product) => {
+      if (isMobileView) {
+        window.location.href = getProductUrl(product);
+        return;
+      }
 
+      setSelectedProduct(product);
+    },
+    [isMobileView]
+  );
+
+  const currentPath = typeof window !== 'undefined' ? window.location.pathname : '';
   const currentHash = typeof window !== 'undefined' ? window.location.hash : '';
+
+  const productPageProduct = useMemo(() => {
+    const pathMatch = currentPath.startsWith('/producto/')
+      ? currentPath.replace('/producto/', '')
+      : '';
+
+    const hashMatch = currentHash.startsWith('#/producto/')
+      ? currentHash.replace('#/producto/', '')
+      : '';
+
+    const currentProductSlug = pathMatch || hashMatch;
+    if (!currentProductSlug) return null;
+
+    return (
+      PERFUMES.find(product => slugifyProduct(product) === currentProductSlug) || null
+    );
+  }, [currentPath, currentHash]);
 
   const isBlogPage =
     currentPath === '/blog' || currentHash === '#/blog' || currentHash === '#blog';
@@ -508,7 +561,7 @@ const App: React.FC = () => {
                         key={product.id}
                         product={product}
                         onAddToCart={addToCart}
-                        onViewProduct={setSelectedProduct}
+                        onViewProduct={handleProductView}
                       />
                     ))}
                   </div>
@@ -537,6 +590,173 @@ const App: React.FC = () => {
       </div>
     );
   };
+
+  const renderProductDetailPage = (product: Product) => {
+    const normalizedProduct = normalizeProductPrice(product);
+    const inspiredLabel =
+      product.line === 'nicho'
+        ? 'Perfume nicho'
+        : product.line === 'arabe'
+          ? 'Perfume árabe'
+          : product.line === 'selecta'
+            ? 'Fragancia selecta'
+            : 'Perfume de equivalencia';
+
+    return (
+      <div className="min-h-screen bg-white text-gray-900">
+        <Navbar
+          onCartClick={() => setIsCartOpen(true)}
+          cartCount={cartCount}
+          onSearchClick={() => {
+            window.location.href = '/#productos';
+          }}
+        />
+
+        <main>
+          <section className="pt-28 md:pt-32 pb-14 md:pb-20 px-4 bg-white">
+            <div className="max-w-6xl mx-auto">
+              <button
+                type="button"
+                onClick={() => {
+                  if (window.history.length > 1) {
+                    window.history.back();
+                  } else {
+                    window.location.href = '/';
+                  }
+                }}
+                className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-widest text-gray-600 hover:text-sky-600 transition mb-8"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                Volver
+              </button>
+
+              <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-start">
+                <div className="rounded-[28px] overflow-hidden border border-gray-100 bg-gray-50 shadow-sm">
+                  <img
+                    src={product.image || PRODUCT_MODAL_IMAGE}
+                    alt={product.name}
+                    className="w-full h-full object-cover min-h-[360px] md:min-h-[520px]"
+                  />
+                </div>
+
+                <div>
+                  <p className="text-sky-600 text-xs font-black uppercase tracking-[0.22em] mb-3">
+                    {inspiredLabel}
+                  </p>
+
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-gray-900 mb-4">
+                    {product.name}
+                  </h1>
+
+                  <p className="text-base md:text-lg text-gray-600 leading-8 mb-6">
+                    Huele a perfume caro, tiene una presencia brutal y está pensado para quienes
+                    quieren oler increíble sin pagar de más.
+                  </p>
+
+                  <div className="space-y-3 text-[15px] text-gray-600 mb-6">
+                    <p>
+                      Inspirada en{' '}
+                      <span className="font-semibold text-gray-800">{product.brand}</span>
+                    </p>
+                    <p>
+                      Familia olfativa:{' '}
+                      <span className="font-semibold text-gray-800">{product.family}</span>
+                    </p>
+                    <p>
+                      Tamaño: <span className="font-semibold text-gray-800">{product.size}</span>
+                    </p>
+                    <p>
+                      Código: <span className="font-semibold text-gray-800">#{product.number}</span>
+                    </p>
+                  </div>
+
+                  <div className="rounded-2xl bg-sky-50 border border-sky-100 px-4 py-4 mb-6">
+                    <p className="text-[11px] font-black uppercase tracking-[0.22em] text-sky-700 mb-2">
+                      María recomienda
+                    </p>
+                    <p className="text-sm text-sky-900 leading-6">
+                      Si buscas un perfume con personalidad, buena duración y ese efecto de “qué
+                      bien hueles”, este es de los que merecen la pena de verdad.
+                    </p>
+                  </div>
+
+                  <p className="text-base text-gray-600 leading-7 mb-8">
+                    {product.description}
+                  </p>
+
+                  <div className="flex items-center justify-between gap-4 mb-6">
+                    <span className="text-3xl md:text-4xl font-black text-gray-900">
+                      {getDisplayPrice(normalizedProduct).toFixed(2)}€
+                    </span>
+
+                    <span className="inline-flex px-3 py-1 rounded-full bg-gray-100 text-xs font-bold uppercase tracking-widest text-gray-600">
+                      #{product.number}
+                    </span>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => addToCart(product)}
+                    className="w-full py-4 rounded-full bg-black text-white text-sm font-black uppercase tracking-widest hover:bg-sky-600 transition"
+                  >
+                    Añadir al carrito
+                  </button>
+
+                  <p className="text-xs text-gray-400 text-center mt-4">
+                    🚚 Envío 24/48h · 🎁 Muestras · 🇪🇸 Fabricado en España
+                  </p>
+
+                  <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div className="rounded-2xl border border-gray-100 bg-white px-4 py-4">
+                      <p className="text-[11px] font-black uppercase tracking-[0.22em] text-gray-900">
+                        Precio inteligente
+                      </p>
+                      <p className="text-sm text-gray-500 mt-2">
+                        Huele a lujo sin pagar lujo.
+                      </p>
+                    </div>
+
+                    <div className="rounded-2xl border border-gray-100 bg-white px-4 py-4">
+                      <p className="text-[11px] font-black uppercase tracking-[0.22em] text-gray-900">
+                        Calidad top
+                      </p>
+                      <p className="text-sm text-gray-500 mt-2">
+                        Equivalencias muy logradas.
+                      </p>
+                    </div>
+
+                    <div className="rounded-2xl border border-gray-100 bg-white px-4 py-4">
+                      <p className="text-[11px] font-black uppercase tracking-[0.22em] text-gray-900">
+                        Atención cercana
+                      </p>
+                      <p className="text-sm text-gray-500 mt-2">
+                        María te ayuda a acertar.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+
+        <Footer />
+
+        <Cart
+          isOpen={isCartOpen}
+          onClose={() => setIsCartOpen(false)}
+          items={cartItems}
+          onRemove={removeFromCart}
+          onUpdateQuantity={updateQuantity}
+          onClearCart={clearCart}
+        />
+      </div>
+    );
+  };
+
+  if (productPageProduct) {
+    return renderProductDetailPage(productPageProduct);
+  }
 
   if (isPerfumesHombrePage) {
     return renderSeoCategoryPage(
@@ -903,9 +1123,10 @@ const App: React.FC = () => {
               </h2>
 
               <p className="text-gray-500 max-w-2xl mx-auto font-medium text-base md:text-lg">
-                   Pincha dentro de cada categoría, podrás ver todos los perfumes disponibles.
+                Pincha dentro de cada categoría, podrás ver todos los perfumes disponibles.
               </p>
             </div>
+
             <HomeCollectionSection
               eyebrow="Top duración"
               title="Perfumes que más duran y mejor proyectan"
@@ -915,7 +1136,7 @@ const App: React.FC = () => {
               buttonLabel="Ver perfumes de larga duración"
               softBlue
               onAddToCart={addToCart}
-              onViewProduct={setSelectedProduct}
+              onViewProduct={handleProductView}
             />
 
             <HomeCollectionSection
@@ -926,7 +1147,7 @@ const App: React.FC = () => {
               href="/perfumes-hombre"
               buttonLabel="Ver perfumes de hombre"
               onAddToCart={addToCart}
-              onViewProduct={setSelectedProduct}
+              onViewProduct={handleProductView}
             />
 
             <HomeCollectionSection
@@ -937,7 +1158,7 @@ const App: React.FC = () => {
               href="/perfumes-mujer"
               buttonLabel="Ver perfumes de mujer"
               onAddToCart={addToCart}
-              onViewProduct={setSelectedProduct}
+              onViewProduct={handleProductView}
             />
 
             <HomeCollectionSection
@@ -948,7 +1169,7 @@ const App: React.FC = () => {
               href="/perfumes-unisex"
               buttonLabel="Ver perfumes unisex"
               onAddToCart={addToCart}
-              onViewProduct={setSelectedProduct}
+              onViewProduct={handleProductView}
             />
 
             <HomeCollectionSection
@@ -960,7 +1181,7 @@ const App: React.FC = () => {
               buttonLabel="Ver perfumes árabes"
               softBlue
               onAddToCart={addToCart}
-              onViewProduct={setSelectedProduct}
+              onViewProduct={handleProductView}
             />
 
             <HomeCollectionSection
@@ -972,7 +1193,7 @@ const App: React.FC = () => {
               buttonLabel="Ver perfumes nicho"
               dark
               onAddToCart={addToCart}
-              onViewProduct={setSelectedProduct}
+              onViewProduct={handleProductView}
             />
           </div>
         </section>
@@ -1086,7 +1307,7 @@ const App: React.FC = () => {
         }
       `}</style>
 
-      {selectedProduct && (
+      {!isMobileView && selectedProduct && (
         <div className="fixed inset-0 z-[70] flex items-center justify-center p-4">
           <div
             className="absolute inset-0 bg-black/60 backdrop-blur-sm"
@@ -1106,7 +1327,7 @@ const App: React.FC = () => {
             <div className="grid md:grid-cols-2">
               <div className="bg-gray-50">
                 <img
-                  src={PRODUCT_MODAL_IMAGE}
+                  src={selectedProduct.image || PRODUCT_MODAL_IMAGE}
                   alt={selectedProduct.name}
                   className="w-full h-full object-cover min-h-[320px]"
                 />
@@ -1139,6 +1360,16 @@ const App: React.FC = () => {
                   {selectedProduct.description}
                 </p>
 
+                <div className="rounded-2xl bg-sky-50 border border-sky-100 px-4 py-4 mb-6">
+                  <p className="text-[11px] font-black uppercase tracking-[0.22em] text-sky-700 mb-2">
+                    María recomienda
+                  </p>
+                  <p className="text-sm text-sky-900 leading-6">
+                    Este perfume es de los que huelen a caro, se notan bien y dejan una sensación
+                    elegante desde el primer momento.
+                  </p>
+                </div>
+
                 <div className="flex items-center justify-between gap-4 mb-6">
                   <span className="text-2xl font-black text-gray-900">
                     {getDisplayPrice(selectedProduct).toFixed(2)}€
@@ -1159,6 +1390,10 @@ const App: React.FC = () => {
                 >
                   Añadir al carrito
                 </button>
+
+                <p className="text-xs text-gray-400 text-center mt-4">
+                  🚚 24/48h · 🎁 Muestras · 🇪🇸 Fabricado en España
+                </p>
               </div>
             </div>
           </div>
