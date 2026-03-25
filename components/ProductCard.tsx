@@ -201,12 +201,6 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
           {product.family}
         </p>
 
-        {/* ETIQUETAS */}
-        <div className="flex gap-2 flex-wrap">
-          <span className="text-[10px] bg-gray-100 px-2 py-1 rounded-full">🔥 Noche</span>
-          <span className="text-[10px] bg-gray-100 px-2 py-1 rounded-full">💘 Citas</span>
-        </div>
-
         {/* MARÍA */}
         <p className="text-[11px] text-sky-600 font-semibold">
           💬 María: “Este perfume engancha desde el primer momento.”
