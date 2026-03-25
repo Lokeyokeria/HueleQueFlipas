@@ -184,11 +184,6 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
           </span>
         </div>
 
-        {/* ⭐ PRUEBA SOCIAL */}
-        <p className="text-[11px] text-gray-400">
-          ⭐ 4.8 · +120 personas ya lo usan
-        </p>
-
         <p className={`text-[10px] sm:text-[11px] uppercase md:uppercase tracking-widest ${getLineColor()}`}>
           {getLineLabel()}
         </p>
@@ -206,13 +201,6 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
           💬 María: “Este perfume engancha desde el primer momento.”
         </p>
 
-        <div className="flex justify-between items-center">
-          <span className="text-[12px] font-semibold">{product.size}</span>
-          <span className="text-[10px] text-gray-400 font-bold uppercase md:uppercase">
-            Larga duración
-          </span>
-        </div>
-
         {/* CTA */}
         <button
           onClick={(e) => {
@@ -226,7 +214,7 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
 
         {/* CONFIANZA */}
         <p className="text-[10px] text-gray-400 text-center">
-          🚚 24/48h · 🎁 Muestras · 🇪🇸 España
+          🚚 24/48h · 🎁 Muestras de regalo · 🇪🇸 España
         </p>
       </div>
     </article>
