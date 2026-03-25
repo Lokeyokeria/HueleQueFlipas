@@ -182,7 +182,7 @@ const HomeCollectionSection: React.FC<HomeCollectionSectionProps> = ({
     : 'inline-flex items-center justify-center px-8 py-4 rounded-full bg-black text-white font-black uppercase tracking-widest text-xs sm:text-sm hover:bg-sky-600 transition';
 
   return (
-    <section id={id} className="mb-10 md:mb-14">
+    <section id={id} className="mb-10 md:mb-12">
       <div className={sectionClasses}>
         <div className="flex items-end justify-between gap-4 mb-8 flex-wrap">
           <div className="max-w-4xl">
