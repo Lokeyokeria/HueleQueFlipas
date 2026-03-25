@@ -909,8 +909,8 @@ const App: React.FC = () => {
               </h2>
 
               <p className="text-gray-500 max-w-2xl mx-auto font-medium text-base md:text-lg">
-                En la home te enseñamos solo una selección TOP ventas.
-                   Dentro de cada categoría podrás ver todos los perfumes disponibles hoy.
+                En la home te enseñamos solo una selección para que todo se vea más limpio. Dentro
+                de cada categoría podrás ver todos los perfumes disponibles.
               </p>
             </div>
 
