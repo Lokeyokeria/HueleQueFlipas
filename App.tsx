@@ -171,17 +171,11 @@ const HomeCollectionSection: React.FC<HomeCollectionSectionProps> = ({
       ? 'text-sky-700'
       : 'text-sky-600';
 
-  const titleClasses = dark
-    ? 'text-white'
-    : 'text-gray-900';
+  const titleClasses = dark ? 'text-white' : 'text-gray-900';
 
-  const descriptionClasses = dark
-    ? 'text-gray-200'
-    : 'text-gray-600';
+  const descriptionClasses = dark ? 'text-gray-200' : 'text-gray-600';
 
-  const countClasses = dark
-    ? 'text-gray-300'
-    : 'text-gray-500';
+  const countClasses = dark ? 'text-gray-300' : 'text-gray-500';
 
   const buttonClasses = dark
     ? 'inline-flex items-center justify-center px-8 py-4 rounded-full bg-white text-gray-900 font-black uppercase tracking-widest text-xs sm:text-sm hover:bg-sky-100 transition'
@@ -904,7 +898,7 @@ const App: React.FC = () => {
                 Colecciones destacadas
               </span>
 
-              <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter font-syne mt-4 mb-5">
+              <h2 className="text-3xl sm:text-4xl md:text-6xl font-black tracking-tight font-syne mt-4 mb-5 leading-[1.1] text-gray-900">
                 Descubre tu aroma
               </h2>
 
