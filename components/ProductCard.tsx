@@ -196,11 +196,6 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
           {product.family}
         </p>
 
-        {/* MARÍA */}
-        <p className="text-[11px] text-sky-600 font-semibold">
-          💬 María: “Este perfume engancha desde el primer momento.”
-        </p>
-
         {/* CTA */}
         <button
           onClick={(e) => {
@@ -214,7 +209,7 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
 
         {/* CONFIANZA */}
         <p className="text-[10px] text-gray-400 text-center">
-          🚚 24/48h · 🎁 Muestras de regalo · 🇪🇸 España
+          🚚 24/48h · 🎁 Muestras de regalo · España
         </p>
       </div>
     </article>
