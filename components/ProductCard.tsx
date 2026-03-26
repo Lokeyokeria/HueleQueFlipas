@@ -63,6 +63,20 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
     }
   };
 
+  const getSellingMessage = () => {
+    const code = product.number.toUpperCase().trim();
+
+    if (code === "7000" || code === "N7000") {
+      return "🔥 Muy vendido · Se agota rápido";
+    }
+
+    if (code === "N35" || code === "35") {
+      return "🔥 Muy vendido · Se agota rápido";
+    }
+
+    return null;
+  };
+
   const productSchema = useMemo(() => {
     return {
       "@context": "https://schema.org",
@@ -86,10 +100,11 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
   }, [imgSrc, product]);
 
   const badgeText = getBadgeText();
+  const sellingMessage = getSellingMessage();
 
   return (
     <article
-      className={`group rounded-2xl overflow-hidden transition-all duration-300 cursor-pointer bg-white border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1`}
+      className="group rounded-2xl overflow-hidden transition-all duration-300 cursor-pointer bg-white border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1"
       onClick={() => onViewProduct?.(product)}
     >
       <script
@@ -97,9 +112,7 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
       />
 
-      {/* IMAGEN */}
       <div className="aspect-[4/5] overflow-hidden bg-gray-50 relative">
-
         <img
           src={imgSrc}
           alt={product.name}
@@ -108,39 +121,40 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
           onError={() => setImgSrc(FALLBACK_IMAGE)}
         />
 
-        {/* COLUMNA BADGES DERECHA */}
         <div className="absolute top-2.5 right-2.5 flex flex-col items-end gap-1">
-
-          {/* LINEA (NICHO / SELECTA / ÁRABE) */}
           {badgeText && (
-            <div className={`px-2.5 py-1 rounded-full text-[10px] font-black uppercase ${getBadgeStyle()}`}>
+            <div
+              className={`px-2.5 py-1 rounded-full text-[10px] font-black uppercase ${getBadgeStyle()}`}
+            >
               {badgeText}
             </div>
           )}
 
-          {/* CATEGORIA */}
-          <div className={`px-2.5 py-1 rounded-full text-[10px] font-black uppercase ${getCategoryStyle()}`}>
+          <div
+            className={`px-2.5 py-1 rounded-full text-[10px] font-black uppercase ${getCategoryStyle()}`}
+          >
             {product.category}
           </div>
-
         </div>
 
-        {/* NUMERO */}
         <div className="absolute top-2.5 left-2.5 bg-white/90 px-2.5 py-1 rounded-full text-[10px] font-black">
           #{product.number}
         </div>
-
       </div>
 
-      {/* CONTENIDO */}
       <div className="p-3.5 sm:p-4 space-y-2.5">
+        {sellingMessage && (
+          <p className="text-[10px] sm:text-[11px] font-black tracking-wide text-sky-700">
+            {sellingMessage}
+          </p>
+        )}
 
         <div className="flex justify-between items-start gap-2">
           <h3 className="text-sm sm:text-[15px] font-bold leading-tight line-clamp-2">
             {product.name}
           </h3>
 
-          <span className="font-black text-sm sm:text-[16px]">
+          <span className="font-black text-sm sm:text-[16px] whitespace-nowrap">
             {product.price.toFixed(2)}€
           </span>
         </div>
@@ -160,11 +174,10 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
         <div className="flex justify-between items-center">
           <span className="text-[12px] font-semibold">{product.size}</span>
           <span className="text-[10px] text-gray-400 font-bold uppercase">
-            Larga duración
+            Larga duración y simulitud.
           </span>
         </div>
 
-        {/* CTA */}
         <button
           onClick={(e) => {
             e.stopPropagation();
@@ -175,9 +188,8 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
           {product.price.toFixed(2)}€ · LO QUIERO
         </button>
 
-        {/* CONFIANZA */}
         <p className="text-[10px] text-gray-400 text-center">
-          🚚 24/48h · 🎁 Muestras · 🇪🇸 España
+          🚚 24/48h · 🎁 Muestras gratis · 🇪🇸 España
         </p>
       </div>
     </article>
