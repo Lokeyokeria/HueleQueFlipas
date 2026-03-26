@@ -2,63 +2,44 @@ import React from "react";
 
 const Hero: React.FC = () => {
   return (
-    <section id="top" className="relative bg-white border-b border-gray-100 overflow-hidden">
-      {/* fondo suave */}
-      <div className="absolute inset-0 flex justify-center pointer-events-none">
-        <div className="w-[600px] h-[300px] bg-sky-400/20 blur-[120px] rounded-full mt-20"></div>
-      </div>
+    <section className="pt-32 pb-20 px-4 bg-white text-center">
+      <div className="max-w-4xl mx-auto">
 
-      <div className="relative max-w-6xl mx-auto px-4 pt-28 pb-16 text-center">
-        <span className="text-xs font-bold uppercase tracking-widest text-sky-600">
+        <p className="text-sky-600 text-xs font-black uppercase tracking-[0.25em] mb-4">
           Perfumes de equivalencia premium
-        </span>
+        </p>
 
-        <h1 className="font-syne text-4xl md:text-6xl font-black tracking-tighter text-gray-800 mt-4 leading-tight">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight font-syne text-gray-900 leading-[1.05]">
           Huelen caro.
           <br />
           Cuestan poco.
         </h1>
 
-        <p className="text-gray-500 max-w-2xl mx-auto mt-5 text-base md:text-lg leading-relaxed">
-          Descubre perfumes de equivalencia con larga duración, calidad top y ese
-          efecto de “qué bien hueles” sin pagar el precio de un perfume de lujo.
+        <p className="mt-6 text-gray-500 text-base md:text-lg max-w-2xl mx-auto leading-7">
+          Fragancias con larga duración, calidad top y ese efecto de “qué bien hueles”
+          sin pagar el precio de un perfume de lujo.
         </p>
 
-        <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+        <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+
           <a
-            href="/#productos"
-            className="group relative inline-flex items-center justify-center overflow-hidden px-8 py-4 rounded-full bg-black text-white font-bold uppercase tracking-widest text-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_30px_rgba(0,0,0,0.18)]"
+            href="#productos"
+            className="px-8 py-3 rounded-full bg-black text-white text-sm font-black uppercase tracking-widest hover:bg-sky-600 transition"
           >
-            <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[120%] group-hover:translate-x-[120%] transition-transform duration-1000" />
-            <span className="relative z-10">Ver perfumes</span>
+            Ver perfumes
           </a>
 
           <a
-            href="/#maria"
-            className="px-8 py-4 bg-gray-100 text-gray-900 rounded-full font-bold uppercase tracking-widest text-sm hover:bg-gray-200 transition"
+            href="https://api.whatsapp.com/send?phone=34640834686&text=Hola%20Mar%C3%ADa,%20ay%C3%BAdame%20a%20elegir%20un%20perfume"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-8 py-3 rounded-full border border-gray-200 text-gray-800 text-sm font-black uppercase tracking-widest hover:bg-gray-100 transition"
           >
             María te ayuda
           </a>
+
         </div>
 
-        {/* beneficios rápidos */}
-        <div className="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-3 text-[11px] sm:text-xs font-black uppercase tracking-[0.18em] text-gray-500">
-          <span>Envío 24/48h</span>
-          <span>Envío 1,50€</span>
-          <span>Fabricado en España</span>
-          <span>Muestras de regalo</span>
-          <span>Más de 10 años</span>
-        </div>
-
-        {/* dirección tienda */}
-        <div className="mt-10 text-center">
-          <p className="text-[10px] font-black uppercase tracking-[0.25em] text-gray-400 mb-2">
-            Tienda física
-          </p>
-          <p className="text-sm text-gray-500 leading-relaxed">
-            C/ Fray Bartolomé de las Casas, Nº 1 Local 3 — 28330 — San Martín de la Vega, Madrid
-          </p>
-        </div>
       </div>
     </section>
   );
