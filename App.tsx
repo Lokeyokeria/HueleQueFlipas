@@ -9,7 +9,7 @@ import BlogPostPerfumesArabes from './components/BlogPostPerfumesArabes';
 import BlogPostPerfumesDuraderos from './components/BlogPostPerfumesDuraderos';
 import { PERFUMES } from './data';
 import { Product, CartItem } from './types';
-import { Star, MapPin, Award, Truck, ShieldCheck, Gift, X, ArrowLeft } from 'lucide-react';
+import { Star, MapPin, Award, X, ArrowLeft } from 'lucide-react';
 import mariaPhoto from './maria-photo.jpg';
 
 type CategoryFilter = 'TODOS' | 'MUJER' | 'HOMBRE' | 'UNISEX';
@@ -491,9 +491,7 @@ const App: React.FC = () => {
     const currentProductSlug = pathMatch || hashMatch;
     if (!currentProductSlug) return null;
 
-    return (
-      PERFUMES.find(product => slugifyProduct(product) === currentProductSlug) || null
-    );
+    return PERFUMES.find(product => slugifyProduct(product) === currentProductSlug) || null;
   }, [currentPath, currentHash]);
 
   const isBlogPage =
@@ -1027,18 +1025,11 @@ const App: React.FC = () => {
               Oler increíble no debería costar una locura
             </h2>
 
-            <div className="flex flex-col sm:flex-row justify-center gap-6 mb-8">
+            <div className="flex flex-col sm:flex-row justify-center gap-6">
               <div className="text-sm font-semibold text-gray-600">✔ Larga duración</div>
               <div className="text-sm font-semibold text-gray-600">✔ Fabricado en España</div>
               <div className="text-sm font-semibold text-gray-600">✔ Envío 24/48h</div>
             </div>
-
-            <a
-              href="#productos"
-              className="inline-flex items-center justify-center px-8 py-3 rounded-full bg-black text-white text-sm font-black uppercase tracking-widest hover:bg-sky-600 transition"
-            >
-              Descubrir perfumes
-            </a>
           </div>
         </section>
 
@@ -1056,6 +1047,50 @@ const App: React.FC = () => {
               <p className="text-gray-500 max-w-2xl mx-auto font-medium text-base md:text-lg">
                 Pincha dentro de cada categoría, podrás ver todos los perfumes disponibles.
               </p>
+
+              <div className="mt-8 flex flex-wrap justify-center gap-3">
+                <a
+                  href="/perfumes-hombre"
+                  className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-black text-white text-xs sm:text-sm font-black uppercase tracking-widest hover:bg-sky-600 transition"
+                >
+                  Hombre
+                </a>
+
+                <a
+                  href="/perfumes-mujer"
+                  className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-black text-white text-xs sm:text-sm font-black uppercase tracking-widest hover:bg-sky-600 transition"
+                >
+                  Mujer
+                </a>
+
+                <a
+                  href="/perfumes-unisex"
+                  className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-black text-white text-xs sm:text-sm font-black uppercase tracking-widest hover:bg-sky-600 transition"
+                >
+                  Unisex
+                </a>
+
+                <a
+                  href="/perfumes-arabes"
+                  className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-black text-white text-xs sm:text-sm font-black uppercase tracking-widest hover:bg-sky-600 transition"
+                >
+                  Árabes
+                </a>
+
+                <a
+                  href="/perfumes-nicho"
+                  className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-white border border-gray-200 text-gray-900 text-xs sm:text-sm font-black uppercase tracking-widest hover:bg-gray-100 transition"
+                >
+                  Nicho
+                </a>
+
+                <a
+                  href="/perfumes-que-mas-duran"
+                  className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-sky-600 text-white text-xs sm:text-sm font-black uppercase tracking-widest hover:bg-sky-700 transition"
+                >
+                  Top duración
+                </a>
+              </div>
             </div>
 
             <HomeCollectionSection
@@ -1326,7 +1361,7 @@ const App: React.FC = () => {
                 </button>
 
                 <p className="text-xs text-gray-400 text-center mt-4">
-                  🚚24/48h · 🎁Muestras · Fabrica España
+                  🚚 24/48h · 🎁 Muestras · 🇪🇸 Fabricado en España
                 </p>
               </div>
             </div>
