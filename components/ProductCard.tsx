@@ -174,7 +174,7 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
         <div className="flex justify-between items-center">
           <span className="text-[12px] font-semibold">{product.size}</span>
           <span className="text-[10px] text-gray-400 font-bold uppercase">
-            Gran duración y simulitud.
+            Gran duración.
           </span>
         </div>
 
