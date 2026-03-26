@@ -174,7 +174,7 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
         <div className="flex justify-between items-center">
           <span className="text-[12px] font-semibold">{product.size}</span>
           <span className="text-[10px] text-gray-400 font-bold uppercase">
-            Larga duración y simulitud.
+            Gran duración y simulitud.
           </span>
         </div>
 
@@ -189,7 +189,7 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart, onViewProduct }) =
         </button>
 
         <p className="text-[10px] text-gray-400 text-center">
-          🚚 24/48h · 🎁 Muestras gratis · 🇪🇸 España
+          🚚24/48h · 🎁Muestras gratis · España
         </p>
       </div>
     </article>
