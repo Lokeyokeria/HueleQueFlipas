@@ -393,6 +393,34 @@ const App: React.FC = () => {
   const homeArabesProducts = useMemo(() => arabesProducts.slice(0, 4), [arabesProducts]);
   const homeNichoProducts = useMemo(() => nichoProducts.slice(0, 4), [nichoProducts]);
 
+  const topVentasProducts = useMemo(() => {
+    const priorityCodes = ['N35', '35', '7000', 'N7000', '8015', '234', '147', '8016'];
+
+    const selected = priorityCodes
+      .map(code =>
+        PERFUMES.find(product => product.number.toUpperCase().trim() === code.toUpperCase().trim())
+      )
+      .filter(Boolean) as Product[];
+
+    const uniqueSelected = selected.filter(
+      (product, index, self) => self.findIndex(item => item.id === product.id) === index
+    );
+
+    const fallback = PERFUMES.filter(product => {
+      const family = product.family.toLowerCase();
+
+      return (
+        product.line === 'nicho' ||
+        product.line === 'arabe' ||
+        family.includes('oriental') ||
+        family.includes('ambar') ||
+        family.includes('ámbar')
+      );
+    }).filter(product => !uniqueSelected.some(item => item.id === product.id));
+
+    return [...uniqueSelected, ...fallback].slice(0, 4).map(normalizeProductPrice);
+  }, [normalizeProductPrice]);
+
   const duraderosProducts = useMemo(() => {
     const preferredNumbers = ['8015', '8016', '8017', '7000', '7006', '015', '147', '234'];
 
@@ -993,111 +1021,24 @@ const App: React.FC = () => {
       <main>
         <Hero />
 
-        <section className="bg-white py-16 md:py-20 px-4 border-b border-gray-100">
-          <div className="max-w-6xl mx-auto">
-            <div className="max-w-4xl">
-              <p className="text-sky-600 text-xs font-black uppercase tracking-[0.22em] mb-4">
-                Perfumes de equivalencia premium
-              </p>
+        <section className="py-16 md:py-20 px-4 bg-gray-50 border-y border-gray-100">
+          <div className="max-w-5xl mx-auto text-center">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight text-gray-900 mb-6">
+              Oler increíble no debería costar una locura
+            </h2>
 
-              <h2 className="text-3xl md:text-5xl font-black tracking-tighter font-syne mb-6 text-gray-900">
-                Perfumes que huelen caro sin pagar de más
-              </h2>
-
-              <div className="space-y-5 text-gray-600 text-base md:text-lg leading-8">
-                <p>
-                  En <strong className="text-gray-900">Huele Que Flipas</strong> trabajamos con
-                  perfumes de equivalencia premium pensados para quienes quieren oler increíble sin
-                  pagar el precio de un perfume de lujo. Aquí puedes encontrar aromas inspirados en
-                  fragancias famosas, con una calidad muy cuidada, larga duración y un precio mucho
-                  más fácil de asumir.
-                </p>
-
-                <p>
-                  Nuestra colección reúne{' '}
-                  <a href="/perfumes-hombre" className={linkClasses}>
-                    perfumes para hombre
-                  </a>
-                  ,{' '}
-                  <a href="/perfumes-mujer" className={linkClasses}>
-                    perfumes para mujer
-                  </a>
-                  ,{' '}
-                  <a href="/perfumes-unisex" className={linkClasses}>
-                    perfumes unisex
-                  </a>
-                  , además de una selección más especial de{' '}
-                  <a href="/perfumes-nicho" className={linkClasses}>
-                    perfumes nicho
-                  </a>{' '}
-                  y{' '}
-                  <a href="/perfumes-arabes" className={linkClasses}>
-                    perfumes árabes
-                  </a>
-                  .
-                </p>
-
-                <p>
-                  También tienes una selección especial de{' '}
-                  <a href="/perfumes-que-mas-duran" className={linkClasses}>
-                    perfumes que más duran
-                  </a>{' '}
-                  para quienes buscan más fijación, más presencia y un aroma que acompañe durante
-                  horas.
-                </p>
-
-                <p>
-                  La idea es muy simple: ayudarte a encontrar un aroma que encaje contigo de verdad.
-                  Y si no sabes por dónde empezar, María te ayuda a elegir el perfume que mejor vaya
-                  contigo.
-                </p>
-              </div>
+            <div className="flex flex-col sm:flex-row justify-center gap-6 mb-8">
+              <div className="text-sm font-semibold text-gray-600">✔ Larga duración</div>
+              <div className="text-sm font-semibold text-gray-600">✔ Fabricado en España</div>
+              <div className="text-sm font-semibold text-gray-600">✔ Envío 24/48h</div>
             </div>
-          </div>
-        </section>
 
-        <section className="border-y border-gray-100 bg-white">
-          <div className="max-w-7xl mx-auto px-4 py-6">
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
-              <div className="flex items-center justify-center gap-3">
-                <div className="w-11 h-11 rounded-2xl bg-sky-50 flex items-center justify-center">
-                  <Truck className="w-5 h-5 text-sky-600" />
-                </div>
-
-                <div className="text-left">
-                  <p className="text-xs font-black uppercase tracking-widest text-gray-900">
-                    Envío 24/48h
-                  </p>
-                  <p className="text-sm text-gray-500">1,50€ a toda España</p>
-                </div>
-              </div>
-
-              <div className="flex items-center justify-center gap-3">
-                <div className="w-11 h-11 rounded-2xl bg-sky-50 flex items-center justify-center">
-                  <ShieldCheck className="w-5 h-5 text-sky-600" />
-                </div>
-
-                <div className="text-left">
-                  <p className="text-xs font-black uppercase tracking-widest text-gray-900">
-                    Pago fácil
-                  </p>
-                  <p className="text-sm text-gray-500">Bizum seguro y directo</p>
-                </div>
-              </div>
-
-              <div className="flex items-center justify-center gap-3">
-                <div className="w-11 h-11 rounded-2xl bg-sky-50 flex items-center justify-center">
-                  <Gift className="w-5 h-5 text-sky-600" />
-                </div>
-
-                <div className="text-left">
-                  <p className="text-xs font-black uppercase tracking-widest text-gray-900">
-                    Compra con mi ayuda
-                  </p>
-                  <p className="text-sm text-gray-500">Te guiamos para acertar</p>
-                </div>
-              </div>
-            </div>
+            <a
+              href="#productos"
+              className="inline-flex items-center justify-center px-8 py-3 rounded-full bg-black text-white text-sm font-black uppercase tracking-widest hover:bg-sky-600 transition"
+            >
+              Descubrir perfumes
+            </a>
           </div>
         </section>
 
@@ -1116,6 +1057,19 @@ const App: React.FC = () => {
                 Pincha dentro de cada categoría, podrás ver todos los perfumes disponibles.
               </p>
             </div>
+
+            <HomeCollectionSection
+              id="top-ventas"
+              eyebrow="Top ventas"
+              title="Los perfumes que más están gustando"
+              description="Una selección de los aromas que más llaman la atención ahora mismo. Perfumes que huelen a caro, enganchan y hacen comprar sin pensarlo demasiado."
+              products={topVentasProducts}
+              href="/#productos"
+              buttonLabel="Ver todos los perfumes"
+              softBlue
+              onAddToCart={addToCart}
+              onViewProduct={handleProductView}
+            />
 
             <HomeCollectionSection
               eyebrow="Top duración"
@@ -1372,7 +1326,7 @@ const App: React.FC = () => {
                 </button>
 
                 <p className="text-xs text-gray-400 text-center mt-4">
-                  🚚 24/48h · 🎁 Muestras · 🇪🇸 Fabricado en España
+                  🚚24/48h · 🎁Muestras · Fabrica España
                 </p>
               </div>
             </div>
