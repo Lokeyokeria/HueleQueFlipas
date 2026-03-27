@@ -26,21 +26,23 @@ export default function PerfumesHombre({
 
           <div className="max-w-3xl space-y-5 text-gray-600 text-base md:text-lg leading-8">
             <p>
-              Descubre perfumes de equivalencia para hombre con aroma elegante,
-              intenso y duradero. Fragancias que transmiten seguridad, presencia
-              y estilo sin pagar el precio de un perfume de lujo.
+              Descubre perfumes de equivalencia para hombre con aromas elegantes,
+              intensos, frescos o amaderados, pensados para quienes quieren oler
+              bien, durar horas y transmitir presencia sin pagar el precio de un
+              perfume de lujo.
             </p>
 
             <p>
-              En Huele Que Flipas seleccionamos equivalencias muy logradas,
-              fabricadas en España, con larga duración, envío 24/48h y precio
-              accesible para que oler bien no sea un capricho imposible.
+              En Huele Que Flipas seleccionamos fragancias masculinas con muy
+              buena relación calidad precio, fabricadas en España, con larga
+              duración, envío 24/48h y una selección enfocada a perfumes que de
+              verdad gustan y se disfrutan.
             </p>
 
             <p>
-              Aquí encontrarás perfumes masculinos frescos, amaderados, dulces,
-              potentes y versátiles para el día a día o para momentos más
-              especiales.
+              Aquí encontrarás perfumes para hombre para diario, oficina, citas,
+              noche o momentos especiales, con estilos que van desde lo limpio y
+              versátil hasta lo intenso, seductor y con mucha personalidad.
             </p>
           </div>
         </div>
