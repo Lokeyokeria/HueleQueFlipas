@@ -9,7 +9,7 @@ import BlogPostPerfumesArabes from './components/BlogPostPerfumesArabes';
 import BlogPostPerfumesDuraderos from './components/BlogPostPerfumesDuraderos';
 import { PERFUMES } from './data';
 import { Product, CartItem } from './types';
-import { Star, MapPin, Award, X, ArrowLeft } from 'lucide-react';
+import { Star, MapPin, Award, X, ArrowLeft, Search } from 'lucide-react';
 import mariaPhoto from './maria-photo.jpg';
 
 type CategoryFilter = 'TODOS' | 'MUJER' | 'HOMBRE' | 'UNISEX';
@@ -244,6 +244,7 @@ const App: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<CategoryFilter>('TODOS');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isMobileView, setIsMobileView] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     try {
@@ -353,6 +354,29 @@ const App: React.FC = () => {
     );
   }, []);
 
+  const handleSearchNavigation = useCallback(() => {
+    const searchSectionId = 'buscador-perfumes';
+    const isHashRoute = window.location.hash.startsWith('#/');
+    const isHomePath = window.location.pathname === '/' || window.location.pathname === '';
+
+    if (!isHashRoute && isHomePath) {
+      const section = document.getElementById(searchSectionId);
+
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+        window.setTimeout(() => {
+          const input = document.getElementById('perfume-search-input') as HTMLInputElement | null;
+          input?.focus();
+        }, 450);
+
+        return;
+      }
+    }
+
+    window.location.href = `/#${searchSectionId}`;
+  }, []);
+
   const equivalenceProducts = useMemo(() => {
     return PERFUMES.filter(product => product.line === 'normal').map(normalizeProductPrice);
   }, [normalizeProductPrice]);
@@ -447,6 +471,30 @@ const App: React.FC = () => {
     return [...uniquePreferred, ...fallback].slice(0, 4).map(normalizeProductPrice);
   }, [normalizeProductPrice]);
 
+  const searchedProducts = useMemo(() => {
+    const term = searchTerm.trim().toLowerCase();
+
+    if (!term) return [];
+
+    return PERFUMES.filter(product => {
+      const searchableText = [
+        product.name,
+        product.brand,
+        product.family,
+        product.number,
+        product.category,
+        product.description,
+      ]
+        .filter(Boolean)
+        .join(' ')
+        .toLowerCase();
+
+      return searchableText.includes(term);
+    })
+      .slice(0, 8)
+      .map(normalizeProductPrice);
+  }, [searchTerm, normalizeProductPrice]);
+
   const cartCount = useMemo(() => {
     return cartItems.reduce((acc, item) => acc + item.quantity, 0);
   }, [cartItems]);
@@ -537,9 +585,7 @@ const App: React.FC = () => {
         <Navbar
           onCartClick={() => setIsCartOpen(true)}
           cartCount={cartCount}
-          onSearchClick={() => {
-            window.location.href = '/#productos';
-          }}
+          onSearchClick={handleSearchNavigation}
         />
 
         <main>
@@ -633,9 +679,7 @@ const App: React.FC = () => {
         <Navbar
           onCartClick={() => setIsCartOpen(true)}
           cartCount={cartCount}
-          onSearchClick={() => {
-            window.location.href = '/#productos';
-          }}
+          onSearchClick={handleSearchNavigation}
         />
 
         <main>
@@ -696,9 +740,7 @@ const App: React.FC = () => {
                     </p>
                   </div>
 
-                  <p className="text-base text-gray-600 leading-7 mb-8">
-                    {product.description}
-                  </p>
+                  <p className="text-base text-gray-600 leading-7 mb-8">{product.description}</p>
 
                   <div className="flex items-center justify-between gap-4 mb-6">
                     <span className="text-3xl md:text-4xl font-black text-gray-900">
@@ -727,27 +769,21 @@ const App: React.FC = () => {
                       <p className="text-[11px] font-black uppercase tracking-[0.22em] text-gray-900">
                         Precio inteligente
                       </p>
-                      <p className="text-sm text-gray-500 mt-2">
-                        Huele a lujo sin pagar lujo.
-                      </p>
+                      <p className="text-sm text-gray-500 mt-2">Huele a lujo sin pagar lujo.</p>
                     </div>
 
                     <div className="rounded-2xl border border-gray-100 bg-white px-4 py-4">
                       <p className="text-[11px] font-black uppercase tracking-[0.22em] text-gray-900">
                         Calidad top
                       </p>
-                      <p className="text-sm text-gray-500 mt-2">
-                        Equivalencias muy logradas.
-                      </p>
+                      <p className="text-sm text-gray-500 mt-2">Equivalencias muy logradas.</p>
                     </div>
 
                     <div className="rounded-2xl border border-gray-100 bg-white px-4 py-4">
                       <p className="text-[11px] font-black uppercase tracking-[0.22em] text-gray-900">
                         Atención cercana
                       </p>
-                      <p className="text-sm text-gray-500 mt-2">
-                        María te ayuda a acertar.
-                      </p>
+                      <p className="text-sm text-gray-500 mt-2">María te ayuda a acertar.</p>
                     </div>
                   </div>
                 </div>
@@ -895,9 +931,7 @@ const App: React.FC = () => {
         <Navbar
           onCartClick={() => setIsCartOpen(true)}
           cartCount={cartCount}
-          onSearchClick={() => {
-            window.location.href = '/#productos';
-          }}
+          onSearchClick={handleSearchNavigation}
         />
 
         <main>
@@ -924,9 +958,7 @@ const App: React.FC = () => {
         <Navbar
           onCartClick={() => setIsCartOpen(true)}
           cartCount={cartCount}
-          onSearchClick={() => {
-            window.location.href = '/#productos';
-          }}
+          onSearchClick={handleSearchNavigation}
         />
 
         <main>
@@ -953,9 +985,7 @@ const App: React.FC = () => {
         <Navbar
           onCartClick={() => setIsCartOpen(true)}
           cartCount={cartCount}
-          onSearchClick={() => {
-            window.location.href = '/#productos';
-          }}
+          onSearchClick={handleSearchNavigation}
         />
 
         <main>
@@ -982,9 +1012,7 @@ const App: React.FC = () => {
         <Navbar
           onCartClick={() => setIsCartOpen(true)}
           cartCount={cartCount}
-          onSearchClick={() => {
-            window.location.href = '/#productos';
-          }}
+          onSearchClick={handleSearchNavigation}
         />
 
         <main>
@@ -1010,10 +1038,7 @@ const App: React.FC = () => {
       <Navbar
         onCartClick={() => setIsCartOpen(true)}
         cartCount={cartCount}
-        onSearchClick={() => {
-          const section = document.getElementById('productos');
-          section?.scrollIntoView({ behavior: 'smooth' });
-        }}
+        onSearchClick={handleSearchNavigation}
       />
 
       <main>
@@ -1051,35 +1076,35 @@ const App: React.FC = () => {
               <div className="mt-8 flex flex-wrap justify-center gap-3">
                 <a
                   href="/perfumes-hombre"
-                  className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-black text-white text-xs sm:text-sm font-black uppercase tracking-widest hover:bg-sky-600 transition"
+                  className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-white border border-gray-200 text-gray-900 text-xs sm:text-sm font-black uppercase tracking-widest hover:bg-gray-100 transition"
                 >
                   Hombre
                 </a>
 
                 <a
                   href="/perfumes-mujer"
-                  className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-black text-white text-xs sm:text-sm font-black uppercase tracking-widest hover:bg-sky-600 transition"
+                  className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-white border border-gray-200 text-gray-900 text-xs sm:text-sm font-black uppercase tracking-widest hover:bg-gray-100 transition"
                 >
                   Mujer
                 </a>
 
                 <a
                   href="/perfumes-unisex"
-                  className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-black text-white text-xs sm:text-sm font-black uppercase tracking-widest hover:bg-sky-600 transition"
+                  className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-white border border-gray-200 text-gray-900 text-xs sm:text-sm font-black uppercase tracking-widest hover:bg-gray-100 transition"
                 >
                   Unisex
                 </a>
 
                 <a
                   href="/perfumes-arabes"
-                  className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-black text-white text-xs sm:text-sm font-black uppercase tracking-widest hover:bg-sky-600 transition"
+                  className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-white border border-gray-200 text-gray-900 text-xs sm:text-sm font-black uppercase tracking-widest hover:bg-gray-100 transition"
                 >
                   Árabes
                 </a>
 
                 <a
                   href="/perfumes-nicho"
-                  className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-white border border-gray-200 text-gray-900 text-xs sm:text-sm font-black uppercase tracking-widest hover:bg-gray-100 transition"
+                  className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-black text-white text-xs sm:text-sm font-black uppercase tracking-widest hover:bg-sky-600 transition"
                 >
                   Nicho
                 </a>
@@ -1091,7 +1116,63 @@ const App: React.FC = () => {
                   Top duración
                 </a>
               </div>
+
+              <div id="buscador-perfumes" className="max-w-3xl mx-auto mt-8 relative">
+                <Search className="w-5 h-5 text-gray-400 absolute left-5 top-1/2 -translate-y-1/2" />
+
+                <input
+                  id="perfume-search-input"
+                  type="text"
+                  value={searchTerm}
+                  onChange={e => setSearchTerm(e.target.value)}
+                  placeholder="Busca por nombre, marca, código o aroma..."
+                  className="w-full pl-14 pr-5 py-4 rounded-full border border-gray-200 bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-sky-500"
+                />
+              </div>
             </div>
+
+            {searchTerm.trim() && (
+              <section className="mb-10 md:mb-12">
+                {searchedProducts.length > 0 ? (
+                  <div className="rounded-[32px] bg-white px-5 py-8 md:px-10 md:py-12 border border-gray-100 shadow-sm">
+                    <div className="flex items-end justify-between gap-4 mb-8 flex-wrap">
+                      <div className="max-w-4xl">
+                        <p className="text-sky-600 text-xs font-black uppercase tracking-[0.22em] mb-2">
+                          Resultados
+                        </p>
+
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight leading-tight text-gray-900">
+                          Perfumes que encajan con tu búsqueda
+                        </h2>
+                      </div>
+
+                      <p className="text-sm sm:text-base text-gray-500">
+                        {searchedProducts.length} resultado
+                        {searchedProducts.length === 1 ? '' : 's'}
+                      </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                      {searchedProducts.map(product => (
+                        <ProductCard
+                          key={product.id}
+                          product={product}
+                          onAddToCart={addToCart}
+                          onViewProduct={handleProductView}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="mb-10 md:mb-12 text-center py-10 border border-dashed border-gray-200 rounded-3xl">
+                    <p className="text-gray-500 text-base">
+                      No he encontrado perfumes con esa búsqueda. Prueba con otro nombre, código o
+                      familia olfativa.
+                    </p>
+                  </div>
+                )}
+              </section>
+            )}
 
             <HomeCollectionSection
               id="top-ventas"
