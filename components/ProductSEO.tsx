@@ -1,46 +1,81 @@
-import React from "react";
-import { Product } from "../types";
+import React, { useEffect } from "react";
 
-interface Props {
-  product: Product;
-}
+type Props = {
+  title: string;
+  description: string;
+  url: string;
+  image?: string;
+  type?: string;
+  robots?: string;
+};
 
-const SITE_URL = "https://huelequeflipas.es";
 const DEFAULT_IMAGE =
-  "https://raw.githubusercontent.com/Lokeyokeria/HueleQueFlipas/main/equivalencia-hqf.jpg";
+  "https://huelequeflipas.es/equivalencia-hqf.jpg";
 
-const ProductSEO: React.FC<Props> = ({ product }) => {
-  const title = `${product.name} equivalencia a ${product.brand} | Perfume que huele caro`;
+const SITE_NAME = "Huele Que Flipas";
 
-  const description = `Compra ${product.name}, perfume de equivalencia inspirado en ${product.brand}. Aroma ${product.family.toLowerCase()}, larga duración y calidad top. Envío 24/48h desde España por solo 1,50€.`;
+const ProductSEO: React.FC<Props> = ({
+  title,
+  description,
+  url,
+  image = DEFAULT_IMAGE,
+  type = "website",
+  robots = "index,follow",
+}) => {
+  useEffect(() => {
+    document.title = title;
 
-  const url = `${SITE_URL}/#${product.number}`;
+    const setMeta = (
+      attribute: "name" | "property",
+      key: string,
+      content: string
+    ) => {
+      let element = document.head.querySelector(
+        `meta[${attribute}="${key}"]`
+      ) as HTMLMetaElement | null;
 
-  const image = product.image || DEFAULT_IMAGE;
+      if (!element) {
+        element = document.createElement("meta");
+        element.setAttribute(attribute, key);
+        document.head.appendChild(element);
+      }
 
-  return (
-    <>
-      {/* SEO básico */}
-      <title>{title}</title>
-      <meta name="description" content={description} />
+      element.setAttribute("content", content);
+    };
 
-      {/* Open Graph (redes sociales) */}
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
-      <meta property="og:type" content="product" />
-      <meta property="og:url" content={url} />
-      <meta property="og:image" content={image} />
+    const setCanonical = (href: string) => {
+      let canonical = document.head.querySelector(
+        'link[rel="canonical"]'
+      ) as HTMLLinkElement | null;
 
-      {/* Twitter */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={image} />
+      if (!canonical) {
+        canonical = document.createElement("link");
+        canonical.setAttribute("rel", "canonical");
+        document.head.appendChild(canonical);
+      }
 
-      {/* Extra SEO */}
-      <meta name="robots" content="index, follow" />
-    </>
-  );
+      canonical.setAttribute("href", href);
+    };
+
+    setMeta("name", "description", description);
+    setMeta("name", "robots", robots);
+
+    setMeta("property", "og:title", title);
+    setMeta("property", "og:description", description);
+    setMeta("property", "og:type", type);
+    setMeta("property", "og:url", url);
+    setMeta("property", "og:image", image);
+    setMeta("property", "og:site_name", SITE_NAME);
+
+    setMeta("name", "twitter:card", "summary_large_image");
+    setMeta("name", "twitter:title", title);
+    setMeta("name", "twitter:description", description);
+    setMeta("name", "twitter:image", image);
+
+    setCanonical(url);
+  }, [title, description, url, image, type, robots]);
+
+  return null;
 };
 
 export default ProductSEO;
