@@ -2,8 +2,14 @@ import React from "react";
 
 const Hero: React.FC = () => {
   return (
-    <section className="pt-32 pb-20 px-4 bg-white text-center">
-      <div className="max-w-4xl mx-auto">
+    <section className="relative overflow-hidden pt-32 pb-20 px-4 text-center bg-gradient-to-b from-[#fcfcfb] via-white to-[#f6f9fc]">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -top-24 left-1/2 -translate-x-1/2 h-[260px] w-[260px] rounded-full bg-[#f3eadb] blur-3xl opacity-30" />
+        <div className="absolute top-16 right-[10%] h-[220px] w-[220px] rounded-full bg-sky-100 blur-3xl opacity-35" />
+        <div className="absolute bottom-0 left-[8%] h-[180px] w-[180px] rounded-full bg-[#f8f1e7] blur-3xl opacity-25" />
+      </div>
+
+      <div className="relative max-w-4xl mx-auto">
         <p className="text-sky-600 text-xs font-black uppercase tracking-[0.25em] mb-4">
           Perfumes de equivalencia premium
         </p>
@@ -29,7 +35,7 @@ const Hero: React.FC = () => {
 
           <a
             href="#maria"
-            className="px-8 py-3 rounded-full border border-gray-200 text-gray-800 text-sm font-black uppercase tracking-widest hover:bg-gray-100 transition"
+            className="px-8 py-3 rounded-full border border-gray-200 bg-white/70 text-gray-800 text-sm font-black uppercase tracking-widest hover:bg-gray-100 transition"
           >
             María te ayuda
           </a>
