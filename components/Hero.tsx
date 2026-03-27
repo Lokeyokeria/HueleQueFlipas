@@ -2,11 +2,12 @@ import React from "react";
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative overflow-hidden pt-32 pb-20 px-4 text-center bg-gradient-to-b from-[#fcfcfb] via-white to-[#f6f9fc]">
+    <section className="relative overflow-hidden pt-32 pb-20 px-4 text-center bg-gradient-to-b from-[#f7fbff] via-[#fcfeff] to-[#f2f7fc]">
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-24 left-1/2 -translate-x-1/2 h-[260px] w-[260px] rounded-full bg-[#f3eadb] blur-3xl opacity-30" />
-        <div className="absolute top-16 right-[10%] h-[220px] w-[220px] rounded-full bg-sky-100 blur-3xl opacity-35" />
-        <div className="absolute bottom-0 left-[8%] h-[180px] w-[180px] rounded-full bg-[#f8f1e7] blur-3xl opacity-25" />
+        <div className="absolute -top-24 left-1/2 -translate-x-1/2 h-[280px] w-[280px] rounded-full bg-sky-100 blur-3xl opacity-40" />
+        <div className="absolute top-12 right-[10%] h-[240px] w-[240px] rounded-full bg-cyan-100 blur-3xl opacity-30" />
+        <div className="absolute bottom-0 left-[8%] h-[220px] w-[220px] rounded-full bg-blue-50 blur-3xl opacity-35" />
+        <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-sky-200/60 to-transparent" />
       </div>
 
       <div className="relative max-w-4xl mx-auto">
@@ -35,7 +36,7 @@ const Hero: React.FC = () => {
 
           <a
             href="#maria"
-            className="px-8 py-3 rounded-full border border-gray-200 bg-white/70 text-gray-800 text-sm font-black uppercase tracking-widest hover:bg-gray-100 transition"
+            className="px-8 py-3 rounded-full border border-sky-100 bg-white/80 text-gray-800 text-sm font-black uppercase tracking-widest hover:bg-sky-50 transition"
           >
             María te ayuda
           </a>
