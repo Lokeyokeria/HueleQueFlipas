@@ -761,7 +761,7 @@ const App: React.FC = () => {
                   </button>
 
                   <p className="text-xs text-gray-400 text-center mt-4">
-                    🚚 Envío 24/48h · 🎁 Muestras · 🇪🇸 Fabricado en España
+                    🚚 Envío 24/48h · 🎁 Muestras Gratis · 💙
                   </p>
 
                   <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3">
