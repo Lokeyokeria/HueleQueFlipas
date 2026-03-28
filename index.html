@@ -9,14 +9,18 @@
 
     <title>
       Huele Que Flipas | Perfumes de equivalencia premium para mujer, hombre,
-      unisex y árabes
+      unisex, nicho y árabes
     </title>
 
     <meta
       name="description"
-      content="Perfumes de equivalencia premium para mujer, hombre, unisex y árabes. Fragancias con larga duración, aroma de lujo, envío 24/48h, envío barato y ayuda real para elegir tu perfume."
+      content="Perfumes de equivalencia premium para mujer, hombre, unisex, nicho y árabes. Fragancias con larga duración, aroma de lujo, envío 24/48h, envío barato y ayuda real para elegir tu perfume."
     />
     <meta name="robots" content="index,follow" />
+    <meta
+      name="googlebot"
+      content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+    />
     <meta name="author" content="Huele Que Flipas" />
     <meta name="theme-color" content="#0284c7" />
 
@@ -27,11 +31,11 @@
     <meta property="og:site_name" content="Huele Que Flipas" />
     <meta
       property="og:title"
-      content="Huele Que Flipas | Perfumes de equivalencia premium para mujer, hombre, unisex y árabes"
+      content="Huele Que Flipas | Perfumes de equivalencia premium para mujer, hombre, unisex, nicho y árabes"
     />
     <meta
       property="og:description"
-      content="Perfumes de equivalencia premium con larga duración. Fragancias para mujer, hombre, unisex y árabes con aroma de lujo y precio accesible."
+      content="Perfumes de equivalencia premium con larga duración. Fragancias para mujer, hombre, unisex, nicho y árabes con aroma de lujo y precio accesible."
     />
     <meta property="og:url" content="https://huelequeflipas.es/" />
     <meta
@@ -46,11 +50,11 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
-      content="Huele Que Flipas | Perfumes de equivalencia premium para mujer, hombre, unisex y árabes"
+      content="Huele Que Flipas | Perfumes de equivalencia premium para mujer, hombre, unisex, nicho y árabes"
     />
     <meta
       name="twitter:description"
-      content="Perfumes de equivalencia premium con larga duración para mujer, hombre, unisex y árabes. Huele a lujo sin pagar de más."
+      content="Perfumes de equivalencia premium con larga duración para mujer, hombre, unisex, nicho y árabes. Huele a lujo sin pagar de más."
     />
     <meta
       name="twitter:image"
@@ -180,26 +184,36 @@
         const SITE_URL = "https://huelequeflipas.es";
         const DEFAULT_IMAGE = SITE_URL + "/equivalencia-hqf.jpg";
 
-        const cleanPath = (pathname) => {
-          const normalized = pathname.replace(/\/+$/, "");
+        function cleanPath(pathname) {
+          const normalized = (pathname || "").replace(/\/+$/, "");
           return normalized === "" ? "/" : normalized;
-        };
+        }
 
-        const toTitleCase = (value) =>
-          value
+        function toTitleCase(value) {
+          return value
             .replace(/-/g, " ")
             .replace(/\s+/g, " ")
             .trim()
             .replace(/\b\w/g, (letter) => letter.toUpperCase());
+        }
 
-        const path = cleanPath(window.location.pathname);
+        function getCurrentPath() {
+          const pathname = cleanPath(window.location.pathname);
+          const hash = window.location.hash || "";
+
+          if (hash.startsWith("#/")) {
+            return cleanPath(hash.slice(1));
+          }
+
+          return pathname;
+        }
 
         const seoMap = {
           "/": {
             title:
-              "Huele Que Flipas | Perfumes de equivalencia premium para mujer, hombre, unisex y árabes",
+              "Huele Que Flipas | Perfumes de equivalencia premium para mujer, hombre, unisex, nicho y árabes",
             description:
-              "Perfumes de equivalencia premium para mujer, hombre, unisex y árabes. Fragancias con larga duración, aroma de lujo, envío 24/48h, envío barato y ayuda real para elegir tu perfume.",
+              "Perfumes de equivalencia premium para mujer, hombre, unisex, nicho y árabes. Fragancias con larga duración, aroma de lujo, envío 24/48h, envío barato y ayuda real para elegir tu perfume.",
             type: "website",
             schemaType: "WebPage",
           },
@@ -285,28 +299,20 @@
         };
 
         function buildProductSeo(currentPath) {
-          const slug = currentPath.replace("/producto/", "").trim();
+          if (!currentPath.startsWith("/producto/")) return null;
 
+          const slug = currentPath.replace("/producto/", "").trim();
           if (!slug) return null;
 
           const readableName = toTitleCase(decodeURIComponent(slug));
 
           return {
             title: `${readableName} | Perfume de equivalencia premium | ${SITE_NAME}`,
-            description:
-              `Compra ${readableName} en ${SITE_NAME}. Perfume de equivalencia premium con larga duración, envío 24/48h, envío barato y atención cercana.`,
+            description: `Compra ${readableName} en ${SITE_NAME}. Perfume de equivalencia premium con larga duración, envío 24/48h, envío barato y atención cercana.`,
             type: "product",
             schemaType: "Product",
           };
         }
-
-        const seo =
-          seoMap[path] ||
-          (path.startsWith("/producto/") ? buildProductSeo(path) : null) ||
-          seoMap["/"];
-
-        const canonicalUrl =
-          path === "/" ? `${SITE_URL}/` : `${SITE_URL}${path}`;
 
         function upsertMetaByName(name, content) {
           let tag = document.head.querySelector(`meta[name="${name}"]`);
@@ -338,46 +344,88 @@
           link.setAttribute("href", href);
         }
 
-        document.title = seo.title;
-        upsertMetaByName("description", seo.description);
-        upsertMetaByName("robots", "index,follow");
-        upsertMetaByProperty("og:title", seo.title);
-        upsertMetaByProperty("og:description", seo.description);
-        upsertMetaByProperty("og:url", canonicalUrl);
-        upsertMetaByProperty("og:type", seo.type || "website");
-        upsertMetaByProperty("og:site_name", SITE_NAME);
-        upsertMetaByProperty("og:image", DEFAULT_IMAGE);
-        upsertMetaByProperty(
-          "og:image:alt",
-          "Huele Que Flipas perfumes de equivalencia premium"
-        );
-        upsertMetaByName("twitter:title", seo.title);
-        upsertMetaByName("twitter:description", seo.description);
-        upsertMetaByName("twitter:image", DEFAULT_IMAGE);
-        upsertCanonical(canonicalUrl);
+        function upsertJsonLd(id, data) {
+          let script = document.getElementById(id);
+          if (!script) {
+            script = document.createElement("script");
+            script.type = "application/ld+json";
+            script.id = id;
+            document.head.appendChild(script);
+          }
+          script.textContent = JSON.stringify(data);
+        }
 
-        const pageSchema = {
-          "@context": "https://schema.org",
-          "@type": seo.schemaType || "WebPage",
-          name: seo.title,
-          description: seo.description,
-          url: canonicalUrl,
-          inLanguage: "es",
-          isPartOf: {
-            "@type": "WebSite",
-            name: SITE_NAME,
-            url: `${SITE_URL}/`,
-          },
+        function applySeo() {
+          const path = getCurrentPath();
+
+          const seo =
+            seoMap[path] ||
+            (path.startsWith("/producto/") ? buildProductSeo(path) : null) ||
+            seoMap["/"];
+
+          const canonicalUrl =
+            path === "/" ? `${SITE_URL}/` : `${SITE_URL}${path}`;
+
+          document.title = seo.title;
+          upsertMetaByName("description", seo.description);
+          upsertMetaByName("robots", "index,follow");
+          upsertMetaByName(
+            "googlebot",
+            "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+          );
+
+          upsertMetaByProperty("og:title", seo.title);
+          upsertMetaByProperty("og:description", seo.description);
+          upsertMetaByProperty("og:url", canonicalUrl);
+          upsertMetaByProperty("og:type", seo.type || "website");
+          upsertMetaByProperty("og:site_name", SITE_NAME);
+          upsertMetaByProperty("og:image", DEFAULT_IMAGE);
+          upsertMetaByProperty(
+            "og:image:alt",
+            "Huele Que Flipas perfumes de equivalencia premium"
+          );
+
+          upsertMetaByName("twitter:title", seo.title);
+          upsertMetaByName("twitter:description", seo.description);
+          upsertMetaByName("twitter:image", DEFAULT_IMAGE);
+
+          upsertCanonical(canonicalUrl);
+
+          const pageSchema = {
+            "@context": "https://schema.org",
+            "@type": seo.schemaType || "WebPage",
+            name: seo.title,
+            description: seo.description,
+            url: canonicalUrl,
+            inLanguage: "es",
+            isPartOf: {
+              "@type": "WebSite",
+              name: SITE_NAME,
+              url: `${SITE_URL}/`,
+            },
+          };
+
+          upsertJsonLd("dynamic-page-schema", pageSchema);
+        }
+
+        const originalPushState = history.pushState;
+        history.pushState = function () {
+          originalPushState.apply(history, arguments);
+          window.dispatchEvent(new Event("locationchange"));
         };
 
-        let dynamicSchema = document.getElementById("dynamic-page-schema");
-        if (!dynamicSchema) {
-          dynamicSchema = document.createElement("script");
-          dynamicSchema.type = "application/ld+json";
-          dynamicSchema.id = "dynamic-page-schema";
-          document.head.appendChild(dynamicSchema);
-        }
-        dynamicSchema.textContent = JSON.stringify(pageSchema);
+        const originalReplaceState = history.replaceState;
+        history.replaceState = function () {
+          originalReplaceState.apply(history, arguments);
+          window.dispatchEvent(new Event("locationchange"));
+        };
+
+        window.addEventListener("popstate", applySeo);
+        window.addEventListener("hashchange", applySeo);
+        window.addEventListener("locationchange", applySeo);
+        document.addEventListener("DOMContentLoaded", applySeo);
+
+        applySeo();
       })();
     </script>
   </head>
