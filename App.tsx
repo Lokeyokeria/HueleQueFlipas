@@ -761,7 +761,7 @@ const App: React.FC = () => {
                   </button>
 
                   <p className="text-xs text-gray-400 text-center mt-4">
-                    🚚 Envío 24/48h · 🎁 Muestras Gratis · 💙
+                    🚚 Envío 24/48h · 🎁 Muestras · 🇪🇸 Fabricado en España
                   </p>
 
                   <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -1441,19 +1441,9 @@ const App: React.FC = () => {
                   Añadir al carrito
                 </button>
 
-                <span>·</span>
-  <span>🎁 Muestras</span>
-  <span>·</span>
-  <span className="inline-flex items-center gap-1">
-    <span
-      className="inline-block w-3 h-2 rounded-[2px]"
-      style={{
-        background: 'linear-gradient(to bottom, #c60b1e 0 25%, #ffc400 25% 75%, #c60b1e 75% 100%)',
-      }}
-    />
-    <span>España</span>
-  </span>
-</p>
+                <p className="text-xs text-gray-400 text-center mt-4">
+                  🚚 24/48h · 🎁 Muestras · 🇪🇸 Fabricado en España
+                </p>
               </div>
             </div>
           </div>
