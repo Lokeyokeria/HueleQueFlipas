@@ -1281,8 +1281,8 @@ const App: React.FC = () => {
               </div>
 
               <div className="flex flex-col justify-center">
-                <p className="text-sky-400 text-xs font-black uppercase tracking-[0.22em] mb-3">
-                  Fundadora de Lokeyokeria - Huele Que Flipas
+                <p className="mb-3 text-xs font-black uppercase tracking-[0.22em] text-sky-400">
+                  Experta perfumera de Huele Que Flipas
                 </p>
 
                 <h2 className="text-4xl sm:text-5xl lg:text-[4.2rem] font-black uppercase tracking-tighter font-syne leading-[0.9] mb-5">
@@ -1298,7 +1298,7 @@ const App: React.FC = () => {
                   encontrar perfumes que encajan de verdad con cada persona. Si no sabes cuál
                   elegir, <span className="text-white font-bold">yo te ayudo</span>. Cuéntame qué
                   aromas te gustan — dulce, fresco, intenso o elegante — y te recomendaré una
-                  equivalencia que vaya contigo.
+                  equivalencia que vaya contigo. Fundadora de Lokeyokeria by Huele Que Flipas
                 </p>
 
                 <div className="mt-6">
@@ -1447,7 +1447,8 @@ const App: React.FC = () => {
                 </button>
 
                 <p className="text-xs text-gray-400 text-center mt-4">
-                  🚚 24/48h · 🎁 Muestras · 🇪🇸 Fabricado en España
+                  🚚 Envío 24/48h · 🎁 Muestras Gratis
+                    · 🇪🇸 Fabricado en España
                 </p>
               </div>
             </div>
