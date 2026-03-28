@@ -1447,8 +1447,7 @@ const App: React.FC = () => {
                 </button>
 
                 <p className="text-xs text-gray-400 text-center mt-4">
-                  🚚 Envío 24/48h · 🎁 Muestras Gratis
-                    · 🇪🇸 Fabricado en España
+                  🚚 Envío 24/48h · Fabricado en España · 🎁 Muestras Gratis
                 </p>
               </div>
             </div>
