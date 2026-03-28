@@ -2,42 +2,61 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
 
-    <title>Huele Que Flipas | Perfumes de equivalencia premium para mujer, hombre, unisex y árabes</title>
+    <title>
+      Huele Que Flipas | Perfumes de equivalencia premium para mujer, hombre,
+      unisex y árabes
+    </title>
+
     <meta
       name="description"
       content="Perfumes de equivalencia premium para mujer, hombre, unisex y árabes. Fragancias con larga duración, aroma de lujo, envío 24/48h, envío barato y ayuda real para elegir tu perfume."
     />
     <meta name="robots" content="index,follow" />
     <meta name="author" content="Huele Que Flipas" />
-    <link rel="canonical" href="https://huelequeflipas.es/" />
-
     <meta name="theme-color" content="#0284c7" />
 
-    <!-- Open Graph -->
+    <link rel="canonical" href="https://huelequeflipas.es/" />
+
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_ES" />
     <meta property="og:site_name" content="Huele Que Flipas" />
-    <meta property="og:title" content="Huele Que Flipas | Perfumes de equivalencia premium para mujer, hombre, unisex y árabes" />
+    <meta
+      property="og:title"
+      content="Huele Que Flipas | Perfumes de equivalencia premium para mujer, hombre, unisex y árabes"
+    />
     <meta
       property="og:description"
       content="Perfumes de equivalencia premium con larga duración. Fragancias para mujer, hombre, unisex y árabes con aroma de lujo y precio accesible."
     />
     <meta property="og:url" content="https://huelequeflipas.es/" />
-    <meta property="og:image" content="https://huelequeflipas.es/equivalencia-hqf.jpg" />
-    <meta property="og:image:alt" content="Huele Que Flipas perfumes de equivalencia premium" />
+    <meta
+      property="og:image"
+      content="https://huelequeflipas.es/equivalencia-hqf.jpg"
+    />
+    <meta
+      property="og:image:alt"
+      content="Huele Que Flipas perfumes de equivalencia premium"
+    />
 
-    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Huele Que Flipas | Perfumes de equivalencia premium para mujer, hombre, unisex y árabes" />
+    <meta
+      name="twitter:title"
+      content="Huele Que Flipas | Perfumes de equivalencia premium para mujer, hombre, unisex y árabes"
+    />
     <meta
       name="twitter:description"
       content="Perfumes de equivalencia premium con larga duración para mujer, hombre, unisex y árabes. Huele a lujo sin pagar de más."
     />
-    <meta name="twitter:image" content="https://huelequeflipas.es/equivalencia-hqf.jpg" />
+    <meta
+      name="twitter:image"
+      content="https://huelequeflipas.es/equivalencia-hqf.jpg"
+    />
 
-    <!-- Fuentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -45,7 +64,6 @@
       rel="stylesheet"
     />
 
-    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -53,15 +71,15 @@
           extend: {
             colors: {
               brand: {
-                DEFAULT: "#0B1220"
+                DEFAULT: "#0B1220",
               },
               accent: {
                 DEFAULT: "#0284c7",
-                soft: "#38bdf8"
-              }
-            }
-          }
-        }
+                soft: "#38bdf8",
+              },
+            },
+          },
+        },
       };
     </script>
 
@@ -70,18 +88,26 @@
         --nav-h: 80px;
       }
 
-      body {
-        font-family: "Plus Jakarta Sans", sans-serif;
-        background-color: #fafafa;
-      }
-
-      h1, h2, h3, .font-syne {
-        font-family: "Syne", sans-serif;
-      }
-
       html {
         scroll-behavior: smooth;
         scroll-padding-top: var(--nav-h);
+      }
+
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-color: #fafafa;
+        margin: 0;
+      }
+
+      h1,
+      h2,
+      h3,
+      .font-syne {
+        font-family: "Syne", sans-serif;
+      }
+
+      #root {
+        min-height: 100vh;
       }
 
       ::-webkit-scrollbar {
@@ -108,8 +134,7 @@
       }
     </style>
 
-    <!-- Schema -->
-    <script type="application/ld+json">
+    <script type="application/ld+json" id="base-schema">
       {
         "@context": "https://schema.org",
         "@graph": [
@@ -139,21 +164,227 @@
             "image": "https://huelequeflipas.es/equivalencia-hqf.jpg",
             "address": {
               "@type": "PostalAddress",
-              "streetAddress": "C/ Fray Bartolomé de las Casas, Nº 1 Local 3",
               "addressLocality": "San Martín de la Vega",
               "addressRegion": "Madrid",
-              "postalCode": "28330",
               "addressCountry": "ES"
-            }
+            },
+            "areaServed": "ES"
           }
         ]
       }
     </script>
 
-    <script type="module" src="/index.tsx"></script>
+    <script>
+      (function () {
+        const SITE_NAME = "Huele Que Flipas";
+        const SITE_URL = "https://huelequeflipas.es";
+        const DEFAULT_IMAGE = SITE_URL + "/equivalencia-hqf.jpg";
+
+        const cleanPath = (pathname) => {
+          const normalized = pathname.replace(/\/+$/, "");
+          return normalized === "" ? "/" : normalized;
+        };
+
+        const toTitleCase = (value) =>
+          value
+            .replace(/-/g, " ")
+            .replace(/\s+/g, " ")
+            .trim()
+            .replace(/\b\w/g, (letter) => letter.toUpperCase());
+
+        const path = cleanPath(window.location.pathname);
+
+        const seoMap = {
+          "/": {
+            title:
+              "Huele Que Flipas | Perfumes de equivalencia premium para mujer, hombre, unisex y árabes",
+            description:
+              "Perfumes de equivalencia premium para mujer, hombre, unisex y árabes. Fragancias con larga duración, aroma de lujo, envío 24/48h, envío barato y ayuda real para elegir tu perfume.",
+            type: "website",
+            schemaType: "WebPage",
+          },
+          "/perfumes-hombre": {
+            title:
+              "Perfumes de equivalencia para hombre | Huele Que Flipas",
+            description:
+              "Descubre perfumes de equivalencia para hombre con carácter, larga duración y aroma de lujo. Fabricados en España, envío 24/48h y precio accesible.",
+            type: "website",
+            schemaType: "CollectionPage",
+          },
+          "/perfumes-mujer": {
+            title:
+              "Perfumes de equivalencia para mujer | Huele Que Flipas",
+            description:
+              "Perfumes de equivalencia para mujer con aromas elegantes, dulces, frescos y adictivos. Calidad top, envío barato y fragancias que huelen caro sin pagar de más.",
+            type: "website",
+            schemaType: "CollectionPage",
+          },
+          "/perfumes-unisex": {
+            title:
+              "Perfumes de equivalencia unisex | Huele Que Flipas",
+            description:
+              "Explora perfumes de equivalencia unisex con personalidad, larga duración y estilo moderno. Fragancias premium fabricadas en España.",
+            type: "website",
+            schemaType: "CollectionPage",
+          },
+          "/perfumes-arabes": {
+            title:
+              "Perfumes árabes de equivalencia | Huele Que Flipas",
+            description:
+              "Perfumes árabes intensos, elegantes y envolventes. Descubre aromas con presencia, larga duración y un precio inteligente en Huele Que Flipas.",
+            type: "website",
+            schemaType: "CollectionPage",
+          },
+          "/perfumes-nicho": {
+            title:
+              "Perfumes nicho de equivalencia | Huele Que Flipas",
+            description:
+              "Colección de perfumes nicho de equivalencia para quienes buscan algo especial. Aromas con personalidad, calidad top y envío 24/48h.",
+            type: "website",
+            schemaType: "CollectionPage",
+          },
+          "/perfumes-que-mas-duran": {
+            title:
+              "Perfumes de equivalencia que más duran | Huele Que Flipas",
+            description:
+              "Selección de perfumes de equivalencia con mayor duración y mejor fijación. Huele a lujo durante más tiempo con fragancias muy logradas.",
+            type: "website",
+            schemaType: "CollectionPage",
+          },
+          "/blog": {
+            title: "Blog de perfumes de equivalencia | Huele Que Flipas",
+            description:
+              "Guías, comparativas, ideas de regalo y consejos para elegir perfumes de equivalencia, nicho y árabes que huelen increíble.",
+            type: "website",
+            schemaType: "Blog",
+          },
+          "/blog/equivalencia-baccarat-rouge": {
+            title:
+              "Equivalencia de Baccarat Rouge: guía completa | Huele Que Flipas",
+            description:
+              "Descubre a qué huele Baccarat Rouge, por qué gusta tanto y qué opción de equivalencia encaja mejor contigo.",
+            type: "article",
+            schemaType: "Article",
+          },
+          "/blog/perfumes-arabes-que-huelen-caro": {
+            title:
+              "Perfumes árabes que huelen caro | Huele Que Flipas",
+            description:
+              "Selección de perfumes árabes intensos, elegantes y con presencia. Ideas para acertar si buscas un aroma que deje huella.",
+            type: "article",
+            schemaType: "Article",
+          },
+          "/blog/perfumes-que-mas-duran": {
+            title:
+              "Perfumes que más duran: guía y favoritos | Huele Que Flipas",
+            description:
+              "Los perfumes de equivalencia que más duran y consejos para sacarles el máximo partido. Más fijación, más estela y mejor compra.",
+            type: "article",
+            schemaType: "Article",
+          },
+        };
+
+        function buildProductSeo(currentPath) {
+          const slug = currentPath.replace("/producto/", "").trim();
+
+          if (!slug) return null;
+
+          const readableName = toTitleCase(decodeURIComponent(slug));
+
+          return {
+            title: `${readableName} | Perfume de equivalencia premium | ${SITE_NAME}`,
+            description:
+              `Compra ${readableName} en ${SITE_NAME}. Perfume de equivalencia premium con larga duración, envío 24/48h, envío barato y atención cercana.`,
+            type: "product",
+            schemaType: "Product",
+          };
+        }
+
+        const seo =
+          seoMap[path] ||
+          (path.startsWith("/producto/") ? buildProductSeo(path) : null) ||
+          seoMap["/"];
+
+        const canonicalUrl =
+          path === "/" ? `${SITE_URL}/` : `${SITE_URL}${path}`;
+
+        function upsertMetaByName(name, content) {
+          let tag = document.head.querySelector(`meta[name="${name}"]`);
+          if (!tag) {
+            tag = document.createElement("meta");
+            tag.setAttribute("name", name);
+            document.head.appendChild(tag);
+          }
+          tag.setAttribute("content", content);
+        }
+
+        function upsertMetaByProperty(property, content) {
+          let tag = document.head.querySelector(`meta[property="${property}"]`);
+          if (!tag) {
+            tag = document.createElement("meta");
+            tag.setAttribute("property", property);
+            document.head.appendChild(tag);
+          }
+          tag.setAttribute("content", content);
+        }
+
+        function upsertCanonical(href) {
+          let link = document.head.querySelector('link[rel="canonical"]');
+          if (!link) {
+            link = document.createElement("link");
+            link.setAttribute("rel", "canonical");
+            document.head.appendChild(link);
+          }
+          link.setAttribute("href", href);
+        }
+
+        document.title = seo.title;
+        upsertMetaByName("description", seo.description);
+        upsertMetaByName("robots", "index,follow");
+        upsertMetaByProperty("og:title", seo.title);
+        upsertMetaByProperty("og:description", seo.description);
+        upsertMetaByProperty("og:url", canonicalUrl);
+        upsertMetaByProperty("og:type", seo.type || "website");
+        upsertMetaByProperty("og:site_name", SITE_NAME);
+        upsertMetaByProperty("og:image", DEFAULT_IMAGE);
+        upsertMetaByProperty(
+          "og:image:alt",
+          "Huele Que Flipas perfumes de equivalencia premium"
+        );
+        upsertMetaByName("twitter:title", seo.title);
+        upsertMetaByName("twitter:description", seo.description);
+        upsertMetaByName("twitter:image", DEFAULT_IMAGE);
+        upsertCanonical(canonicalUrl);
+
+        const pageSchema = {
+          "@context": "https://schema.org",
+          "@type": seo.schemaType || "WebPage",
+          name: seo.title,
+          description: seo.description,
+          url: canonicalUrl,
+          inLanguage: "es",
+          isPartOf: {
+            "@type": "WebSite",
+            name: SITE_NAME,
+            url: `${SITE_URL}/`,
+          },
+        };
+
+        let dynamicSchema = document.getElementById("dynamic-page-schema");
+        if (!dynamicSchema) {
+          dynamicSchema = document.createElement("script");
+          dynamicSchema.type = "application/ld+json";
+          dynamicSchema.id = "dynamic-page-schema";
+          document.head.appendChild(dynamicSchema);
+        }
+        dynamicSchema.textContent = JSON.stringify(pageSchema);
+      })();
+    </script>
   </head>
 
   <body>
     <div id="root"></div>
+    <noscript>Necesitas activar JavaScript para ver esta web.</noscript>
+    <script type="module" src="/index.tsx"></script>
   </body>
 </html>
