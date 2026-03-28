@@ -1,11 +1,6 @@
 User-agent: *
 Allow: /
-
-Sitemap: https://huelequeflipas.es/sitemap.xml
-
-# Mejora rastreo
-Crawl-delay: 1
-
-# Bloqueos opcionales (por si en el futuro los usas)
 Disallow: /cart
 Disallow: /checkout
+
+Sitemap: https://huelequeflipas.es/sitemap.xml
