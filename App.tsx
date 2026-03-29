@@ -61,14 +61,16 @@ const getLineLabel = (line: Product['line']) => {
 const getViewFromPath = (pathname: string): View => {
   const clean = pathname.replace(/\/+$/, '') || '/';
 
-  if (clean === '/hombre') return 'hombre';
-  if (clean === '/mujer') return 'mujer';
-  if (clean === '/unisex') return 'unisex';
-  if (clean === '/arabes') return 'arabes';
-  if (clean === '/nicho') return 'nicho';
-  if (clean === '/top-duracion') return 'top-duracion';
+  if (clean === '/hombre' || clean === '/perfumes-hombre') return 'hombre';
+  if (clean === '/mujer' || clean === '/perfumes-mujer') return 'mujer';
+  if (clean === '/unisex' || clean === '/perfumes-unisex') return 'unisex';
+  if (clean === '/arabes' || clean === '/perfumes-arabes') return 'arabes';
+  if (clean === '/nicho' || clean === '/perfumes-nicho') return 'nicho';
+  if (clean === '/top-duracion' || clean === '/perfumes-que-mas-duran') {
+    return 'top-duracion';
+  }
   if (clean === '/maria') return 'maria';
-  if (clean.startsWith('/blog')) return 'blog';
+  if (clean === '/blog') return 'blog';
 
   return 'home';
 };
@@ -684,21 +686,23 @@ const App = () => {
   return (
     <div className="min-h-screen bg-[#f8fafc] text-slate-900">
       <Navbar
-        onCartClick={() => setCartOpen(true)}
-        cartCount={totalCartCount}
-        onSearchClick={() => {
-          document
-            .getElementById('buscador-principal')
-            ?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  onCartClick={() => setCartOpen(true)}
+  cartCount={totalCartCount}
+  onSearchClick={() => {
+    const target =
+      document.getElementById('buscador-principal') ||
+      document.getElementById('buscador-categoria');
 
-          setTimeout(() => {
-            const input = document.getElementById(
-              'buscador-principal'
-            ) as HTMLInputElement | null;
-            input?.focus();
-          }, 250);
-        }}
-      />
+    target?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    setTimeout(() => {
+      const input = target as HTMLInputElement | null;
+      input?.focus?.();
+    }, 250);
+  }}
+  onNavigate={goTo}
+  currentPath={window.location.pathname}
+/>
 
       <main className="pb-12">
         {view === 'home' && homeBlocks}
