@@ -62,16 +62,22 @@ const Navbar: React.FC<NavbarProps> = ({
     path: string,
     options?: { strong?: boolean; accent?: boolean }
   ) => {
-    const base =
-      'transition hover:text-sky-600';
-    const active = isActive(path) ? ' text-sky-600 font-black' : ' text-slate-900';
-    const extra = options?.accent
-      ? ' text-sky-600 font-black'
-      : options?.strong
-      ? ' font-black'
-      : '';
+    const active = isActive(path);
+    const base = 'transition hover:text-sky-600';
 
-    return `${base}${active}${extra}`;
+    if (active) {
+      return `${base} text-sky-600 font-black`;
+    }
+
+    if (options?.accent) {
+      return `${base} text-sky-600 font-black`;
+    }
+
+    if (options?.strong) {
+      return `${base} text-slate-900 font-black`;
+    }
+
+    return `${base} text-slate-900`;
   };
 
   return (
