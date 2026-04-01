@@ -237,16 +237,32 @@ const App = () => {
 
   const products = useMemo(() => PERFUMES.map(normalizeProduct), []);
 
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem(CART_STORAGE_KEY);
-      if (saved) {
-        setCartItems(JSON.parse(saved));
-      }
-    } catch {
-      setCartItems([]);
+ useEffect(() => {
+  const redirectTopDuracionIfNeeded = () => {
+    const clean = window.location.pathname.replace(/\/+$/, '') || '/';
+
+    if (clean === '/top-duracion' || clean === '/perfumes-que-mas-duran') {
+      window.history.replaceState({}, '', '/maria');
+      setView('maria');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return true;
     }
-  }, []);
+
+    return false;
+  };
+
+  redirectTopDuracionIfNeeded();
+
+  const onPopState = () => {
+    if (redirectTopDuracionIfNeeded()) return;
+
+    setView(getViewFromPath(window.location.pathname));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  window.addEventListener('popstate', onPopState);
+  return () => window.removeEventListener('popstate', onPopState);
+}, []);
 
   useEffect(() => {
     localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cartItems));
