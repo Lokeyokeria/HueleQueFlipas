@@ -6,7 +6,6 @@ import Cart from './components/Cart';
 import { PERFUMES } from './data';
 import type { Product, CartItem } from './types';
 import {
-  Award,
   Gift,
   MapPin,
   MessageCircle,
@@ -58,9 +57,6 @@ const getLineLabel = (line: Product['line']) => {
 };
 
 const getViewFromPath = (pathname: string): View => {
-  const clean = pathname.replace(/\/+$/, '') || '/';
-
- const getViewFromPath = (pathname: string): View => {
   const clean = pathname.replace(/\/+$/, '') || '/';
 
   if (clean === '/hombre' || clean === '/perfumes-hombre') return 'hombre';
@@ -236,39 +232,25 @@ const App = () => {
 
   const products = useMemo(() => PERFUMES.map(normalizeProduct), []);
 
- useEffect(() => {
-  const redirectTopDuracionIfNeeded = () => {
-    const clean = window.location.pathname.replace(/\/+$/, '') || '/';
-
-    if (clean === '/top-duracion' || clean === '/perfumes-que-mas-duran') {
-      window.history.replaceState({}, '', '/maria');
-      setView('maria');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      return true;
-    }
-
-    return false;
-  };
-
-  redirectTopDuracionIfNeeded();
-
-  const onPopState = () => {
-    if (redirectTopDuracionIfNeeded()) return;
-
-    setView(getViewFromPath(window.location.pathname));
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  window.addEventListener('popstate', onPopState);
-  return () => window.removeEventListener('popstate', onPopState);
-}, []);
-
   useEffect(() => {
-    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cartItems));
-  }, [cartItems]);
+    const redirectTopDuracionIfNeeded = () => {
+      const clean = window.location.pathname.replace(/\/+$/, '') || '/';
 
-  useEffect(() => {
+      if (clean === '/top-duracion' || clean === '/perfumes-que-mas-duran') {
+        window.history.replaceState({}, '', '/maria');
+        setView('maria');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return true;
+      }
+
+      return false;
+    };
+
+    redirectTopDuracionIfNeeded();
+
     const onPopState = () => {
+      if (redirectTopDuracionIfNeeded()) return;
+
       setView(getViewFromPath(window.location.pathname));
       window.scrollTo({ top: 0, behavior: 'smooth' });
     };
@@ -276,6 +258,10 @@ const App = () => {
     window.addEventListener('popstate', onPopState);
     return () => window.removeEventListener('popstate', onPopState);
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cartItems));
+  }, [cartItems]);
 
   useEffect(() => {
     if (!selectedProduct) return;
@@ -296,8 +282,13 @@ const App = () => {
   }, [selectedProduct]);
 
   const goTo = useCallback((path: string) => {
-    window.history.pushState({}, '', path);
-    setView(getViewFromPath(path));
+    const resolvedPath =
+      path === '/top-duracion' || path === '/perfumes-que-mas-duran'
+        ? '/maria'
+        : path;
+
+    window.history.pushState({}, '', resolvedPath);
+    setView(getViewFromPath(resolvedPath));
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
@@ -321,7 +312,10 @@ const App = () => {
         );
       }
 
-      return [...current, { ...product, price: getDisplayPrice(product), quantity: 1 }];
+      return [
+        ...current,
+        { ...product, price: getDisplayPrice(product), quantity: 1 },
+      ];
     });
 
     setCartOpen(true);
@@ -494,7 +488,8 @@ const App = () => {
           {search.trim() && (
             <div className="mt-8">
               <p className="mb-4 text-sm font-bold text-slate-500">
-                {searchResults.length} resultado{searchResults.length === 1 ? '' : 's'} para “{search}”
+                {searchResults.length} resultado
+                {searchResults.length === 1 ? '' : 's'} para “{search}”
               </p>
               {renderGrid(searchResults.slice(0, 9))}
             </div>
@@ -664,9 +659,8 @@ const App = () => {
       </section>
     </>
   );
-
-  const listingPageMap: Record<
-    Exclude<View, 'home' | 'maria' | 'blog' | 'top-duracion'>,
+    const listingPageMap: Record<
+    Exclude<View, 'home' | 'maria' | 'blog'>,
     { eyebrow: string; title: string; text: string }
   > = {
     mujer: {
@@ -706,23 +700,23 @@ const App = () => {
   return (
     <div className="min-h-screen bg-[#f8fafc] text-slate-900">
       <Navbar
-  onCartClick={() => setCartOpen(true)}
-  cartCount={totalCartCount}
-  onSearchClick={() => {
-    const target =
-      document.getElementById('buscador-principal') ||
-      document.getElementById('buscador-categoria');
+        onCartClick={() => setCartOpen(true)}
+        cartCount={totalCartCount}
+        onSearchClick={() => {
+          const target =
+            document.getElementById('buscador-principal') ||
+            document.getElementById('buscador-categoria');
 
-    target?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          target?.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-    setTimeout(() => {
-      const input = target as HTMLInputElement | null;
-      input?.focus?.();
-    }, 250);
-  }}
-  onNavigate={goTo}
-  currentPath={window.location.pathname}
-/>
+          setTimeout(() => {
+            const input = target as HTMLInputElement | null;
+            input?.focus?.();
+          }, 250);
+        }}
+        onNavigate={goTo}
+        currentPath={window.location.pathname}
+      />
 
       <main className="pb-12">
         {view === 'home' && homeBlocks}
@@ -756,68 +750,6 @@ const App = () => {
             </div>
 
             <div className="mt-8">{renderGrid(visibleProducts)}</div>
-          </section>
-        )}
-
-        {view === 'top-duracion' && (
-          <section className="mx-auto max-w-7xl px-4 pt-14 sm:px-6 lg:px-8">
-            <SectionHeader
-              eyebrow="Top duración"
-              title="Estamos afinando esta selección"
-              text="Para no inventar ni prometer lo que no toca, esta página se está reorganizando. Mientras tanto, María te puede recomendar opciones con muy buena presencia según lo que te guste."
-            />
-
-            <div className="mt-8 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-              <div className="rounded-[32px] border border-slate-200 bg-white p-8 shadow-sm">
-                <div className="flex items-start gap-4">
-                  <Award className="mt-1 h-6 w-6 text-sky-600" />
-                  <div>
-                    <h3 className="text-2xl font-black text-slate-900">
-                      Mejor hacerlo bien que inventarlo
-                    </h3>
-                    <p className="mt-4 text-sm leading-7 text-slate-600">
-                      Aquí vamos a dejar una selección top cuando la tengas
-                      cerrada con criterio real. De momento, lo más útil es que
-                      nos digas si buscas algo limpio, intenso, dulce, elegante
-                      o de noche.
-                    </p>
-
-                    <div className="mt-6 flex flex-wrap gap-3">
-                      <button
-                        type="button"
-                        onClick={openWhatsApp}
-                        className="inline-flex items-center rounded-full bg-slate-900 px-6 py-3 text-xs font-black uppercase tracking-[0.2em] text-white transition hover:bg-sky-700"
-                      >
-                        Pedir recomendación
-                      </button>
-
-                      <button
-                        type="button"
-                        onClick={() => goTo('/nicho')}
-                        className="inline-flex items-center rounded-full border border-slate-300 bg-white px-6 py-3 text-xs font-black uppercase tracking-[0.2em] text-slate-900 transition hover:border-sky-300 hover:text-sky-700"
-                      >
-                        Ver perfumes nicho
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="rounded-[32px] bg-[#020817] p-8 text-white shadow-[0_24px_60px_rgba(2,8,23,0.35)]">
-                <p className="text-xs font-black uppercase tracking-[0.35em] text-sky-300">
-                  Consejo rápido
-                </p>
-                <h3 className="mt-3 text-2xl font-black">
-                  Si quieres durar más, cuéntanos esto
-                </h3>
-                <div className="mt-5 space-y-3 text-sm leading-7 text-slate-300">
-                  <p>• Si te van más los perfumes limpios o intensos.</p>
-                  <p>• Si lo quieres para diario, noche o eventos.</p>
-                  <p>• Si prefieres algo dulce, fresco, sexy o elegante.</p>
-                  <p>• Qué perfume te gusta ahora mismo.</p>
-                </div>
-              </div>
-            </div>
           </section>
         )}
 
