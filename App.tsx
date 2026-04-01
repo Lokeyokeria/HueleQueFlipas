@@ -26,7 +26,6 @@ type View =
   | 'unisex'
   | 'arabes'
   | 'nicho'
-  | 'top-duracion'
   | 'maria'
   | 'blog';
 
