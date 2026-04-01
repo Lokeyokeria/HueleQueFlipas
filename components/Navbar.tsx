@@ -26,7 +26,6 @@ const Navbar: React.FC<NavbarProps> = ({
       { label: 'Unisex', path: '/unisex' },
       { label: 'Árabes', path: '/arabes' },
       { label: 'Nicho', path: '/nicho', strong: true },
-      { label: 'Top duración', path: '/top-duracion', accent: true },
       { label: 'María', path: '/maria' },
       { label: 'Blog', path: '/blog' },
     ],
@@ -35,6 +34,7 @@ const Navbar: React.FC<NavbarProps> = ({
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
+
     return () => {
       document.body.style.overflow = '';
     };
@@ -94,6 +94,7 @@ const Navbar: React.FC<NavbarProps> = ({
               <span className="font-syne text-xl font-bold uppercase tracking-tighter text-black sm:text-2xl">
                 Huele <span className="text-sky-600">Que</span> Flipas
               </span>
+
               <span className="mt-1 text-[8px] font-bold uppercase tracking-[0.28em] text-gray-500 sm:text-[9px]">
                 Equivalencias
               </span>
@@ -162,6 +163,7 @@ const Navbar: React.FC<NavbarProps> = ({
           <div className="relative flex h-full w-[85%] max-w-sm flex-col bg-white shadow-2xl">
             <div className="flex items-center justify-between border-b p-5">
               <span className="text-lg font-black">Menú</span>
+
               <button
                 type="button"
                 onClick={closeMenu}
