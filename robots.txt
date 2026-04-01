@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
-Disallow: /cart
-Disallow: /checkout
 
 Sitemap: https://huelequeflipas.es/sitemap.xml
+
+Disallow: /cart
+Disallow: /checkout
