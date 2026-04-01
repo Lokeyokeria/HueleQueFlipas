@@ -1,7 +1,5 @@
 {
-  "name": "Huele Que Flipas | Perfumes de equivalencia premium para mujer, hombre, unisex y árabes",
-  "description": "Perfumes de equivalencia premium con larga duración. Fragancias para mujer, hombre, unisex y árabes que huelen a lujo sin pagar de más. Fabricados en España, envío 24/48h y atención personalizada.",
-  "requestFramePermissions": [
-    "microphone"
-  ]
+  "name": "Huele Que Flipas | Perfumes de Equivalencia Premium",
+  "description": "Perfumes de equivalencia premium que huelen a lujo sin pagar de más. Larga duración, envío 24/48h, regalo de muestras, fabricado en España y atención cercana.",
+  "requestFramePermissions": ["microphone"]
 }
