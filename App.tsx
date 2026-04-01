@@ -61,14 +61,19 @@ const getLineLabel = (line: Product['line']) => {
 const getViewFromPath = (pathname: string): View => {
   const clean = pathname.replace(/\/+$/, '') || '/';
 
+ const getViewFromPath = (pathname: string): View => {
+  const clean = pathname.replace(/\/+$/, '') || '/';
+
   if (clean === '/hombre' || clean === '/perfumes-hombre') return 'hombre';
   if (clean === '/mujer' || clean === '/perfumes-mujer') return 'mujer';
   if (clean === '/unisex' || clean === '/perfumes-unisex') return 'unisex';
   if (clean === '/arabes' || clean === '/perfumes-arabes') return 'arabes';
   if (clean === '/nicho' || clean === '/perfumes-nicho') return 'nicho';
+
   if (clean === '/top-duracion' || clean === '/perfumes-que-mas-duran') {
-    return 'top-duracion';
+    return 'maria';
   }
+
   if (clean === '/maria') return 'maria';
   if (clean === '/blog') return 'blog';
 
